@@ -19,7 +19,7 @@ public class CollisionProcess : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        //Debug.Log("Hit by " + collision.gameObject.name);
+        //キャラクターに当たったら削除
         if(collision.gameObject.name == "Character")
         {
             GameObject.Destroy(this.gameObject);
