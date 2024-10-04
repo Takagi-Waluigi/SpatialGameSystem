@@ -13,6 +13,9 @@ public class EnemySpawner : MonoBehaviour
 
     [Header("各種設定")]
     [SerializeField] float spawnDuration = 1f;
+    [SerializeField] bool pursuitMode = true;
+    [SerializeField] List<Transform>  goalTransforms;
+
     float lastTime = 0;
     // Start is called before the first frame update
     void Start()
@@ -39,6 +42,8 @@ public class EnemySpawner : MonoBehaviour
             enemyNavi.characterObject = characterObject;
             enemyNavi.userObject = userObject;
             enemyNavi.playAreaObject = playAreaObject;
+            enemyNavi.pursuitMode = pursuitMode;
+            enemyNavi.goalTransforms = goalTransforms;
 
             lastTime = Time.time;
         }
