@@ -85,7 +85,7 @@ Shader "Unlit/MaskShaderRevised"
             fixed4 metaBall(float2 p, float2 up, float2 sp)
             {   
                 float c = 0;
-                float val = 0.022;
+                float val = 0.008;
                 c += val * 0.5 / length(p - up);
                 c += val / length(p - sp);
                 // c += 0.05 / length(p - float2(1.0, 1.0));
@@ -98,13 +98,13 @@ Shader "Unlit/MaskShaderRevised"
                 return a;
             }
 
-            fixed4 metaBallMulti2(float2 p, float2 up0, float2 up1, float2 sp)
+            fixed4 metaBallMulti2(float2 p, float2 up0, float2 sp1, float2 sp2)
             {   
                 float c = 0;
-                float val = 0.02;
+                float val = 0.008;
                 c += val * 0.5 / length(p - up0);
-                c += val * 0.5 / length(p - up1);
-                c += val / length(p - sp);
+                c += val / length(p - sp1);
+                c += val / length(p - sp2);
 
                 c = step(0.2, c);
 
@@ -156,6 +156,7 @@ Shader "Unlit/MaskShaderRevised"
                 float2 pos = -(i.uv.xy * 2.0 - 1.0);        
 
                 float2 rpos0 = convertWorldToUV(_RobotPos_0.x, _RobotPos_0.z, planeSize); //Unity座標系 単位はｍ
+                float2 rpos1 = convertWorldToUV(_RobotPos_1.x, _RobotPos_1.z, planeSize); //Unity座標系 単位はｍ
                 float2 upos0 = convertWorldToUV(_UserPosition_0.x, _UserPosition_0.z, planeSize);
                 float2 upos1 = convertWorldToUV(_UserPosition_1.x, _UserPosition_1.z, planeSize);
 
@@ -170,12 +171,12 @@ Shader "Unlit/MaskShaderRevised"
 
                 float alpha_1 = circle(pos, rpos0, radius); //要注意、対応づけしていない。
                 float alpha_2 = metaBall(pos, upos0, rpos0);
-                float alpha_3 = metaBallMulti2(pos, upos0, upos1, rpos0); 
+                float alpha_3 = metaBallMulti2(pos, upos0, rpos0, rpos1); 
                 // float alpha_2 = circle(pos, float2(0.5, 0.5), radius);
 
                 // float alpha_3 = circle(pos, float2(0.15, 0.15), radius);
 
-                return fixed4(0.0, 0.0, 0.0, alpha_1);
+                return fixed4(0.0, 0.0, 0.0, alpha_3);
 
                 //複数のロボットについてはAlphaの掛け算で実現なので可能台数分をかけましょう。
 

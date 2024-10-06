@@ -19,7 +19,7 @@ public class MapTransformer : MonoBehaviour
     void Start()
     {
         ReadMap();
-        AdjustCamera();
+        //AdjustCamera();
     }
 
     #if UNITY_EDITOR

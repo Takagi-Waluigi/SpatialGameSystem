@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class PTPS_Controller : MonoBehaviour
 {
-    [SerializeField] Transform screen;
+    [SerializeField] Transform screen_1;
+    [SerializeField] Transform screen_2;
     [SerializeField] Transform[] user;
     [SerializeField] Transform mapObject;
     [SerializeField] Material maskMaterial;
@@ -34,9 +35,15 @@ public class PTPS_Controller : MonoBehaviour
         maskMaterial.SetFloat("_MapScale", largeScale);
 
         maskMaterial.SetVector("_RobotPos_0", new Vector4(
-            screen.position.x,
+            screen_1.position.x,
             0f,
-            screen.position.z,
+            screen_1.position.z,
+            0f));
+
+        maskMaterial.SetVector("_RobotPos_1", new Vector4(
+            screen_2.position.x,
+            0f,
+            screen_2.position.z,
             0f));
 
         
@@ -53,7 +60,7 @@ public class PTPS_Controller : MonoBehaviour
                     user[i].position.z,
                     0f));
 
-                float distance = Vector3.Distance(screen.position, user[i].position);
+                float distance = Vector3.Distance(screen_1.position, user[i].position);
                 if(distance < minDistance)
                 {
                     minDistance = distance;
@@ -62,7 +69,7 @@ public class PTPS_Controller : MonoBehaviour
 
             }
 
-            maskMaterial.SetFloat("_Disntance", Vector3.Distance(screen.position, user[minDistanceId].position));
+            maskMaterial.SetFloat("_Disntance", Vector3.Distance(screen_1.position, user[minDistanceId].position));
         }    
     }
 }
