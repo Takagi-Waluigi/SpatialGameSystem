@@ -10,10 +10,10 @@ using RosMessageTypes.Tf2;
 public class TFPoseCalculator : MonoBehaviour
 {
     [SerializeField] MapTransformer mapTransformer;
-    [SerializeField] GameObject turtlebot3Obj;
+    [SerializeField] GameObject targetObject;
     ROSConnection ros;
-    [SerializeField] string mapChildFrameName = "odom";
-    [SerializeField] string odomChildFrameName = "base_footprint";
+    [SerializeField] string parentFrameName = "odom";
+    [SerializeField] string childFrameName = "base_footprint";
     [SerializeField] string rosNamespace = "";
     string topicName = "/tf";
     Transform mapFrameTransform; 
@@ -38,19 +38,17 @@ public class TFPoseCalculator : MonoBehaviour
         mapFrameTransform.position = mapFramePose.position;
         mapFrameTransform.rotation = mapFramePose.rotation;
         // odomフレームの座標をmapフレーム基準に変換する
-        turtlebot3Obj.transform.position = TFUtility.GetRelativePosition(mapFrameTransform, odomFramePose.position) - mapTransformer.OriginPos;
-        turtlebot3Obj.transform.rotation = TFUtility.GetRelativeRotation(mapFrameTransform, odomFramePose.rotation);
+        targetObject.transform.position = TFUtility.GetRelativePosition(mapFrameTransform, odomFramePose.position) - mapTransformer.OriginPos;
+        targetObject.transform.rotation = TFUtility.GetRelativeRotation(mapFrameTransform, odomFramePose.rotation);
     }
 
     void ReceiveTFMsg(TFMessageMsg msg)
-    {
-        Debug.Log("ns:" + rosNamespace + "/ data incoming");
-        
+    {        
         for (int i = 0; i < msg.transforms.Length; i++)
             {
-            if (msg.transforms[i].child_frame_id == mapChildFrameName) {
+            if (msg.transforms[i].child_frame_id == parentFrameName) {
                 mapFramePose = TFUtility.ConvertToUnityPose(msg.transforms[i].transform.translation, msg.transforms[i].transform.rotation);
-            } else if (msg.transforms[i].child_frame_id == odomChildFrameName) {
+            } else if (msg.transforms[i].child_frame_id == childFrameName) {
                 odomFramePose = TFUtility.ConvertToUnityPose(msg.transforms[i].transform.translation, msg.transforms[i].transform.rotation);
             }  
         } 
