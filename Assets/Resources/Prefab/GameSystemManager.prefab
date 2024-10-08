@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8640721497687278017}
   - component: {fileID: 4178550587466734392}
   - component: {fileID: 8514866775051272314}
+  - component: {fileID: 5579519084882005074}
   - component: {fileID: 870509415412407442}
   m_Layer: 0
   m_Name: Character
@@ -146,6 +147,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetTransform: {fileID: 0}
   agent: {fileID: 4178550587466734392}
+--- !u!114 &5579519084882005074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 994594718201703601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72cf061cb5bbf5a4aacd6eaed00145b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  laserObject_1: {fileID: 0}
+  targetTransform: {fileID: 0}
+  agent: {fileID: 0}
+  freeMoveGoals: []
 --- !u!54 &870509415412407442
 Rigidbody:
   m_ObjectHideFlags: 0

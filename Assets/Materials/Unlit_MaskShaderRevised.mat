@@ -38,8 +38,8 @@ Material:
     - _MetaValue: 0.55
     - _NumRobot: 1
     m_Colors:
-    - _RobotPos_0: {r: -2.5890908, g: 0, b: -1.5117842, a: 0}
+    - _RobotPos_0: {r: -3.774687, g: 0, b: 4.2498684, a: 0}
     - _RobotPos_2: {r: 0, g: 0, b: 0, a: 0}
     - _RobotPos_3: {r: 0, g: 0, b: 0, a: 0}
-    - _UserPosition_0: {r: -2.451122, g: 0, b: -1.8289541, a: 0}
+    - _UserPosition_0: {r: -3.7444735, g: 0, b: 3.2200649, a: 0}
   m_BuildTextureStacks: []
