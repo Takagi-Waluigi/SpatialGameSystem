@@ -13,6 +13,7 @@ public class LaserObjectSubscriber : MonoBehaviour
     ROSConnection ros;
 
     [Header("基本設定")]
+    [SerializeField] Transform baseTransform;
     [SerializeField] string topicName = "";    
     [SerializeField] [Range(0f, 5f)] float maxRange = 3.0f;
     [SerializeField] [Range(0f, 5f)] float minRange = 0.250f;
@@ -53,7 +54,7 @@ public class LaserObjectSubscriber : MonoBehaviour
         {
             for(int i = 0; i < thresholdObjets.Length; i ++)
             {
-                thresholdObjets[i] = GameObject.Instantiate(baseObject, this.transform);
+                thresholdObjets[i] = GameObject.Instantiate(baseObject, baseTransform);
                 thresholdObjets[i].transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
                 thresholdObjets[i].name = "threshold_" + i;
             }
