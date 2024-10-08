@@ -162,12 +162,12 @@ Shader "Unlit/MaskShaderRevised"
 
                 float2 inputValue = float2(_RobotPos_0.x, _RobotPos_0.z); //Unity座標系 単位はｍ
                 
-                float inputValueRadius = 1.00; //Unity座標系 単位はｍ
+                float inputValueRadius = 0.5000; //Unity座標系 単位はｍ
                 float radius = inputValueRadius * 2.0 / planeSize;
 
                 float shaderDistance = _Disntance / planeSize;
 
-                radius = map(shaderDistance, 0.0, 0.30, 0.20, 0.05, true);
+               // radius = map(shaderDistance, 0.0, 0.30, 0.20, 0.05, true);
 
                 float alpha_1 = circle(pos, rpos0, radius); //要注意、対応づけしていない。
                 float alpha_2 = metaBall(pos, upos0, rpos0);
@@ -176,7 +176,7 @@ Shader "Unlit/MaskShaderRevised"
 
                 // float alpha_3 = circle(pos, float2(0.15, 0.15), radius);
 
-                return fixed4(0.0, 0.0, 0.0, alpha_3);
+                return fixed4(0.0, 0.0, 0.0, alpha_1);
 
                 //複数のロボットについてはAlphaの掛け算で実現なので可能台数分をかけましょう。
 

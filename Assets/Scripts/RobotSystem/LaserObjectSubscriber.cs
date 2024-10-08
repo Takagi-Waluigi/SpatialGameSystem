@@ -6,7 +6,6 @@ using RosMessageTypes.Geometry;
 using RosMessageTypes.Nav;
 using RosMessageTypes.Std;
 using Unity.Robotics.ROSTCPConnector;
-using UnityEngine.Assertions.Must;
 
 public class LaserObjectSubscriber : MonoBehaviour
 {
@@ -19,12 +18,13 @@ public class LaserObjectSubscriber : MonoBehaviour
     [SerializeField] [Range(0f, 5f)] float minRange = 0.250f;
     [SerializeField] [Range(0f, 5f)] float maxDifferentialThresold = 3.0f;
     [SerializeField] float distanceCutOffPerFrame = 0.2f;
-    public List<Vector3> objectPositions = new List<Vector3>();
-    public List<Vector3> smoothedObjectPositions = new List<Vector3>();
+    List<Vector3> objectPositions = new List<Vector3>();
+    List<Vector3> smoothedObjectPositions = new List<Vector3>();
+
+    public List<Vector3> objectWorldPositions = new List<Vector3>();
 
     [Header("視覚化用パラメータ")]
     [SerializeField] bool visualize;
-    bool _vis;
     [SerializeField] GameObject baseObject;
     [SerializeField] int numberOfThresoldObject = 15;
     GameObject[] thresholdObjets;
@@ -48,15 +48,13 @@ public class LaserObjectSubscriber : MonoBehaviour
         ros.Subscribe<PoseArrayMsg>(topicName, OnSubsribeArray);
         thresholdObjets = new GameObject[numberOfThresoldObject];
 
-        _vis = visualize;
-
-        if(_vis)
+        if(visualize)
         {
             for(int i = 0; i < thresholdObjets.Length; i ++)
             {
                 thresholdObjets[i] = GameObject.Instantiate(baseObject, baseTransform);
                 thresholdObjets[i].transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-                thresholdObjets[i].name = "threshold_" + i;
+                thresholdObjets[i].name = "laserObject_" + i;
             }
         }
     }
@@ -89,6 +87,7 @@ public class LaserObjectSubscriber : MonoBehaviour
         thresholdPositions.Clear();
         objectPositions.Clear();
         smoothedObjectPositions.Clear();
+        objectWorldPositions.Clear();
 
         if(appliedPositions.Count > 0)
         {
@@ -182,25 +181,29 @@ public class LaserObjectSubscriber : MonoBehaviour
                         averagePositionBuffer[i] = averagePosition;
                     }
                 }
-            }
-            
 
-            if(_vis)
-            {
-                for(int i = 0; i < thresholdObjets.Length; i ++)
+                for(int i = 0; i < smoothedObjectPositions.Count; i ++)
                 {
-                    if(i < smoothedObjectPositions.Count)
-                    {
-                        thresholdObjets[i].transform.localPosition = smoothedObjectPositions[i];               
-                        thresholdObjets[i].transform.localScale = new Vector3(0.07f, 0.07f, 0.07f);
+                    smoothedObjectPositions[i] = new Vector3(
+                            -smoothedObjectPositions[i].x,
+                             smoothedObjectPositions[i].y,
+                            -smoothedObjectPositions[i].z - 0.39f); 
+                }
+            }
 
-                    }
-                    else
-                    {
-                        thresholdObjets[i].transform.localPosition = Vector3.zero;
-                        thresholdObjets[i].transform.localScale = Vector3.zero;
-                        
-                    }
+            for(int i = 0; i < thresholdObjets.Length; i ++)
+            {
+                if(i < smoothedObjectPositions.Count)
+                {
+                    thresholdObjets[i].transform.localPosition = smoothedObjectPositions[i]; 
+                    thresholdObjets[i].transform.localScale = (visualize == true) ? new Vector3(0.07f, 0.07f, 0.07f) : Vector3.zero;
+
+                    objectWorldPositions.Add(thresholdObjets[i].transform.position);
+                }
+                else
+                {
+                    thresholdObjets[i].transform.localPosition = Vector3.zero;
+                    thresholdObjets[i].transform.localScale = Vector3.zero;                    
                 }
             }
         }  

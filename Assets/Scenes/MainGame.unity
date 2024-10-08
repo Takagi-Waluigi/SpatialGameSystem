@@ -1228,6 +1228,7 @@ GameObject:
   m_Component:
   - component: {fileID: 67636626}
   - component: {fileID: 67636627}
+  - component: {fileID: 67636628}
   m_Layer: 0
   m_Name: Projectoroid_1
   m_TagString: Untagged
@@ -1266,7 +1267,29 @@ MonoBehaviour:
   targetObject: {fileID: 1537300243}
   parentFrameName: odom
   childFrameName: base_footprint
-  rosNamespace: robot1
+  rosNamespace: 
+--- !u!114 &67636628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 67636625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e90391f1ce7af444b819b54d5be7bae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseTransform: {fileID: 1537300244}
+  topicName: /object
+  maxRange: 1.5
+  minRange: 0.25
+  maxDifferentialThresold: 0.3
+  distanceCutOffPerFrame: 0.2
+  objectWorldPositions: []
+  visualize: 1
+  baseObject: {fileID: 6521700990748457908, guid: ae7c29a77604bc14296e9227cff1bb9f, type: 3}
+  numberOfThresoldObject: 15
 --- !u!1001 &70052760
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3409,6 +3432,22 @@ PrefabInstance:
       propertyPath: m_ClearFlags
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5153761846412594485, guid: 3ff933bb77ac3ba46a48235b5440e988, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 5153761846412594485, guid: 3ff933bb77ac3ba46a48235b5440e988, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 5153761846412594485, guid: 3ff933bb77ac3ba46a48235b5440e988, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 5153761846412594485, guid: 3ff933bb77ac3ba46a48235b5440e988, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 5163477923779442963, guid: 3ff933bb77ac3ba46a48235b5440e988, type: 3}
       propertyPath: m_ClearFlags
       value: 2
@@ -4902,7 +4941,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &570923259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4917,8 +4956,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   screen_1: {fileID: 1405706819}
   screen_2: {fileID: 2109520160}
-  user:
-  - {fileID: 336728470}
+  laserObject_1: {fileID: 67636628}
+  maxDesinatedSize: 4
   mapObject: {fileID: 1766046480}
   maskMaterial: {fileID: 2100000, guid: 41dba1e169a2ad4488a6cea1116ccda7, type: 2}
   maskObjectPositionOffset: 0.6
@@ -5003,7 +5042,7 @@ Transform:
   m_GameObject: {fileID: 570923258}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.6, z: 0}
+  m_LocalPosition: {x: 0, y: 1.23, z: 0}
   m_LocalScale: {x: 2.5349996, y: 1, z: 2.5349998}
   m_ConstrainProportionsScale: 0
   m_Children: []

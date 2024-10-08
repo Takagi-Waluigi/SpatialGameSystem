@@ -25,13 +25,13 @@ public class UserMarkerDrawer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(laserObject.smoothedObjectPositions.Count > 0)
+        if(laserObject.objectWorldPositions.Count > 0)
         {
             for(int i = 0; i < markers.Length; i ++)
             {
-                if(i < laserObject.smoothedObjectPositions.Count)
+                if(i < laserObject.objectWorldPositions.Count)
                 {
-                    markers[i].transform.localPosition = laserObject.smoothedObjectPositions[i];
+                    markers[i].transform.localPosition = laserObject.objectWorldPositions[i];
                     markers[i].transform.localScale = baseObject.transform.localScale;
                 }
                 else
