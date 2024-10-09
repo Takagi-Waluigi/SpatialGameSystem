@@ -176,7 +176,7 @@ Shader "Unlit/MaskShaderRevised"
 
                 // float alpha_3 = circle(pos, float2(0.15, 0.15), radius);
 
-                return fixed4(0.0, 0.0, 0.0, alpha_1);
+                return fixed4(0.0, 0.0, 0.0, alpha_3);
 
                 //複数のロボットについてはAlphaの掛け算で実現なので可能台数分をかけましょう。
 

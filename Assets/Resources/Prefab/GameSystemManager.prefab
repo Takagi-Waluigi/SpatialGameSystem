@@ -148,6 +148,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetTransform: {fileID: 0}
   agent: {fileID: 4178550587466734392}
+  enemyRootObject: {fileID: 0}
+  freezingTime: 3
+  freezingAreaMax: 0.5
 --- !u!114 &5579519084882005074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,9 +178,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f01dc14a1a620aa42b2ab74b51616c84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoredMaterial: {fileID: 2100000, guid: 05a7ebebead344947bbad6238d13895e, type: 2}
-  unscoredMaterial: {fileID: 2100000, guid: 8f08f12b99da7f944b5ba84fbcd6c875, type: 2}
+  scoredMaterial: {fileID: 2100000, guid: 12a7ed71fdd88214ab7c172f09b4d163, type: 2}
+  unscoredMaterial: {fileID: 2100000, guid: e0674d5620aad0a429d102bb9d3047fa, type: 2}
   count: 0
+  isAttacked: 0
 --- !u!54 &870509415412407442
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -383,12 +387,6 @@ MonoBehaviour:
   characterObject: {fileID: 994594718201703601}
   userObject: {fileID: 0}
   playAreaObject: {fileID: 0}
+  enemyTransform: {fileID: 0}
   spawnDuration: 1
-  pursuitMode: 1
-  goalTransforms:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  enemyLifeTime: 10

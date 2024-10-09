@@ -9,6 +9,7 @@ public class CollisionProcess : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Insatantiateで管理不可のためGameObjectの名前で指定
         characterObject = GameObject.Find("Character");
         GetComponent<MeshRenderer>().material = characterObject.GetComponent<StateManager>().unscoredMaterial;
     }
@@ -21,14 +22,18 @@ public class CollisionProcess : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        //キャラクターに当たったら削除
+        //まだ踏まれていなければ判定を有効に
         if(isActive)
         {
             if(collision.gameObject.name == characterObject.name)
             {
+                //キャラクターオブジェクトと衝突した場合キャラクターオブジェクト内のフラグをTrueに
                 GetComponent<MeshRenderer>().material = characterObject.GetComponent<StateManager>().scoredMaterial;
+                
+                //キャラクターオブジェクトと衝突した回数を加算
                 characterObject.GetComponent<StateManager>().count ++;
 
+                //踏まれた判定にして加算を1回に制限する
                 isActive = false;
             }
         }

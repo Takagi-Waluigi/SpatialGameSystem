@@ -22,10 +22,12 @@ public class PTPS_Controller : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //マップスケールの大きいほうを取る
         largeScale = Mathf.Max(
             mapObject.transform.localScale.x, 
             mapObject.transform.localScale.z);
 
+        //マップの位置を合わせる
         this.transform.position =  new  Vector3(
             mapObject.transform.position.x,
             mapObject.transform.position.y + maskObjectPositionOffset,
@@ -38,6 +40,7 @@ public class PTPS_Controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //各値の代入
         maskMaterial.SetFloat("_MapScale", largeScale);
 
         maskMaterial.SetVector("_RobotPos_0", new Vector4(
@@ -53,7 +56,7 @@ public class PTPS_Controller : MonoBehaviour
             0f));
 
         
-
+        //レーザーオブジェクトの数が1位以上かを判定
         if(laserObject_1.objectWorldPositions.Count > 0)
         {
             Debug.Log("[DEBUG] user count:" + laserObject_1.objectWorldPositions.Count);

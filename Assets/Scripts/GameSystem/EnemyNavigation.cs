@@ -36,7 +36,7 @@ public class EnemyNavigation : MonoBehaviour
 
         //開始時間の代入
         beginTime = Time.time;
-        Debug.Log("[ENEMY] time:" + beginTime);
+        //Debug.Log("[ENEMY] time:" + beginTime);
     }
 
     // Update is called once per frame
