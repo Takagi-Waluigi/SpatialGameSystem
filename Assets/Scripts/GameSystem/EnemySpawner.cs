@@ -10,11 +10,11 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] GameObject characterObject;
     [SerializeField] GameObject userObject;
     [SerializeField] GameObject playAreaObject;
+    [SerializeField] Transform enemyTransform;
 
     [Header("各種設定")]
     [SerializeField] float spawnDuration = 1f;
-    [SerializeField] bool pursuitMode = true;
-    [SerializeField] List<Transform>  goalTransforms;
+    [SerializeField] float enemyLifeTime = 10f;
 
     float lastTime = 0;
     // Start is called before the first frame update
@@ -36,14 +36,13 @@ public class EnemySpawner : MonoBehaviour
                     shipTransform.position.x, 
                     shipTransform.position.y - 0.5f, 
                     shipTransform.position.z),
-                shipTransform.rotation, this.transform);
+                shipTransform.rotation, enemyTransform);
 
             var enemyNavi = latestEnemy.GetComponent<EnemyNavigation>();
             enemyNavi.characterObject = characterObject;
             enemyNavi.userObject = userObject;
             enemyNavi.playAreaObject = playAreaObject;
-            enemyNavi.pursuitMode = pursuitMode;
-            enemyNavi.goalTransforms = goalTransforms;
+            enemyNavi.lifeTime = enemyLifeTime;
 
             lastTime = Time.time;
         }

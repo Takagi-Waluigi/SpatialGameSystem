@@ -12,12 +12,12 @@ public class EnemyNavigation : MonoBehaviour
     public GameObject characterObject;
     public GameObject userObject;
     public GameObject playAreaObject;
-    public List<Transform> goalTransforms;
+    public float lifeTime;
+    float beginTime = 0f;
     NavMeshAgent agent;
     [SerializeField] float distanceThreshold = 1.0f;
-    public bool pursuitMode = true;
-    bool isNearToGoal = true;
     Vector3[] bufferPositions = new Vector3[10];
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -33,11 +33,17 @@ public class EnemyNavigation : MonoBehaviour
         {
             bufferPositions[i] = new Vector3();
         }
+
+        //開始時間の代入
+        beginTime = Time.time;
+        Debug.Log("[ENEMY] time:" + beginTime);
     }
 
     // Update is called once per frame
     void Update()
     {
+        //なににも当たらず自死する場合
+        if(Time.time - beginTime > lifeTime) GameObject.Destroy(this.gameObject);
         //どこかしらに落下したらTrueになる処理
         if(isOnSomeWhere)
         {
@@ -46,42 +52,22 @@ public class EnemyNavigation : MonoBehaviour
             {
                 //目的地の設定
                 var destination = new Vector3();
-                if(pursuitMode)
-                {
-                    destination = characterObject.transform.position;
-                    agent.SetDestination(destination);
-                }
-                else
-                {
-                    if(goalTransforms.Count > 0)
-                    {
-                        if(isNearToGoal)
-                        {
-                            int goalId = (int)Random.Range(0, goalTransforms.Count);
-                            destination = goalTransforms[goalId].position;
-                            agent.SetDestination(destination);
-                            isNearToGoal = false;
-                        }
-                        else
-                        {
-                            //float distanceToGoal = Vector3.Distance(this.transform.position, destination);
-                            float distanceToGoal = agent.remainingDistance;
-                            if(distanceToGoal < 0.05f) isNearToGoal = true;
-
-                        }                        
-                    }
-
-                }
-
+                destination = characterObject.transform.position;
                 
+                if(this.GetComponent<NavMeshAgent>().enabled) agent.SetDestination(destination);                
 
                 float distanceToCharacter = Vector3.Distance(this.transform.position, characterObject.transform.position);
 
-                if(distanceToCharacter < distanceThreshold) GameObject.Destroy(this.gameObject);
+                if(distanceToCharacter < distanceThreshold)
+                {
+                    characterObject.GetComponent<StateManager>().isAttacked = true;
+                    GameObject.Destroy(this.gameObject);
+                }
 
-                float distanceToUser = Vector3.Distance(this.transform.position, userObject.transform.position);
 
-                if(distanceToUser < distanceThreshold) GameObject.Destroy(this.gameObject);
+                // float distanceToUser = Vector3.Distance(this.transform.position, userObject.transform.position);
+
+                // if(distanceToUser < distanceThreshold) GameObject.Destroy(this.gameObject);
                 
             }
             //プレイエリア以外に落下した場合

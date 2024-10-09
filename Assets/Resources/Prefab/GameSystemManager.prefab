@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 6684091344073335829}
   - component: {fileID: 8640721497687278017}
   - component: {fileID: 4178550587466734392}
-  - component: {fileID: 8514866775051272314}
+  - component: {fileID: 1209210395200686910}
   - component: {fileID: 5579519084882005074}
+  - component: {fileID: 7570925561623107707}
   - component: {fileID: 870509415412407442}
   m_Layer: 0
   m_Name: Character
@@ -133,7 +134,7 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &8514866775051272314
+--- !u!114 &1209210395200686910
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -160,9 +161,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   laserObject_1: {fileID: 0}
-  targetTransform: {fileID: 0}
   agent: {fileID: 0}
   freeMoveGoals: []
+--- !u!114 &7570925561623107707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 994594718201703601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f01dc14a1a620aa42b2ab74b51616c84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoredMaterial: {fileID: 2100000, guid: 05a7ebebead344947bbad6238d13895e, type: 2}
+  unscoredMaterial: {fileID: 2100000, guid: 8f08f12b99da7f944b5ba84fbcd6c875, type: 2}
+  count: 0
 --- !u!54 &870509415412407442
 Rigidbody:
   m_ObjectHideFlags: 0
