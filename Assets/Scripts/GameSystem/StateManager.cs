@@ -11,6 +11,6 @@ public class StateManager : MonoBehaviour
     public bool isTrackingUser = false;
     void Update()
     {
-        if(isAttacked) isAttacked = false;
+      //  if(isAttacked) isAttacked = false;
     }
 }

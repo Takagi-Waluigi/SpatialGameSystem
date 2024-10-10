@@ -14664,6 +14664,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   postProcessVolume: {fileID: 1961617728}
   characterStateManager: {fileID: 1867615127}
+  baseIntensityValue: 20
+  maxIntensityValue: 200
+  gameOverEffectSpeed: 0.15
 --- !u!4 &1962649874 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5184316578549864240, guid: c5ff74886a9d3a1458188bd69f21c343, type: 3}

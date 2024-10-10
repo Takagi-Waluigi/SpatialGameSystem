@@ -36,6 +36,13 @@ public class CharacterControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        this.GetComponent<NavMeshAgent>().enabled = !this.GetComponent<StateManager>().isAttacked;
+        
+        if(this.GetComponent<NavMeshAgent>().enabled) PlayTime(); else GameOver();        
+    }
+
+    void PlayTime()
+    {
         //どちらかのオブジェクトでトラッキングされている場合にアクティブに
         isTracking = (laserObject_1.objectWorldPositions.Count > 0 || laserObject_2.objectWorldPositions.Count > 0);
 
@@ -96,6 +103,11 @@ public class CharacterControl : MonoBehaviour
 
         agent.SetDestination(destinationPosition);
 
-        lastFrameIsTracking = isTracking;        
+        lastFrameIsTracking = isTracking;
+    }
+
+    void GameOver()
+    {
+
     }
 }
