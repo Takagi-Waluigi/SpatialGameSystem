@@ -4,17 +4,11 @@ using UnityEngine;
 
 public class StateManager : MonoBehaviour
 {
-    public Material scoredMaterial;
-    public Material unscoredMaterial;
+    public Material activeMaterial;
+    public Material deactiveMaterial;
     public int count;
     public bool isAttacked = false;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
+    public bool isTrackingUser = false;
     void Update()
     {
         if(isAttacked) isAttacked = false;

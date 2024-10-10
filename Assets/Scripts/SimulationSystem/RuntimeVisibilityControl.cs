@@ -10,4 +10,9 @@ public class RuntimeVisibilityControl : MonoBehaviour
     {
         this.GetComponent<MeshRenderer>().enabled = runTimeVisibility;
     }
+
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Space)) this.GetComponent<MeshRenderer>().enabled = !this.GetComponent<MeshRenderer>().enabled;
+    }
 }

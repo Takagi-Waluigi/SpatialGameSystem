@@ -9,7 +9,7 @@ public class PTPS_Controller : MonoBehaviour
     [SerializeField] Transform screen_1;
     [SerializeField] Transform screen_2;
     [SerializeField] LaserObjectSubscriber laserObject_1;
-   // [SerializeField] LaserObjectSubscriber laserObject_2;
+    [SerializeField] LaserObjectSubscriber laserObject_2;
 
     [SerializeField] int maxDesinatedSize = 4;
     [SerializeField] Transform mapObject;
@@ -59,25 +59,13 @@ public class PTPS_Controller : MonoBehaviour
 
         
         //レーザーオブジェクトの数が1位以上かを判定
-        Debug.Log("[DEBUG] user count:" + laserObject_1.objectWorldPositions.Count);
+        //Debug.Log("[DEBUG] user count:" + laserObject_1.objectWorldPositions.Count);
 
-        int indexCount = (int)laserObject_1.objectWorldPositions.Count;
+        int indexCount = (int)laserObject_1.objectWorldPositions.Count + (int)laserObject_2.objectWorldPositions.Count;
         maskMaterial.SetInt("_ActiveUserNum", indexCount);
 
         if(laserObject_1.objectWorldPositions.Count > 0)
         {
-           
-            int maxIndexNum = Mathf.Min(laserObject_1.objectWorldPositions.Count, maxDesinatedSize);
-
-            for(int i = 0; i < maxIndexNum; i ++)
-            {
-                maskMaterial.SetVector("_UserPosition_" + i, new Vector4(
-                    laserObject_1.objectWorldPositions[i].x,
-                    0f,
-                    laserObject_1.objectWorldPositions[i].z,
-                    0f));
-            }
-
             for(int i = 0; i < laserObject_1.objectWorldPositions.Count; i ++)
             {
                 var vec4Pos = new Vector4(
@@ -88,32 +76,22 @@ public class PTPS_Controller : MonoBehaviour
 
                 detectedPositions.Add(vec4Pos);
             }
+        }  
 
-            maskMaterial.SetVectorArray("_UserPositions", detectedPositions);
-        }
+        if(laserObject_2.objectWorldPositions.Count > 0)
+        {
+            for(int i = 0; i < laserObject_2.objectWorldPositions.Count; i ++)
+            {
+                var vec4Pos = new Vector4(
+                    laserObject_2.objectWorldPositions[i].x,
+                    0f,
+                    laserObject_2.objectWorldPositions[i].z,
+                    0f);
 
-        // if(user.Length > 0)
-        // {
-        //     int minDistanceId = 0;
-        //     float minDistance = 10000;
-        //     for(int i = 0; i < user.Length; i ++)
-        //     {
-        //         maskMaterial.SetVector("_UserPosition_" + i, new Vector4(
-        //             user[i].position.x,
-        //             0f,
-        //             user[i].position.z,
-        //             0f));
+                detectedPositions.Add(vec4Pos);
+            }
+        }  
 
-        //         float distance = Vector3.Distance(screen_1.position, user[i].position);
-        //         if(distance < minDistance)
-        //         {
-        //             minDistance = distance;
-        //             minDistanceId = i;
-        //         }
-
-        //     }
-
-            //maskMaterial.SetFloat("_Disntance", Vector3.Distance(screen_1.position, user[minDistanceId].position));
-        //  }    
+        if(detectedPositions.Count > 0) maskMaterial.SetVectorArray("_UserPositions", detectedPositions);
     }
 }

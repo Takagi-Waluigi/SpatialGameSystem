@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Bloom_Coin
+  m_Name: Bloom_DeactiveCoin
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -79,6 +79,6 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.33610713, g: 0.7888395, b: 0.8584906, a: 1}
-    - _EmissionColor: {r: 0.41873357, g: 0.26561943, b: 0.4433962, a: 1}
+    - _Color: {r: 1, g: 0.8056721, b: 0, a: 1}
+    - _EmissionColor: {r: 0.49309367, g: 0.38688147, b: 0.509434, a: 1}
   m_BuildTextureStacks: []

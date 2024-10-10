@@ -13,7 +13,8 @@ public class LaserObjectSubscriber : MonoBehaviour
 
     [Header("基本設定")]
     [SerializeField] Transform baseTransform;
-    [SerializeField] string topicName = "";    
+    [SerializeField] string topicName = "";  
+    [SerializeField] string rosNamespace = "";  
     [SerializeField] [Range(0f, 5f)] float maxRange = 3.0f;
     [SerializeField] [Range(0f, 5f)] float minRange = 0.250f;
     [SerializeField] [Range(0f, 5f)] float maxDifferentialThresold = 3.0f;
@@ -44,6 +45,10 @@ public class LaserObjectSubscriber : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        topicName = "/" + topicName;
+
+        if(rosNamespace != "") topicName = "/" + rosNamespace + topicName;
+
         ros = ROSConnection.GetOrCreateInstance();
         ros.Subscribe<PoseArrayMsg>(topicName, OnSubsribeArray);
         thresholdObjets = new GameObject[numberOfThresoldObject];
@@ -161,7 +166,7 @@ public class LaserObjectSubscriber : MonoBehaviour
                         }                    
                     }
                 }
-
+                
                 if(lastFrameObjectCount == objectPositions.Count)
                 {
                     for(int i = 0; i < DATA_WIDTH; i ++)
