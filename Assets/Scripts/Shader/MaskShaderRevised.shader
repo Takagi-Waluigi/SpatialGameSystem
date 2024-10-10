@@ -54,7 +54,9 @@ Shader "Unlit/MaskShaderRevised"
             float _MapScale;
 
             int _NumRobot;
-
+            int _ActiveUserNum;
+            
+            static int _NUM_USER = 10;
             Vector _UserPositions[10];
             Vector _UserPosition_0;
             Vector _UserPosition_1;
@@ -157,7 +159,15 @@ Shader "Unlit/MaskShaderRevised"
 
                 float2 rpos0 = convertWorldToUV(_RobotPos_0.x, _RobotPos_0.z, planeSize); //Unity座標系 単位はｍ
                 float2 rpos1 = convertWorldToUV(_RobotPos_1.x, _RobotPos_1.z, planeSize); //Unity座標系 単位はｍ
+                //float2 upos0 = convertWorldToUV(_UserPositions[0].x, _UserPositions[0].z, planeSize);
                 float2 upos0 = convertWorldToUV(_UserPosition_0.x, _UserPosition_0.z, planeSize);
+
+                float2 uposArray[10];
+                for(int i = 0; i < _NUM_USER; i ++)
+                {
+                    uposArray[i] = convertWorldToUV(_UserPositions[i].x, _UserPositions[i].z, planeSize);
+                }
+                
                 float2 upos1 = convertWorldToUV(_UserPosition_1.x, _UserPosition_1.z, planeSize);
 
                 float2 inputValue = float2(_RobotPos_0.x, _RobotPos_0.z); //Unity座標系 単位はｍ
@@ -167,16 +177,33 @@ Shader "Unlit/MaskShaderRevised"
 
                 float shaderDistance = _Disntance / planeSize;
 
-               // radius = map(shaderDistance, 0.0, 0.30, 0.20, 0.05, true);
+                radius = map(shaderDistance, 0.0, 0.30, 0.20, 0.05, true);
 
                 float alpha_1 = circle(pos, rpos0, radius); //要注意、対応づけしていない。
-                float alpha_2 = metaBall(pos, upos0, rpos0);
-                float alpha_3 = metaBallMulti2(pos, upos0, rpos0, rpos1); 
-                // float alpha_2 = circle(pos, float2(0.5, 0.5), radius);
+                // float alpha_2 = metaBall(pos, upos0, rpos0);
+                // float alpha_3 = metaBallMulti2(pos, uposArray[0], rpos0, rpos1); 
+                //float alpha_3 = metaBallMulti2(pos, upos0, rpos0, rpos1); 
 
-                // float alpha_3 = circle(pos, float2(0.15, 0.15), radius);
+                float c = 0;
+                float val = 0.008;
 
-                return fixed4(0.0, 0.0, 0.0, alpha_3);
+                if(0 < _ActiveUserNum && _ActiveUserNum <= _NUM_USER)
+                {
+                    for(int j = 0; j < _ActiveUserNum; j ++)
+                    {
+                        c += val * 0.5 / length(pos - uposArray[j]);
+                    }
+                }
+                
+                
+                c += val / length(pos - rpos0);
+                c += val / length(pos - rpos1);
+
+                c = step(0.2, c);
+
+                float  a = (c > 0.0) ? 0.0 : 1.0;
+
+                return fixed4(0.0, 0.0, 0.0, a);
 
                 //複数のロボットについてはAlphaの掛け算で実現なので可能台数分をかけましょう。
 

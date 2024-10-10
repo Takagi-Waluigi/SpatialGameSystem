@@ -5471,7 +5471,7 @@ GameObject:
   - component: {fileID: 570923259}
   - component: {fileID: 570923264}
   m_Layer: 0
-  m_Name: MaskObject
+  m_Name: PTPS_MaskObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14364,6 +14364,17 @@ NavMeshAgent:
   m_CorrespondingSourceObject: {fileID: 4178550587466734392, guid: 8c35760e729c3bf438a92af7a378df13, type: 3}
   m_PrefabInstance: {fileID: 516476032}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1867615127 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7570925561623107707, guid: 8c35760e729c3bf438a92af7a378df13, type: 3}
+  m_PrefabInstance: {fileID: 516476032}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f01dc14a1a620aa42b2ab74b51616c84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1869030776
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14926,7 +14937,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95741176e2b55114caff2617bc82345d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colorGrading: {fileID: 0}
+  postProcessVolume: {fileID: 1961617728}
+  characterStateManager: {fileID: 1867615127}
 --- !u!4 &1962649874 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5184316578549864240, guid: c5ff74886a9d3a1458188bd69f21c343, type: 3}

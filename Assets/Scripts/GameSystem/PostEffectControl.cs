@@ -58,7 +58,7 @@ public class PostEffectControl : MonoBehaviour
 
         // exposureValue = Mathf.Lerp(beginExposure, targetExposure, _t);
 
-        Debug.Log("exposure value:" + exposureValue);
+        //Debug.Log("exposure value:" + exposureValue);
 
         _t += 0.05f * Time.deltaTime;
 

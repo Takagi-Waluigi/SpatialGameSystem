@@ -15,8 +15,7 @@ public class PTPS_Controller : MonoBehaviour
     [SerializeField] Transform mapObject;
     [SerializeField] Material maskMaterial;
     [SerializeField] float maskObjectPositionOffset = 5f;
-
-    List<Vector3> detectedPositions = new List<Vector3>();
+    List<Vector4> detectedPositions = new List<Vector4>();
 
     float largeScale; 
     // Start is called before the first frame update
@@ -40,6 +39,9 @@ public class PTPS_Controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //配列の初期化
+        detectedPositions.Clear();
+
         //各値の代入
         maskMaterial.SetFloat("_MapScale", largeScale);
 
@@ -57,9 +59,14 @@ public class PTPS_Controller : MonoBehaviour
 
         
         //レーザーオブジェクトの数が1位以上かを判定
+        Debug.Log("[DEBUG] user count:" + laserObject_1.objectWorldPositions.Count);
+
+        int indexCount = (int)laserObject_1.objectWorldPositions.Count;
+        maskMaterial.SetInt("_ActiveUserNum", indexCount);
+
         if(laserObject_1.objectWorldPositions.Count > 0)
         {
-            Debug.Log("[DEBUG] user count:" + laserObject_1.objectWorldPositions.Count);
+           
             int maxIndexNum = Mathf.Min(laserObject_1.objectWorldPositions.Count, maxDesinatedSize);
 
             for(int i = 0; i < maxIndexNum; i ++)
@@ -71,6 +78,18 @@ public class PTPS_Controller : MonoBehaviour
                     0f));
             }
 
+            for(int i = 0; i < laserObject_1.objectWorldPositions.Count; i ++)
+            {
+                var vec4Pos = new Vector4(
+                    laserObject_1.objectWorldPositions[i].x,
+                    0f,
+                    laserObject_1.objectWorldPositions[i].z,
+                    0f);
+
+                detectedPositions.Add(vec4Pos);
+            }
+
+            maskMaterial.SetVectorArray("_UserPositions", detectedPositions);
         }
 
         // if(user.Length > 0)
