@@ -4732,6 +4732,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: e0674d5620aad0a429d102bb9d3047fa, type: 2}
     - target: {fileID: 1139696080970663640, guid: 8c35760e729c3bf438a92af7a378df13, type: 3}
+      propertyPath: isTrackingUser
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1139696080970663640, guid: 8c35760e729c3bf438a92af7a378df13, type: 3}
       propertyPath: deactiveMaterial
       value: 
       objectReference: {fileID: 2100000, guid: 12a7ed71fdd88214ab7c172f09b4d163, type: 2}
@@ -4751,6 +4755,10 @@ PrefabInstance:
       propertyPath: targetTransform
       value: 
       objectReference: {fileID: 336728470}
+    - target: {fileID: 1209210395200686910, guid: 8c35760e729c3bf438a92af7a378df13, type: 3}
+      propertyPath: gameStateManager
+      value: 
+      objectReference: {fileID: 1438692597}
     - target: {fileID: 1322435640463713637, guid: 8c35760e729c3bf438a92af7a378df13, type: 3}
       propertyPath: m_Name
       value: GameSystemManager
