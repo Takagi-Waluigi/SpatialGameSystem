@@ -10,6 +10,7 @@ public class EnemyNavigation : MonoBehaviour
     bool isOnPlayArea = false;
     bool isOnSomeWhere = false;
     public GameObject characterObject;
+    public StateManager gameStateManager;
     public GameObject userObject;
     public GameObject playAreaObject;
     public float lifeTime;
@@ -60,7 +61,7 @@ public class EnemyNavigation : MonoBehaviour
 
                 if(distanceToCharacter < distanceThreshold)
                 {
-                    characterObject.GetComponent<StateManager>().isAttacked = true;
+                    gameStateManager.isAttacked = true;
                     GameObject.Destroy(this.gameObject);
                 }
 

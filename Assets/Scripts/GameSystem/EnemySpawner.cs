@@ -10,6 +10,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] GameObject characterObject;
     [SerializeField] GameObject userObject;
     [SerializeField] GameObject playAreaObject;
+    [SerializeField] StateManager gameStateManager;
     [SerializeField] Transform enemyTransform;
 
     [Header("各種設定")]
@@ -43,6 +44,7 @@ public class EnemySpawner : MonoBehaviour
             enemyNavi.userObject = userObject;
             enemyNavi.playAreaObject = playAreaObject;
             enemyNavi.lifeTime = enemyLifeTime;
+            enemyNavi.gameStateManager = gameStateManager;
 
             lastTime = Time.time;
         }

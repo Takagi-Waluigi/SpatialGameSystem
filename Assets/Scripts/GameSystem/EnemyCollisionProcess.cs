@@ -8,7 +8,7 @@ public class EnemyCollisionProcess : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        characterObject = GameObject.Find("Character");
+        characterObject = GameObject.Find("GameControl");
     }
 
     // Update is called once per frame

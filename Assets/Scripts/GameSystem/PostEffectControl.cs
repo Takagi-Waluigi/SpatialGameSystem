@@ -8,12 +8,13 @@ public class PostEffectControl : MonoBehaviour
     [SerializeField] PostProcessVolume postProcessVolume;
     ColorGrading colorGrading;
     Bloom bloom;
-    [SerializeField] StateManager characterStateManager;
+    [SerializeField] StateManager gameStateManager;
     [SerializeField] float baseIntensityValue = 20f;
     [SerializeField] float maxIntensityValue = 100f;
     [SerializeField] float gameOverEffectSpeed = 0.25f;
+    [SerializeField] int baseHue = 225;
 
-    int hue = 0;
+    int hue;
     float lastCount = 0;
     bool lastIsAttacked = false;
     float exposureValue = 1f;
@@ -23,6 +24,7 @@ public class PostEffectControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        hue = baseHue;
         postProcessVolume.profile.TryGetSettings<ColorGrading>(out colorGrading);
         postProcessVolume.profile.TryGetSettings<Bloom>(out bloom);
     }
@@ -32,38 +34,38 @@ public class PostEffectControl : MonoBehaviour
     {   
         //ColorGrading周り
         {
-            if(characterStateManager.count != lastCount) 
+            if(gameStateManager.count != lastCount) 
             {
-                hue += 40;
+                hue -= 10;
                 exposureValue = 1.85f;
             }
 
             exposureValue -= 0.01f;
             if(exposureValue < 1.0f) exposureValue = 1.0f;
 
-            lastCount = characterStateManager.count;
+            lastCount = gameStateManager.count;
             
             hue = hue % 360;
 
-            colorGrading.colorFilter.value = Color.HSVToRGB((float)hue / 360f, 76f / 100f, 1f);
+            colorGrading.colorFilter.value = Color.HSVToRGB((float)hue / 360f, 87f / 100f, 1f);
             colorGrading.postExposure.value = exposureValue;
         }
         
         //Bloom周り
         {
-            if(lastIsAttacked != characterStateManager.isAttacked) _t = Time.time;
+            if(lastIsAttacked != gameStateManager.isAttacked) _t = Time.time;
 
             float theta = (Time.time - _t) * gameOverEffectSpeed;
 
-            if(characterStateManager.isAttacked && theta < Mathf.PI)
+            if(gameStateManager.isAttacked && theta < Mathf.PI)
             {  
-                
+                hue = baseHue;
                 gameOverIntensity = maxIntensityValue * Mathf.Sin(theta); 
             }
 
             bloom.intensity.value = baseIntensityValue + gameOverIntensity;
 
-            lastIsAttacked = characterStateManager.isAttacked;
+            lastIsAttacked = gameStateManager.isAttacked;
         }
        
     }

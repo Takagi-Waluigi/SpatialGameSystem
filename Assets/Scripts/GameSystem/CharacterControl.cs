@@ -7,6 +7,8 @@ using UnityEngine.AI;
 
 public class CharacterControl : MonoBehaviour
 {
+    [Header("ゲーム管理オブジェクトの登録")]
+    [SerializeField] StateManager gameStateManager;
     [Header("トラッキング情報")]
     [SerializeField] LaserObjectSubscriber laserObject_1;
     [SerializeField] LaserObjectSubscriber laserObject_2;
@@ -36,7 +38,7 @@ public class CharacterControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        this.GetComponent<NavMeshAgent>().enabled = !this.GetComponent<StateManager>().isAttacked;
+        this.GetComponent<NavMeshAgent>().enabled = !gameStateManager.isAttacked;
         
         if(this.GetComponent<NavMeshAgent>().enabled) PlayTime(); else GameOver();        
     }
@@ -47,7 +49,7 @@ public class CharacterControl : MonoBehaviour
         isTracking = (laserObject_1.objectWorldPositions.Count > 0 || laserObject_2.objectWorldPositions.Count > 0);
 
         //StateManagerに伝達
-        this.GetComponent<StateManager>().isTrackingUser = isTracking;
+        gameStateManager.isTrackingUser = isTracking;
 
         //急いでユーザのもとに駆け寄ってきてもらう
         if(!lastFrameIsTracking && isTracking) agent.speed = 10f;

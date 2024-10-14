@@ -4723,6 +4723,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1139696080970663640, guid: 8c35760e729c3bf438a92af7a378df13, type: 3}
+      propertyPath: respawnTime
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1139696080970663640, guid: 8c35760e729c3bf438a92af7a378df13, type: 3}
+      propertyPath: activeMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: e0674d5620aad0a429d102bb9d3047fa, type: 2}
+    - target: {fileID: 1139696080970663640, guid: 8c35760e729c3bf438a92af7a378df13, type: 3}
+      propertyPath: deactiveMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 12a7ed71fdd88214ab7c172f09b4d163, type: 2}
     - target: {fileID: 1209210395200686910, guid: 8c35760e729c3bf438a92af7a378df13, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -4807,6 +4819,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3505511956555201763, guid: 8c35760e729c3bf438a92af7a378df13, type: 3}
+      propertyPath: gameStateManager
+      value: 
+      objectReference: {fileID: 1438692597}
+    - target: {fileID: 3505511956555201763, guid: 8c35760e729c3bf438a92af7a378df13, type: 3}
+      propertyPath: environmentObject
+      value: 
+      objectReference: {fileID: 1953905623}
+    - target: {fileID: 3505511956555201763, guid: 8c35760e729c3bf438a92af7a378df13, type: 3}
+      propertyPath: characterStateManager
+      value: 
+      objectReference: {fileID: 1438692597}
     - target: {fileID: 4788238537392448626, guid: 8c35760e729c3bf438a92af7a378df13, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -4847,6 +4871,10 @@ PrefabInstance:
       propertyPath: deactiveMaterial
       value: 
       objectReference: {fileID: 2100000, guid: 396fd03ac0b92244b9909fff2962b085, type: 2}
+    - target: {fileID: 5579519084882005074, guid: 8c35760e729c3bf438a92af7a378df13, type: 3}
+      propertyPath: gameStateManager
+      value: 
+      objectReference: {fileID: 1438692597}
     - target: {fileID: 5579519084882005074, guid: 8c35760e729c3bf438a92af7a378df13, type: 3}
       propertyPath: freeMoveGoals.Array.size
       value: 5
@@ -4935,6 +4963,10 @@ PrefabInstance:
       propertyPath: playAreaObject
       value: 
       objectReference: {fileID: 1332704569}
+    - target: {fileID: 8579646885964718082, guid: 8c35760e729c3bf438a92af7a378df13, type: 3}
+      propertyPath: gameStateManager
+      value: 
+      objectReference: {fileID: 1438692597}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 4788238537392448626, guid: 8c35760e729c3bf438a92af7a378df13, type: 3}
@@ -11384,6 +11416,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6977656195488863445, guid: 3ff933bb77ac3ba46a48235b5440e988, type: 3}
   m_PrefabInstance: {fileID: 536913939}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1438692597 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1139696080970663640, guid: 8c35760e729c3bf438a92af7a378df13, type: 3}
+  m_PrefabInstance: {fileID: 516476032}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f01dc14a1a620aa42b2ab74b51616c84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1440405057
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14147,17 +14190,6 @@ NavMeshAgent:
   m_CorrespondingSourceObject: {fileID: 4178550587466734392, guid: 8c35760e729c3bf438a92af7a378df13, type: 3}
   m_PrefabInstance: {fileID: 516476032}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1867615127 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7570925561623107707, guid: 8c35760e729c3bf438a92af7a378df13, type: 3}
-  m_PrefabInstance: {fileID: 516476032}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f01dc14a1a620aa42b2ab74b51616c84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1869030776
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14663,10 +14695,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   postProcessVolume: {fileID: 1961617728}
-  characterStateManager: {fileID: 1867615127}
-  baseIntensityValue: 20
-  maxIntensityValue: 200
-  gameOverEffectSpeed: 0.15
+  gameStateManager: {fileID: 1438692597}
+  baseIntensityValue: 15
+  maxIntensityValue: 80
+  gameOverEffectSpeed: 7
+  baseHue: 225
 --- !u!4 &1962649874 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5184316578549864240, guid: c5ff74886a9d3a1458188bd69f21c343, type: 3}
