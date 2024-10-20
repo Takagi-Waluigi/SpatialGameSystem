@@ -19,6 +19,7 @@ public class LaserObjectSubscriber : MonoBehaviour
     [SerializeField] [Range(0f, 5f)] float minRange = 0.250f;
     [SerializeField] [Range(0f, 5f)] float maxDifferentialThresold = 3.0f;
     [SerializeField] float distanceCutOffPerFrame = 0.2f;
+    [SerializeField] float offsetDistance = 0.39f;
     List<Vector3> objectPositions = new List<Vector3>();
     List<Vector3> smoothedObjectPositions = new List<Vector3>();
 
@@ -192,7 +193,7 @@ public class LaserObjectSubscriber : MonoBehaviour
                     smoothedObjectPositions[i] = new Vector3(
                             -smoothedObjectPositions[i].x,
                              smoothedObjectPositions[i].y,
-                            -smoothedObjectPositions[i].z - 0.39f); 
+                            -smoothedObjectPositions[i].z - offsetDistance); 
                 }
             }
 

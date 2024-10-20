@@ -32,14 +32,13 @@ public class CharacterControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        destinationPosition = screen_1.position;
     }
 
     // Update is called once per frame
     void Update()
     {
         this.GetComponent<NavMeshAgent>().enabled = !gameStateManager.isAttacked;
-        
         if(this.GetComponent<NavMeshAgent>().enabled) PlayTime(); else GameOver();        
     }
 
@@ -51,8 +50,8 @@ public class CharacterControl : MonoBehaviour
         //StateManagerに伝達
         gameStateManager.isTrackingUser = isTracking;
 
-        //急いでユーザのもとに駆け寄ってきてもらう
-        if(!lastFrameIsTracking && isTracking) agent.speed = 10f;
+        // 急いでユーザのもとに駆け寄ってきてもらう
+       // if(!lastFrameIsTracking && isTracking) agent.speed = 10f;
         
 
         if(isTracking)  //トラッキングがアクティブの時の処理
@@ -63,25 +62,29 @@ public class CharacterControl : MonoBehaviour
             int minId = 0;
             float minDistance = 1000000f;
 
-            for(int i = 0; i < laserObject_1.objectWorldPositions.Count; i ++)
+            if(laserObject_1.objectWorldPositions.Count > 0)
             {
-                float distanceToObject = Vector3.Distance(
-                    this.transform.position, 
-                    laserObject_1.objectWorldPositions[i]);
-
-                if(distanceToObject < minDistance)
+                for(int i = 0; i < laserObject_1.objectWorldPositions.Count; i ++)
                 {
-                    minDistance = distanceToObject;
-                    minId = i;
+                    float distanceToObject = Vector3.Distance(
+                        this.transform.position, 
+                        laserObject_1.objectWorldPositions[i]);
+
+                    if(distanceToObject < minDistance)
+                    {
+                        minDistance = distanceToObject;
+                        minId = i;
+                    }
                 }
+
+                destinationPosition = laserObject_1.objectWorldPositions[minId];
+                destinationPosition.y = 0f;
+
             }
 
-            if(agent.remainingDistance < 1.0f)
-            {
-                agent.speed = 1f;
-            }
+            
 
-            destinationPosition = laserObject_1.objectWorldPositions[minId];
+            //Debug.Log("destination:" + destinationPosition);
         }
         else //トラッキングが非アクティブの時の処理
         {

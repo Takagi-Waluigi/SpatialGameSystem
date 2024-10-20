@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Bloom_Wall
+  m_Name: Bloom_UFO
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -79,6 +79,6 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0, g: 0.3433962, b: 0.21316488, a: 1}
+    - _Color: {r: 0.93207544, g: 0.93207544, b: 0.93207544, a: 1}
     - _EmissionColor: {r: 0.032459937, g: 0.33257377, b: 0.3660378, a: 1}
   m_BuildTextureStacks: []
