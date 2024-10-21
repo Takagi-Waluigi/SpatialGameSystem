@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -13363,9 +13362,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapObj: {fileID: 1766046475}
-  pixelSize: {x: 507, y: 436}
+  pixelSize: {x: 502, y: 491}
   resolution: 0.05
-  origin: {x: -16.3, y: -14}
+  origin: {x: -8.76, y: -14}
   mapSizeScale: 0.65
 --- !u!64 &1766046477
 MeshCollider:
@@ -13449,7 +13448,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.535, y: 1, z: 2.18}
+  m_LocalScale: {x: 2.8700001, y: 1, z: 2.665}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1953905624}
@@ -14283,7 +14282,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1854343433
 Transform:
   m_ObjectHideFlags: 0
