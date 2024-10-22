@@ -185,7 +185,7 @@ Shader "Unlit/MaskShaderRevised"
                 //float alpha_3 = metaBallMulti2(pos, upos0, rpos0, rpos1); 
 
                 float c = 0;
-                float val = 0.007;
+                float val = 0.008;
 
                 if(0 < _ActiveUserNum && _ActiveUserNum <= _NUM_USER)
                 {

@@ -33,12 +33,12 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _MapScale: 2.535
+    - _MapScale: 2.8700001
     - _MaskChannel: 0
     - _MetaValue: 0.55
     - _NumRobot: 1
     m_Colors:
-    - _RobotPos_0: {r: -0.9587146, g: 0, b: 6.4323497, a: 0}
+    - _RobotPos_0: {r: -2.7847393, g: 0, b: -4.5451813, a: 0}
     - _RobotPos_2: {r: 0, g: 0, b: 0, a: 0}
     - _RobotPos_3: {r: 0, g: 0, b: 0, a: 0}
     - _UserPosition_0: {r: -2.7963233, g: 0, b: 2.648199, a: 0}

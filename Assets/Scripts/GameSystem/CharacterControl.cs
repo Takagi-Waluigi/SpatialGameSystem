@@ -62,13 +62,13 @@ public class CharacterControl : MonoBehaviour
             int minId = 0;
             float minDistance = 1000000f;
 
-            if(laserObject_1.objectWorldPositions.Count > 0)
+            if(laserObject_2.objectWorldPositions.Count > 0)
             {
-                for(int i = 0; i < laserObject_1.objectWorldPositions.Count; i ++)
+                for(int i = 0; i < laserObject_2.objectWorldPositions.Count; i ++)
                 {
                     float distanceToObject = Vector3.Distance(
                         this.transform.position, 
-                        laserObject_1.objectWorldPositions[i]);
+                        laserObject_2.objectWorldPositions[i]);
 
                     if(distanceToObject < minDistance)
                     {
@@ -77,7 +77,7 @@ public class CharacterControl : MonoBehaviour
                     }
                 }
 
-                destinationPosition = laserObject_1.objectWorldPositions[minId];
+                destinationPosition = laserObject_2.objectWorldPositions[minId];
                 destinationPosition.y = 0f;
 
             }
@@ -91,7 +91,7 @@ public class CharacterControl : MonoBehaviour
             //見た目の変更
             GetComponent<MeshRenderer>().material = deactiveMaterial;
 
-            Transform baseTransform = screen_1; //要変更！！！！！
+            Transform baseTransform = screen_2; //要変更！！！！！
 
             if(agent.remainingDistance < 0.01f)
             {

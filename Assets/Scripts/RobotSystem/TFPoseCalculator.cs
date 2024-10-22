@@ -19,7 +19,8 @@ public class TFPoseCalculator : MonoBehaviour
     Transform mapFrameTransform; 
     Pose mapFramePose = new Pose();
     Pose odomFramePose = new Pose();
-    
+    [SerializeField] float frameRate = 30f;
+    float lastTime = 0f;
     void Start()
     {
         if(rosNamespace != "")
@@ -35,11 +36,19 @@ public class TFPoseCalculator : MonoBehaviour
 
     void Update()
     {
-        mapFrameTransform.position = mapFramePose.position;
-        mapFrameTransform.rotation = mapFramePose.rotation;
-        // odomフレームの座標をmapフレーム基準に変換する
-        targetObject.transform.position = TFUtility.GetRelativePosition(mapFrameTransform, odomFramePose.position) - mapTransformer.OriginPos;
-        targetObject.transform.rotation = TFUtility.GetRelativeRotation(mapFrameTransform, odomFramePose.rotation);
+        float interval = 1f / frameRate;
+
+        if(Time.time - lastTime > interval)
+        {
+            mapFrameTransform.position = mapFramePose.position;
+            mapFrameTransform.rotation = mapFramePose.rotation;
+            // odomフレームの座標をmapフレーム基準に変換する
+            targetObject.transform.position = TFUtility.GetRelativePosition(mapFrameTransform, odomFramePose.position) - mapTransformer.OriginPos;
+            targetObject.transform.rotation = TFUtility.GetRelativeRotation(mapFrameTransform, odomFramePose.rotation);
+            
+            lastTime = Time.time;
+        }
+        
     }
 
     void ReceiveTFMsg(TFMessageMsg msg)
