@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class EnemyCollisionProcess : MonoBehaviour
 {
-    GameObject characterObject;
+    GameObject characterObject1, characterObject2;
+    GameObject stateManager;
     // Start is called before the first frame update
     void Start()
     {
-        characterObject = GameObject.Find("GameControl");
+        characterObject1 = GameObject.Find("Character1");
+        characterObject2 = GameObject.Find("Character2");
+        stateManager = GameObject.Find("GameControl");
     }
 
     // Update is called once per frame
@@ -20,9 +23,10 @@ public class EnemyCollisionProcess : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         //キャラクターに当たったら削除
-        if(collision.gameObject.name == characterObject.name)
+        if(((collision.gameObject.name == characterObject1.name) && stateManager.GetComponent<StateManager>().isTrackingUser_1) || 
+            ((collision.gameObject.name == characterObject2.name) && stateManager.GetComponent<StateManager>().isTrackingUser_2))
         {
-           characterObject.GetComponent<StateManager>().isAttacked = true;
+           stateManager.GetComponent<StateManager>().isAttacked = true;
         }       
                
     }

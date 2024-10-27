@@ -45,7 +45,7 @@ public class EnemySpawner : MonoBehaviour
             enemyNavi.playAreaObject = playAreaObject;
             enemyNavi.lifeTime = enemyLifeTime;
             enemyNavi.gameStateManager = gameStateManager;
-
+            enemyNavi.distanceThreshold = 0.27f;
             lastTime = Time.time;
         }
     }

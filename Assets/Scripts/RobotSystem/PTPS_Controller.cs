@@ -34,7 +34,7 @@ public class PTPS_Controller : MonoBehaviour
             mapObject.transform.position.z);
 
         this.transform.rotation = mapObject.transform.rotation;
-        this.transform.localScale = new UnityEngine.Vector3(largeScale, 0, largeScale);
+        //this.transform.localScale = new UnityEngine.Vector3(largeScale, 0, largeScale);
     }
 
     // Update is called once per frame
@@ -64,7 +64,7 @@ public class PTPS_Controller : MonoBehaviour
 
         int indexCount = (int)laserObject_1.objectWorldPositions.Count + (int)laserObject_2.objectWorldPositions.Count;
         maskMaterial.SetInt("_ActiveUserNum", indexCount);
-        if(indexCount > 0) Debug.Log(indexCount);
+        //if(indexCount > 0) Debug.Log(indexCount);
         if(laserObject_1.objectWorldPositions.Count > 0)
         {
             for(int i = 0; i < laserObject_1.objectWorldPositions.Count; i ++)

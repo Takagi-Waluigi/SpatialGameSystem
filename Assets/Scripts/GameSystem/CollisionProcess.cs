@@ -6,8 +6,8 @@ using UnityEngine;
 public class CollisionProcess : MonoBehaviour
 {
     GameObject gameControlObject;
-    GameObject characterObject;
-    bool isActive = true; //True:未取得状態 False:取得済み状態
+    GameObject characterObject1, characterObject2;
+    bool isHit = false; //True:未取得状態 False:取得済み状態
     StateManager characterState;
     // Start is called before the first frame update
     void Start()
@@ -17,15 +17,20 @@ public class CollisionProcess : MonoBehaviour
         GetComponent<MeshRenderer>().material = gameControlObject.GetComponent<StateManager>().deactiveMaterial;
         if(gameControlObject == null) Debug.Log("not inserted _1");
 
-        characterObject = GameObject.Find("Character");
+        characterObject1 = GameObject.Find("Character1");
+        characterObject2 = GameObject.Find("Character2");
 
-        if(characterObject == null) Debug.Log("not inserted _2");
+        if(characterObject1 == null || characterObject2 == null) Debug.Log("not inserted");
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        characterState = gameControlObject.GetComponent<StateManager>();
+        if(characterState.isAttacked) isHit = false;
+
+        this.gameObject.GetComponent<Renderer>().enabled = !isHit;
+        this.gameObject.GetComponent<Collider>().enabled = !isHit;
     }
 
     void OnCollisionEnter(Collision collision)
@@ -48,9 +53,11 @@ public class CollisionProcess : MonoBehaviour
         // }
         characterState = gameControlObject.GetComponent<StateManager>();
 
-        if(collision.gameObject.name == characterObject.name && characterState.isTrackingUser)
+       if(((collision.gameObject.name == characterObject1.name) && characterState.isTrackingUser_1) || 
+            ((collision.gameObject.name == characterObject2.name) && characterState.isTrackingUser_2))
         {
-            GameObject.Destroy(this.gameObject);
+            //GameObject.Destroy(this.gameObject);
+            isHit = true;
         }
         
                

@@ -9,11 +9,13 @@ using RosMessageTypes.Tf2;
 /// </summary>
 public class TFPoseCalculator : MonoBehaviour
 {
+    //[SerializeField] 
+    ROSConnection ros;
     [SerializeField] MapTransformer mapTransformer;
     [SerializeField] GameObject targetObject;
-    ROSConnection ros;
-    [SerializeField] string parentFrameName = "odom";
-    [SerializeField] string childFrameName = "base_footprint";
+    //ROSConnection ros;
+    [SerializeField] string odomFrameName = "odom";
+    [SerializeField] string baseFootprintName = "base_footprint";
     [SerializeField] string rosNamespace = "";
     string topicName = "/tf";
     Transform mapFrameTransform; 
@@ -21,8 +23,10 @@ public class TFPoseCalculator : MonoBehaviour
     Pose odomFramePose = new Pose();
     [SerializeField] float frameRate = 30f;
     float lastTime = 0f;
+    bool isRegistered = false;
     void Start()
     {
+        //編集箇所１
         if(rosNamespace != "")
         {
             topicName = "/" + rosNamespace + topicName;
@@ -30,24 +34,37 @@ public class TFPoseCalculator : MonoBehaviour
         
         ros = ROSConnection.GetOrCreateInstance();
         ros.Subscribe<TFMessageMsg>(topicName, ReceiveTFMsg);
+
         var empty = new GameObject();
         mapFrameTransform = empty.transform; 
     }
 
     void Update()
     {
-        float interval = 1f / frameRate;
+        // if(!isRegistered)
+        // {
+        //     if(ros.isActiveAndEnabled)
+        //     {
+        //         ros.Subscribe<TFMessageMsg>(topicName, ReceiveTFMsg);
+        //         isRegistered = true;
+        //     }
+        // }
+        // else
+        // {
+            float interval = 1f / frameRate;
 
-        if(Time.time - lastTime > interval)
-        {
-            mapFrameTransform.position = mapFramePose.position;
-            mapFrameTransform.rotation = mapFramePose.rotation;
-            // odomフレームの座標をmapフレーム基準に変換する
-            targetObject.transform.position = TFUtility.GetRelativePosition(mapFrameTransform, odomFramePose.position) - mapTransformer.OriginPos;
-            targetObject.transform.rotation = TFUtility.GetRelativeRotation(mapFrameTransform, odomFramePose.rotation);
-            
-            lastTime = Time.time;
-        }
+            if(Time.time - lastTime > interval)
+            {
+                mapFrameTransform.position = mapFramePose.position;
+                mapFrameTransform.rotation = mapFramePose.rotation;
+                // odomフレームの座標をmapフレーム基準に変換する
+                targetObject.transform.position = TFUtility.GetRelativePosition(mapFrameTransform, odomFramePose.position) - mapTransformer.OriginPos;
+                targetObject.transform.rotation = TFUtility.GetRelativeRotation(mapFrameTransform, odomFramePose.rotation);
+                
+                lastTime = Time.time;
+            }
+
+        //}       
         
     }
 
@@ -55,9 +72,9 @@ public class TFPoseCalculator : MonoBehaviour
     {        
         for (int i = 0; i < msg.transforms.Length; i++)
             {
-            if (msg.transforms[i].child_frame_id == parentFrameName) {
+            if (msg.transforms[i].child_frame_id == odomFrameName) {
                 mapFramePose = TFUtility.ConvertToUnityPose(msg.transforms[i].transform.translation, msg.transforms[i].transform.rotation);
-            } else if (msg.transforms[i].child_frame_id == childFrameName) {
+            } else if (msg.transforms[i].child_frame_id == baseFootprintName) {
                 odomFramePose = TFUtility.ConvertToUnityPose(msg.transforms[i].transform.translation, msg.transforms[i].transform.rotation);
             }  
         } 

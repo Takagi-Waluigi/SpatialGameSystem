@@ -8,7 +8,8 @@ public class StateManager : MonoBehaviour
     public Material deactiveMaterial;
     public int count;
     public bool isAttacked = false;
-    public bool isTrackingUser = false;
+    public bool isTrackingUser_1 = false;
+    public bool isTrackingUser_2 = false;
     public float respawnTime = 3f;
     float gameOverTime = 0;
     bool lastIsAttacked;

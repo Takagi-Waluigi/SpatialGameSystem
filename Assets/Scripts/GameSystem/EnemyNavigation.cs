@@ -13,10 +13,11 @@ public class EnemyNavigation : MonoBehaviour
     public StateManager gameStateManager;
     public GameObject userObject;
     public GameObject playAreaObject;
-    public float lifeTime;
+    public float lifeTime;    
+    bool isTracking = false;
     float beginTime = 0f;
     NavMeshAgent agent;
-    [SerializeField] float distanceThreshold = 1.0f;
+    public float distanceThreshold = 0.15f;
     Vector3[] bufferPositions = new Vector3[10];
     
     // Start is called before the first frame update
@@ -61,7 +62,11 @@ public class EnemyNavigation : MonoBehaviour
 
                 if(distanceToCharacter < distanceThreshold)
                 {
-                    gameStateManager.isAttacked = true;
+                    if(gameStateManager.isTrackingUser_1 || gameStateManager.isTrackingUser_2)
+                    {
+                        gameStateManager.isAttacked = true;
+                    }
+                    
                     GameObject.Destroy(this.gameObject);
                 }
 
