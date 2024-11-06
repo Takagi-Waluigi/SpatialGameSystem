@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Splines;
 using Unity.Robotics;
 using RosMessageTypes.Geometry;
 using RosMessageTypes.Nav;
@@ -11,7 +12,8 @@ public class FollowObject : MonoBehaviour
 {
      ROSConnection ros;
     [Header("オブジェクトの登録")]
-    [SerializeField] Transform[] goalTransforms;
+    [SerializeField] Transform robotObject;
+    [SerializeField] GameObject[] goalObjects;
     [SerializeField] MapTransformer mapTransformer;
     [Header("トピック名の設定")] 
     [SerializeField] string waypointTopicName = "goal_pose_unity";
@@ -20,7 +22,7 @@ public class FollowObject : MonoBehaviour
     [SerializeField] string rosNamespace = "";
     [Header("ナビゲーションの設定")]
     [SerializeField] float publishRate = 1;
-    [SerializeField] float minimumDisntanceThreshold = 0.5f;
+    [SerializeField] float stopTargetDistance = 0.5f;
     PoseStampedMsg waypoint;
     float distance_remain = 0f;
     float lastTime = 0f;
@@ -38,22 +40,32 @@ public class FollowObject : MonoBehaviour
         {
             waypointTopicName = "/" + rosNamespace + waypointTopicName;
             cancelTopicName = "/" + rosNamespace + cancelTopicName;
-            distanceTopicName = "/" + rosNamespace + distanceTopicName;            
+            //distanceTopicName = "/" + rosNamespace + distanceTopicName;            
         }
         ros = ROSConnection.GetOrCreateInstance();
 
         ros.RegisterPublisher<PoseStampedMsg>(waypointTopicName);
         ros.RegisterPublisher<BoolMsg>(cancelTopicName);
 
-        ros.Subscribe<Float32Msg>(distanceTopicName, DistanceInfoCallback);
+        //ros.Subscribe<Float32Msg>(distanceTopicName, DistanceInfoCallback);
 
     }
 
     void Update()
     {
+        //離れすぎたときはターゲットが止まるように指示
+        distance_remain = Vector3.Distance(robotObject.position, goalObjects[currentPathId].transform.position);
+
+        if(goalObjects[currentPathId].GetComponent<SplineAnimate>())
+        {
+            SplineAnimate splineAnimate = goalObjects[currentPathId].GetComponent<SplineAnimate>();
+            if(distance_remain > stopTargetDistance || !enableNavigation) splineAnimate.Pause(); else splineAnimate.Play();
+        }
+       
+        
         if(Time.time - lastTime > publishRate)
         {
-            if(enableNavigation && goalTransforms.Length > 0)
+            if(enableNavigation && goalObjects.Length > 0)
             {
                 var wp = new PoseStampedMsg();
             
@@ -62,8 +74,8 @@ public class FollowObject : MonoBehaviour
                 wp.header.frame_id = "map";
 
 
-                Vector3 worldPosition = goalTransforms[currentPathId].position + mapTransformer.OriginPos;
-                float pitch = goalTransforms[currentPathId].rotation.eulerAngles.y;
+                Vector3 worldPosition = goalObjects[currentPathId].transform.position + mapTransformer.OriginPos;
+                float pitch = goalObjects[currentPathId].transform.rotation.eulerAngles.y;
 
                 wp.pose = ConvertTransfromUnityToRos(worldPosition, pitch);
 
@@ -78,7 +90,7 @@ public class FollowObject : MonoBehaviour
         }
 
         if(Input.GetKeyUp(KeyCode.S)) enableNavigation = !enableNavigation;
-        if(Input.GetKeyUp(KeyCode.UpArrow)) currentPathId = (currentPathId + 1) % goalTransforms.Length;
+        if(Input.GetKeyUp(KeyCode.UpArrow)) currentPathId = (currentPathId + 1) % goalObjects.Length;
 
     }
 
@@ -102,7 +114,7 @@ public class FollowObject : MonoBehaviour
         pose.position.y = -unityPosition.x;
         pose.position.z = 0f;
 
-        Quaternion unity_quat = Quaternion.Euler(0f, 0f, unityRotation - 90f);
+        Quaternion unity_quat = Quaternion.Euler(0f, 0f, -unityRotation);
         pose.orientation.x = unity_quat.x;
         pose.orientation.y = unity_quat.y;
         pose.orientation.z = unity_quat.z;
@@ -111,9 +123,9 @@ public class FollowObject : MonoBehaviour
         return pose;
     }
 
-    void DistanceInfoCallback(Float32Msg msg)
-    {
-        distance_remain = msg.data;
+    // void DistanceInfoCallback(Float32Msg msg)
+    // {
+    //     distance_remain = msg.data;
         
-    }
+    // }
 }
