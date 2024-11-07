@@ -34,7 +34,7 @@ public class PostEffectControl : MonoBehaviour
     {   
         //ColorGrading周り
         {
-            if(gameStateManager.count != lastCount) 
+            if(gameStateManager.score != lastCount) 
             {
                 hue -= 10;
                 exposureValue = 1.85f;
@@ -43,7 +43,7 @@ public class PostEffectControl : MonoBehaviour
             exposureValue -= 0.01f;
             if(exposureValue < 1.0f) exposureValue = 1.0f;
 
-            lastCount = gameStateManager.count;
+            lastCount = gameStateManager.score;
             
             hue = hue % 360;
 

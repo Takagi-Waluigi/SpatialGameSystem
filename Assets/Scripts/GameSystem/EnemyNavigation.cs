@@ -11,7 +11,6 @@ public class EnemyNavigation : MonoBehaviour
     bool isOnSomeWhere = false;
     public GameObject characterObject;
     public StateManager gameStateManager;
-    public GameObject userObject;
     public GameObject playAreaObject;
     public float lifeTime;    
     bool isTracking = false;
@@ -62,18 +61,11 @@ public class EnemyNavigation : MonoBehaviour
 
                 if(distanceToCharacter < distanceThreshold)
                 {
-                    if(gameStateManager.isTrackingUser_1 || gameStateManager.isTrackingUser_2)
-                    {
-                        gameStateManager.isAttacked = true;
-                    }
+                    gameStateManager.isAttacked = true;
+                    gameStateManager.hitPoint ++;
                     
                     GameObject.Destroy(this.gameObject);
                 }
-
-
-                // float distanceToUser = Vector3.Distance(this.transform.position, userObject.transform.position);
-
-                // if(distanceToUser < distanceThreshold) GameObject.Destroy(this.gameObject);
                 
             }
             //プレイエリア以外に落下した場合

@@ -8,7 +8,6 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] GameObject baseObject;
     [SerializeField] GameObject shipObject;
     [SerializeField] GameObject characterObject;
-    [SerializeField] GameObject userObject;
     [SerializeField] GameObject playAreaObject;
     [SerializeField] StateManager gameStateManager;
     [SerializeField] Transform enemyTransform;
@@ -41,7 +40,6 @@ public class EnemySpawner : MonoBehaviour
 
             var enemyNavi = latestEnemy.GetComponent<EnemyNavigation>();
             enemyNavi.characterObject = characterObject;
-            enemyNavi.userObject = userObject;
             enemyNavi.playAreaObject = playAreaObject;
             enemyNavi.lifeTime = enemyLifeTime;
             enemyNavi.gameStateManager = gameStateManager;

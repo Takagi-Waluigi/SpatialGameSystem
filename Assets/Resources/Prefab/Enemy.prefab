@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 4604297518416329956}
   - component: {fileID: 9000419935013891351}
   - component: {fileID: 1021554664501283443}
-  - component: {fileID: 5513678240131013918}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -33,7 +32,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -10.55, y: 2.77, z: 5.76}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -150,7 +149,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterObject: {fileID: 0}
   gameStateManager: {fileID: 0}
-  userObject: {fileID: 0}
   playAreaObject: {fileID: 0}
   lifeTime: 0
   distanceThreshold: 1
@@ -176,15 +174,3 @@ NavMeshAgent:
   m_BaseOffset: 0.49999997
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &5513678240131013918
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7611310738874197307}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6c03b25c55ea3e408d2c51e62567fce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

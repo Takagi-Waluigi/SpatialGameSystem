@@ -166,6 +166,7 @@ MonoBehaviour:
   deactiveMaterial: {fileID: 0}
   maxRadius: 1
   agent: {fileID: 0}
+  id: 1
 --- !u!54 &870509415412407442
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -291,7 +292,6 @@ GameObject:
   m_Component:
   - component: {fileID: 968581286487884610}
   - component: {fileID: 1139696080970663640}
-  - component: {fileID: 3505511956555201763}
   m_Layer: 0
   m_Name: GameControl
   m_TagString: Untagged
@@ -326,27 +326,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f01dc14a1a620aa42b2ab74b51616c84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activeMaterial: {fileID: 0}
-  deactiveMaterial: {fileID: 0}
-  count: 0
+  score: 0
   isAttacked: 0
-  isTrackingUser: 0
+  isTrackingUser_1: 0
+  isTrackingUser_2: 0
   respawnTime: 3
---- !u!114 &3505511956555201763
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4302712639267404212}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 681075016f2a4bd439673399bdf7921a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  environmentObject: {fileID: 0}
-  gameStateManager: {fileID: 0}
-  shakingDecrementRatio: 0.95
 --- !u!1 &4788238537392448626
 GameObject:
   m_ObjectHideFlags: 0
@@ -560,6 +544,7 @@ MonoBehaviour:
   deactiveMaterial: {fileID: 2100000, guid: 396fd03ac0b92244b9909fff2962b085, type: 2}
   maxRadius: 1
   agent: {fileID: 4990424596289963140}
+  id: 1
 --- !u!54 &4652135841368807371
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -634,7 +619,6 @@ MonoBehaviour:
   baseObject: {fileID: 7611310738874197307, guid: dd1edb67a1e00d34fb50dedc3d6028e7, type: 3}
   shipObject: {fileID: 1134247650978873942}
   characterObject: {fileID: 994594718201703601}
-  userObject: {fileID: 0}
   playAreaObject: {fileID: 0}
   gameStateManager: {fileID: 0}
   enemyTransform: {fileID: 0}

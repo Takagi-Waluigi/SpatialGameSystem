@@ -32,13 +32,13 @@ public class SoundEffectFlagPublisher : MonoBehaviour
             ros.Publish(topicName, msg);
         } 
 
-        if(gameStateManager.count != lastCount)
+        if(gameStateManager.score != lastCount)
         {
             msg.data = 1;
             ros.Publish(topicName, msg);
         }
 
-        lastCount = gameStateManager.count;
+        lastCount = gameStateManager.score;
         lastIsAttacked = gameStateManager.isAttacked;
     }
 }

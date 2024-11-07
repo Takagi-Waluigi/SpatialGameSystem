@@ -14,7 +14,7 @@ public class CollisionProcess : MonoBehaviour
     {
         //Insatantiateで管理不可のためGameObjectの名前で指定
         gameControlObject = GameObject.Find("GameControl");
-        GetComponent<MeshRenderer>().material = gameControlObject.GetComponent<StateManager>().deactiveMaterial;
+       // GetComponent<MeshRenderer>().material = gameControlObject.GetComponent<StateManager>().deactiveMaterial;
         if(gameControlObject == null) Debug.Log("not inserted _1");
 
         characterObject1 = GameObject.Find("Character1");
@@ -35,25 +35,9 @@ public class CollisionProcess : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        // //まだ踏まれていなければ判定を有効に
-        // if(isActive)
-        // {
-        //     characterState = gameControlObject.GetComponent<StateManager>();
-        //     if(collision.gameObject.name == gameControlObject.name && characterState.isTrackingUser)
-        //     {
-        //         //キャラクターオブジェクトと衝突した場合キャラクターオブジェクト内のフラグをTrueに
-        //         GetComponent<MeshRenderer>().material = characterState.activeMaterial;
-                
-        //         //キャラクターオブジェクトと衝突した回数を加算
-        //         gameControlObject.GetComponent<StateManager>().count ++;
-
-        //         //踏まれた判定にして加算を1回に制限する
-        //         isActive = false;
-        //     }
-        // }
         characterState = gameControlObject.GetComponent<StateManager>();
 
-       if(((collision.gameObject.name == characterObject1.name) && characterState.isTrackingUser_1) || 
+        if(((collision.gameObject.name == characterObject1.name) && characterState.isTrackingUser_1) || 
             ((collision.gameObject.name == characterObject2.name) && characterState.isTrackingUser_2))
         {
             //GameObject.Destroy(this.gameObject);
