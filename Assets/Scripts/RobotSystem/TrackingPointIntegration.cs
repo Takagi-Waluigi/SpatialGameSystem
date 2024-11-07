@@ -77,8 +77,6 @@ public class TrackingPointIntegration : MonoBehaviour
                 {
                     thresholdObjets[i].transform.position = integratedPositions[i]; 
                     thresholdObjets[i].transform.localScale = (visualize == true) ? new Vector3(0.07f, 0.07f, 0.07f) : Vector3.zero;
-
-                    integratedPositions.Add(thresholdObjets[i].transform.position);
                 }
                 else
                 {

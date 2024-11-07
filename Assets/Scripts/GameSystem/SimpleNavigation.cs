@@ -5,8 +5,10 @@ using UnityEngine.AI;
 
 public class SimpleNavigation : MonoBehaviour
 {
-    [SerializeField] Transform targetTransform;
+    [Header("オブジェクト設定")]
     [SerializeField] NavMeshAgent agent;
+    [SerializeField] Transform targetTransform;
+      
 
     // Start is called before the first frame update
     void Start()
@@ -16,6 +18,7 @@ public class SimpleNavigation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         agent.SetDestination(targetTransform.position);
     }
 }

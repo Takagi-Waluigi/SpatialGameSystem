@@ -2114,7 +2114,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: 0
   hitPoint: 0
+  maxHitPoint: 5
   remainTimef: 0
+  isGameOver: 0
   isAttacked: 0
   isTrackingUser_1: 0
   isTrackingUser_2: 0
