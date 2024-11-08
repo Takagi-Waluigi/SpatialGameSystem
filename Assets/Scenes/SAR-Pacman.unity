@@ -4882,6 +4882,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 857248609}
     m_Modifications:
+    - target: {fileID: 1139696080970663640, guid: 8c35760e729c3bf438a92af7a378df13, type: 3}
+      propertyPath: isTrackingUser_1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1139696080970663640, guid: 8c35760e729c3bf438a92af7a378df13, type: 3}
+      propertyPath: isTrackingUser_2
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1152448012822085396, guid: 8c35760e729c3bf438a92af7a378df13, type: 3}
+      propertyPath: baseObject
+      value: 
+      objectReference: {fileID: 5451920058639359032, guid: f889174e57e5b3041bf3f7fc3630ab45, type: 3}
     - target: {fileID: 1322435640463713637, guid: 8c35760e729c3bf438a92af7a378df13, type: 3}
       propertyPath: m_Name
       value: GameSystemManager
@@ -4894,6 +4906,14 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3284130978869620455, guid: 8c35760e729c3bf438a92af7a378df13, type: 3}
+      propertyPath: playAreaObject
+      value: 
+      objectReference: {fileID: 1919539400}
+    - target: {fileID: 3284130978869620455, guid: 8c35760e729c3bf438a92af7a378df13, type: 3}
+      propertyPath: characterObject
+      value: 
+      objectReference: {fileID: 1330566295}
     - target: {fileID: 3401549744815407620, guid: 8c35760e729c3bf438a92af7a378df13, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -4950,6 +4970,22 @@ PrefabInstance:
       propertyPath: enableGameBaseControl
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7034585392386390643, guid: 8c35760e729c3bf438a92af7a378df13, type: 3}
+      propertyPath: screen_1
+      value: 
+      objectReference: {fileID: 886231275}
+    - target: {fileID: 7034585392386390643, guid: 8c35760e729c3bf438a92af7a378df13, type: 3}
+      propertyPath: screen_2
+      value: 
+      objectReference: {fileID: 1514912492}
+    - target: {fileID: 7034585392386390643, guid: 8c35760e729c3bf438a92af7a378df13, type: 3}
+      propertyPath: stateManager
+      value: 
+      objectReference: {fileID: 666978214}
+    - target: {fileID: 7034585392386390643, guid: 8c35760e729c3bf438a92af7a378df13, type: 3}
+      propertyPath: baseButtonObject
+      value: 
+      objectReference: {fileID: 4204509444544907786, guid: 0d75165591fb2c703888bfbf41fae8bb, type: 3}
     - target: {fileID: 8385956571455084168, guid: 8c35760e729c3bf438a92af7a378df13, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.46
@@ -4981,7 +5017,7 @@ PrefabInstance:
     - target: {fileID: 8579646885964718082, guid: 8c35760e729c3bf438a92af7a378df13, type: 3}
       propertyPath: gameStateManager
       value: 
-      objectReference: {fileID: 1534882044}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 4881062020189134271, guid: 8c35760e729c3bf438a92af7a378df13, type: 3}
@@ -5572,7 +5608,7 @@ MonoBehaviour:
   oscConnection: {fileID: 11400000, guid: 084c605180086054d8f6f5cf596473b1, type: 2}
   OSCAddressStatic: /gameState/static
   OSCAddressDynamic: /gameState/dynamic
-  stateManager: {fileID: 1534882044}
+  stateManager: {fileID: 666978214}
   publishRate: 30
 --- !u!114 &565609339
 MonoBehaviour:
@@ -6169,6 +6205,17 @@ CapsuleCollider:
   m_Height: 0.0060000005
   m_Direction: 1
   m_Center: {x: 0.060000017, y: -0.030000009, z: 0.00025000007}
+--- !u!114 &666978214 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7154678706105589804, guid: 8c35760e729c3bf438a92af7a378df13, type: 3}
+  m_PrefabInstance: {fileID: 510256725}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f01dc14a1a620aa42b2ab74b51616c84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!54 &671132138
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -11428,9 +11475,7 @@ MonoBehaviour:
   remainTimef: 0
   isGameOver: 0
   isAttacked: 0
-  isTrackingUser_1: 0
-  isTrackingUser_2: 0
-  respawnTime: 3
+  isTrackingUser: 0
 --- !u!136 &860069520
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -17713,17 +17758,6 @@ CapsuleCollider:
   m_Height: 0.0060000024
   m_Direction: 1
   m_Center: {x: -0.019999987, y: 0.020000007, z: 0.00025000007}
---- !u!114 &1534882044 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1139696080970663640, guid: 8c35760e729c3bf438a92af7a378df13, type: 3}
-  m_PrefabInstance: {fileID: 510256725}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f01dc14a1a620aa42b2ab74b51616c84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!54 &1552397266
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -20935,6 +20969,10 @@ PrefabInstance:
       propertyPath: mapTransformer
       value: 
       objectReference: {fileID: 1459201089}
+    - target: {fileID: 9214380470104991803, guid: f5607cfa02b2e265e8c6a9965b190ca7, type: 3}
+      propertyPath: stateManager
+      value: 
+      objectReference: {fileID: 666978214}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

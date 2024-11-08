@@ -4,20 +4,29 @@ using UnityEngine;
 
 public class StateManager : MonoBehaviour
 {   
-    public int score;
-    public int hitPoint;
+    public int score = 0;
+    public int hitPoint = 0;
     public int maxHitPoint = 5;
     public float remainTimef;
+    public float decisionTime = 0;
+    [SerializeField] float maxTime = 5f;
     public bool isGameOver = false;
     public bool isAttacked = false;
-    public bool isTrackingUser_1 = false;
-    public bool isTrackingUser_2 = false;
-    public float respawnTime = 3f;
-    float gameOverTime = 0;
-    bool lastIsAttacked;
+    public bool isTrackingUser = false;
 
     void Update()
     {
-      if(maxHitPoint - hitPoint < 0) isGameOver = true;    
+      if(maxHitPoint - hitPoint <= 0) isGameOver = true;
+      
+      if(!isGameOver) decisionTime = 0;
+
+      if(decisionTime > maxTime) InitValue();
+    }
+
+    public void InitValue()
+    {
+        score = 0;
+        hitPoint = 0;
+        isGameOver = false;
     }
 }

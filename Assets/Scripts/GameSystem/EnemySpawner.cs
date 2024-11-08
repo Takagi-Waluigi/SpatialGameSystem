@@ -28,7 +28,7 @@ public class EnemySpawner : MonoBehaviour
     {
         Transform shipTransform = shipObject.GetComponent<Patrol>().shipObject.transform;
         
-        if(Time.time - lastTime > spawnDuration)
+        if(Time.time - lastTime > spawnDuration && !gameStateManager.isGameOver)
         {
             var latestEnemy = GameObject.Instantiate(
                 baseObject,

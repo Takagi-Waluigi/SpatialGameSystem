@@ -35,14 +35,14 @@ public class CollisionProcess : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        characterState = gameControlObject.GetComponent<StateManager>();
+        // characterState = gameControlObject.GetComponent<StateManager>();
 
-        if(((collision.gameObject.name == characterObject1.name) && characterState.isTrackingUser_1) || 
-            ((collision.gameObject.name == characterObject2.name) && characterState.isTrackingUser_2))
-        {
-            //GameObject.Destroy(this.gameObject);
-            isHit = true;
-        }
+        // if(((collision.gameObject.name == characterObject1.name) && characterState.isTrackingUser_1) || 
+        //     ((collision.gameObject.name == characterObject2.name) && characterState.isTrackingUser_2))
+        // {
+        //     //GameObject.Destroy(this.gameObject);
+        //     isHit = true;
+        // }
         
                
     }

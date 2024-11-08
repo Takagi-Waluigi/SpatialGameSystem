@@ -26,7 +26,7 @@ public class OscStateSender : MonoBehaviour
     {
         if(Time.time - lastTime > (1f / publishRate))
         {
-            client.Send(OSCAddressDynamic, stateManager.remainTimef);
+            client.Send(OSCAddressDynamic, stateManager.remainTimef, stateManager.decisionTime);
             lastTime = Time.time;
         }
 

@@ -61,7 +61,6 @@ public class EnemyNavigation : MonoBehaviour
 
                 if(distanceToCharacter < distanceThreshold)
                 {
-                    gameStateManager.isAttacked = true;
                     gameStateManager.hitPoint ++;
                     
                     GameObject.Destroy(this.gameObject);

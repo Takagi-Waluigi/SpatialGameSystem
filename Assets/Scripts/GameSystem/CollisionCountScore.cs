@@ -15,13 +15,20 @@ public class CollisionCountScore : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(stateManagerObject.GetComponent<StateManager>().isGameOver)
+        {
+            isHit = false;
+        }
+        
         this.gameObject.GetComponent<Renderer>().enabled = !isHit;
         this.gameObject.GetComponent<Collider>().enabled = !isHit;
     }
 
     void OnCollisionEnter(Collision collision)
     {
-       if(stateManagerObject != null && collision.gameObject.name == "Character")
+       if(stateManagerObject != null && collision.gameObject.name == "Character" 
+       && stateManagerObject.GetComponent<StateManager>().isTrackingUser 
+       && !stateManagerObject.GetComponent<StateManager>().isGameOver)
        {
             //点数の加算
             stateManagerObject.GetComponent<StateManager>().score ++;

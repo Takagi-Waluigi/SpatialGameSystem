@@ -9,8 +9,7 @@ public class TrackingPointIntegration : MonoBehaviour
     [SerializeField] LaserObjectSubscriber p1ObjectSubscriber;
     [SerializeField] LaserObjectSubscriber p2ObjectSubscriber;
     [SerializeField] float distanceThreshold = 1f;
-
-
+    [SerializeField] StateManager stateManager;
     [Header("視覚化用パラメータ")]
     [SerializeField] bool visualize;
     [SerializeField] GameObject baseObject;
@@ -69,6 +68,8 @@ public class TrackingPointIntegration : MonoBehaviour
         {
             foreach(Vector3 p2pos in p2ObjectSubscriber.objectWorldPositions)integratedPositions.Add(p2pos);
         }
+
+        stateManager.isTrackingUser = integratedPositions.Count > 0;
 
 
         for(int i = 0; i < thresholdObjets.Length; i ++)

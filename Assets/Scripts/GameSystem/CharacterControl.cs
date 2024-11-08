@@ -44,12 +44,7 @@ public class CharacterControl : MonoBehaviour
     void PlayTime()
     {
         //どちらかのオブジェクトでトラッキングされている場合にアクティブに
-        isTracking = laserObject.objectWorldPositions.Count > 0;
-
-        //StateManagerに伝達
-        if(id == 1) gameStateManager.isTrackingUser_1 = isTracking;
-        if(id == 2) gameStateManager.isTrackingUser_2 = isTracking;
-        
+        isTracking = laserObject.objectWorldPositions.Count > 0;        
 
         // 急いでユーザのもとに駆け寄ってきてもらう
        // if(!lastFrameIsTracking && isTracking) agent.speed = 10f;
