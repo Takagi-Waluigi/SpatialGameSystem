@@ -10,7 +10,7 @@ public class EnemyNavigation : MonoBehaviour
     bool isOnPlayArea = false;
     bool isOnSomeWhere = false;
     public GameObject characterObject;
-    public StateManager gameStateManager;
+    public StateManager stateManager;
     public GameObject playAreaObject;
     public float lifeTime;    
     bool isTracking = false;
@@ -59,9 +59,9 @@ public class EnemyNavigation : MonoBehaviour
 
                 float distanceToCharacter = Vector3.Distance(this.transform.position, characterObject.transform.position);
 
-                if(distanceToCharacter < distanceThreshold)
+                if(distanceToCharacter < distanceThreshold && stateManager.isTrackingUser)
                 {
-                    gameStateManager.hitPoint ++;
+                    stateManager.hitPoint ++;
                     
                     GameObject.Destroy(this.gameObject);
                 }

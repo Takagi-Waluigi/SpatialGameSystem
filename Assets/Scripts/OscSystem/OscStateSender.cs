@@ -14,6 +14,7 @@ public class OscStateSender : MonoBehaviour
     int lastScore = 0;
     int lastHitPoint = 0;
     float lastTime = 0;
+    bool lastIsTracking = false;
 
     // Start is called before the first frame update
     void Start()
@@ -30,14 +31,16 @@ public class OscStateSender : MonoBehaviour
             lastTime = Time.time;
         }
 
-        if(stateManager.score != lastScore || stateManager.hitPoint != lastHitPoint || stateManager.isGameOver)
+        if(stateManager.score != lastScore || stateManager.hitPoint != lastHitPoint || stateManager.isGameOver || stateManager.isTrackingUser != lastIsTracking)
         {
             int isGameOverInt = (stateManager.isGameOver)? 1 : 0;
-            client.Send(OSCAddressStatic, (int)stateManager.score, (int)stateManager.hitPoint, isGameOverInt);
+            int isTrackingUserInt = (stateManager.isTrackingUser)? 1 : 0;
+            client.Send(OSCAddressStatic, (int)stateManager.score, (int)stateManager.hitPoint, isGameOverInt, isTrackingUserInt);
         }
         
         lastScore = stateManager.score;
         lastHitPoint = stateManager.hitPoint;
+        lastIsTracking = stateManager.isTrackingUser;
         
     }
 
