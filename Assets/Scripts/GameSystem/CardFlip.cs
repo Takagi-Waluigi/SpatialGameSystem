@@ -1,77 +1,116 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Data.Common;
 using UnityEngine;
 
 public class CardFlip : MonoBehaviour
 {
+    [Header("オブジェクト設定")]
     [SerializeField] StateManager stateManager;
-    [SerializeField] float stepOnThresholdTime = 3f;
-    [SerializeField] float stepOffThresholdTime = 6f;
+    [Header("各種設定")]
+    [SerializeField] float stepOnThresholdTime = 3f;       
+    [SerializeField] [Range(0, 5)] int cardId;
     float enableTime = 0f;
-    float disableTime = 0f;
-    bool _userStepOn = false;
     bool userStepOn = false;
-    bool lastUserStepOn = false;
-    GameObject userObject;
+    bool isFlipped, lastIsFlipped;
+    bool isLocked = false;
     // Start is called before the first frame update
     void Start()
     {
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        isLocked = false;
+
+        if(stateManager.matchedId.Count > 0)
+        {
+            foreach(int id in stateManager.matchedId)
+            {
+                if(id == cardId)
+                {
+                    isLocked = true;
+                    break;
+                }
+            }
+        }
         
-        if(!_userStepOn)
+        if(!isLocked)
         {
-            disableTime += Time.deltaTime;
-            if(disableTime > stepOffThresholdTime) userStepOn = false; 
+            if(stateManager.enableFlipBack) FlipBack();
+
+            Flip();
+
+            if(isFlipped && !lastIsFlipped)
+            {
+                if(!stateManager.isFlippingFirst)
+                {
+                    stateManager.isFlippingFirst = true;
+                    stateManager.firstCardId = cardId;
+                }            
+                else
+                {
+                    stateManager.isFlippingSecond = true;
+
+                    if(stateManager.firstCardId == cardId)
+                    {
+                        stateManager.isMatching = true;
+                        stateManager.score ++;
+                    }
+                    else
+                    {
+                        stateManager.isMatching = false;
+                        stateManager.flipBackTime = 0f;
+                    }
+                }          
+            }
+
+            lastIsFlipped = isFlipped;
         }
-       // Debug.Log("enableTime:" + enableTime + "/disableTime:" + disableTime);
+        
+    }
 
-        if(lastUserStepOn != userStepOn)
-        {
-            disableTime = 0f;
-            enableTime = 0f;        
-        }
-
-        Debug.Log("disable time:" + disableTime + "/enable time:" + enableTime);
-        Debug.Log("User StepOn Status:" + userStepOn);
-
-        _userStepOn = false;
-
-        lastUserStepOn = userStepOn;
-
-
+    void Flip()
+    {
         Vector3 eularAngles = this.transform.rotation.eulerAngles;
         if(userStepOn)
-        {           
+        {            
             eularAngles.z += 10f;
 
-            if(eularAngles.z > 180f) eularAngles.z = 180f;            
+            if(eularAngles.z > 180f) 
+            {   
+                isFlipped = true;
+                eularAngles.z = 180f;  
+            }
+            else
+            {
+                isFlipped = false;
+            }         
         }
         else
         {
             eularAngles.z += 10f;
 
             if(eularAngles.z < 180f) eularAngles.z = 0f;
-
         }
 
         this.transform.rotation = Quaternion.Euler(eularAngles); 
     }
 
+    void FlipBack()
+    {
+        userStepOn = false;
+        enableTime = 0f;
+    }
+
     void OnCollisionStay(Collision collision)
     {
-
-       if(collision.gameObject.name == "User" && stateManager.isTrackingUser)
-       {
-           _userStepOn = true;  
-
-           enableTime += Time.deltaTime;
-           if(enableTime > stepOnThresholdTime) userStepOn = true;  
-       }       
+        if(!isLocked && collision.gameObject.name == "User" && stateManager.isTrackingUser)
+        {
+            enableTime += Time.deltaTime;
+            if(enableTime > stepOnThresholdTime) userStepOn = true;  
+        }       
                
     }
 }

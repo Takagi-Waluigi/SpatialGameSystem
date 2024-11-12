@@ -6,6 +6,7 @@ public class UserPositionAttacher : MonoBehaviour
 {
     [Header("オブジェクト設定")]
     [SerializeField] TrackingPointIntegration trackingPointIntegration;
+    [SerializeField] StateManager stateManager;
     [Header("実機使用")]
     [SerializeField] bool useRealTrackingData = false;
     [Header("シミュレーション設定")]
@@ -26,6 +27,7 @@ public class UserPositionAttacher : MonoBehaviour
         }
         else
         {
+            stateManager.isTrackingUser = true;
             SimulationPositionControl();
         }
     }

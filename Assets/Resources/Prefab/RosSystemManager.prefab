@@ -48,6 +48,7 @@ MonoBehaviour:
   p1ObjectSubscriber: {fileID: 6900256374640509607}
   p2ObjectSubscriber: {fileID: 1680418184746092154}
   distanceThreshold: 1
+  stateManager: {fileID: 0}
   visualize: 1
   baseObject: {fileID: 6521700990748457908, guid: 24ade0c44d42e72cabfc60f4a76336a7, type: 3}
   numberOfThresoldObject: 15
@@ -97,6 +98,7 @@ GameObject:
   - component: {fileID: 7941293550806702111}
   - component: {fileID: 4618973754637382499}
   - component: {fileID: 1680418184746092154}
+  - component: {fileID: 9140978837772064643}
   m_Layer: 0
   m_Name: Projectoroid2
   m_TagString: Untagged
@@ -162,6 +164,29 @@ MonoBehaviour:
   visualize: 1
   baseObject: {fileID: 6521700990748457908, guid: ae7c29a77604bc14296e9227cff1bb9f, type: 3}
   numberOfThresoldObject: 15
+--- !u!114 &9140978837772064643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3666588275518504413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8774b7b92950bd3418d3698ffe0cf522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  robotObject: {fileID: 8844075056395299315}
+  goalObjects:
+  - {fileID: 0}
+  mapTransformer: {fileID: 0}
+  waypointTopicName: goal_pose_unity
+  cancelTopicName: cancel_status
+  distanceTopicName: distance_remain
+  rosNamespace: projectoroid1
+  publishRate: 1
+  stopTargetDistance: 0.5
+  enableNavigation: 0
 --- !u!1 &6528790984306759310
 GameObject:
   m_ObjectHideFlags: 0
