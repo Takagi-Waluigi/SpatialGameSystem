@@ -26,6 +26,7 @@ public class CollisionCountScore : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
+       // Debug.Log("Collision:" + collision.gameObject.name);
        if(stateManagerObject != null && collision.gameObject.name == "Character" 
        && stateManagerObject.GetComponent<StateManager>().isTrackingUser 
        && !stateManagerObject.GetComponent<StateManager>().isGameOver)

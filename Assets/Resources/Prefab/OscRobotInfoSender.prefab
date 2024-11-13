@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1818490118327242116}
   - component: {fileID: 4060810852274040772}
   - component: {fileID: 95434609681253}
+  - component: {fileID: 3820906556238331926}
   m_Layer: 0
   m_Name: Projectoroid2
   m_TagString: Untagged
@@ -67,6 +68,21 @@ MonoBehaviour:
   _dataSource: {fileID: 0}
   _propertyName: eulerAngles
   _keepSending: 0
+--- !u!114 &3820906556238331926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2302390462235857633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3ec2045582a3c59887147f1feeabdeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camera: {fileID: 0}
+  oscConnection: {fileID: 11400000, guid: acaaab007a1a39103961ce20db02394c, type: 2}
+  OSCAddressScreenSize: /screenSize
 --- !u!1 &5796304437228858247
 GameObject:
   m_ObjectHideFlags: 0
@@ -80,6 +96,7 @@ GameObject:
   - component: {fileID: 4529350490090215319}
   - component: {fileID: 4726352795401469303}
   - component: {fileID: 1785782551514238565}
+  - component: {fileID: 742126509666084151}
   m_Layer: 0
   m_Name: Projectoroid1
   m_TagString: Untagged
@@ -170,6 +187,21 @@ MonoBehaviour:
   _dataSource: {fileID: 0}
   _propertyName: eulerAngles
   _keepSending: 0
+--- !u!114 &742126509666084151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5796304437228858247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3ec2045582a3c59887147f1feeabdeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camera: {fileID: 0}
+  oscConnection: {fileID: 11400000, guid: 084c605180086054d8f6f5cf596473b1, type: 2}
+  OSCAddressScreenSize: /screenSize
 --- !u!1 &6426219347173988636
 GameObject:
   m_ObjectHideFlags: 0
