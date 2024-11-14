@@ -2,10 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CollisionCountScore : MonoBehaviour
+public class CollisionEnemy : MonoBehaviour
 {
-    GameObject stateManagerObject = null;     
-    bool isHit = false; //True:未取得状態 False:取得済み状態
+    GameObject stateManagerObject = null;  
     // Start is called before the first frame update
     void Start()
     {
@@ -15,13 +14,7 @@ public class CollisionCountScore : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(stateManagerObject.GetComponent<StateManager>().isGameOver)
-        {
-            isHit = false;
-        }
         
-        this.gameObject.GetComponent<Renderer>().enabled = !isHit;
-        this.gameObject.GetComponent<Collider>().enabled = !isHit;
     }
 
     void OnCollisionEnter(Collision collision)
@@ -30,11 +23,9 @@ public class CollisionCountScore : MonoBehaviour
 
        if(collision.gameObject.name == "Character" && stateManager.isTrackingUser && !stateManager.isGameOver && stateManager.isVisibleCharacter)
        {
-            //点数の加算
-            stateManagerObject.GetComponent<StateManager>().score ++;
+            //ヒットポイントの加算
+            stateManagerObject.GetComponent<StateManager>().hitPoint ++;
             
-            //コイン取得済みフラグをTrueに
-            isHit = true;
-       }
+       }        
     }
 }

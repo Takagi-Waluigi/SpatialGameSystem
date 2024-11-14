@@ -16,6 +16,7 @@ public class StateManager : MonoBehaviour
     [SerializeField] float maxTime = 5f;
     public bool isGameOver = false;
     public bool isAttacked = false;
+    public bool isVisibleCharacter = false;
 
     [Header("絵合わせ用変数")]
     public int firstCardId = 0;
@@ -34,9 +35,9 @@ public class StateManager : MonoBehaviour
       
       if(!isGameOver) decisionTime = 0;
 
-      if(decisionTime > maxTime) InitValue();
-      
-      
+      if(decisionTime > maxTime) InitValue();   
+    
+      isVisibleCharacter = false;      
     }
 
     public void InitValue()

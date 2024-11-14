@@ -4,7 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - waypoint1
+  - Projectoroid1
+  - Projectoroid2
   layers:
   - Default
   - TransparentFX
