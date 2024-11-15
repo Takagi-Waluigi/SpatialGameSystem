@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5480822903726936713}
   - component: {fileID: 9214380470104991803}
+  - component: {fileID: 4927807470067031267}
   m_Layer: 0
   m_Name: TrackedPositions
   m_TagString: Untagged
@@ -53,6 +54,24 @@ MonoBehaviour:
   baseObject: {fileID: 6521700990748457908, guid: 24ade0c44d42e72cabfc60f4a76336a7, type: 3}
   numberOfThresoldObject: 15
   integratedPositions: []
+--- !u!114 &4927807470067031267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 23163455678822408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cf0b653900bc6e10816f5890513c861, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseTransform: {fileID: 0}
+  p1ObjectSubscriber: {fileID: 0}
+  p2ObjectSubscriber: {fileID: 0}
+  distanceThreshold: 1
+  stateManager: {fileID: 0}
+  integratedPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &2650337222054093291
 GameObject:
   m_ObjectHideFlags: 0
@@ -99,6 +118,7 @@ GameObject:
   - component: {fileID: 4618973754637382499}
   - component: {fileID: 1680418184746092154}
   - component: {fileID: 9140978837772064643}
+  - component: {fileID: 4789630789917813398}
   m_Layer: 0
   m_Name: Projectoroid2
   m_TagString: Untagged
@@ -187,6 +207,32 @@ MonoBehaviour:
   publishRate: 1
   stopTargetDistance: 0.5
   enableNavigation: 0
+--- !u!114 &4789630789917813398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3666588275518504413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da65e07287e1270f2996e1f245d04447, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftFootObject: {fileID: 0}
+  rightFootObject: {fileID: 0}
+  topicName: body
+  rosNamespace: projectoroid2
+  maxRange: 2.5
+  minRange: 0.28
+  keyPointsID_left: 13
+  keyPointsID_right: 14
+  coefThreshold: 0.35
+  offsetDepth: 0
+  leftFootWorldPosition: {x: 0, y: 0, z: 0}
+  rightFootWorldPosition: {x: 0, y: 0, z: 0}
+  centerPosition: {x: 0, y: 0, z: 0}
+  isNotIncomingData: 0
 --- !u!1 &6528790984306759310
 GameObject:
   m_ObjectHideFlags: 0
@@ -199,6 +245,7 @@ GameObject:
   - component: {fileID: 7648481343908405870}
   - component: {fileID: 6900256374640509607}
   - component: {fileID: 6417774170620220740}
+  - component: {fileID: 4631182449979682625}
   m_Layer: 0
   m_Name: Projectoroid1
   m_TagString: Untagged
@@ -288,3 +335,29 @@ MonoBehaviour:
   publishRate: 1
   stopTargetDistance: 0.5
   enableNavigation: 0
+--- !u!114 &4631182449979682625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6528790984306759310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da65e07287e1270f2996e1f245d04447, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftFootObject: {fileID: 0}
+  rightFootObject: {fileID: 0}
+  topicName: body
+  rosNamespace: 
+  maxRange: 2.5
+  minRange: 0.28
+  keyPointsID_left: 13
+  keyPointsID_right: 14
+  coefThreshold: 0.35
+  offsetDepth: 0
+  leftFootWorldPosition: {x: 0, y: 0, z: 0}
+  rightFootWorldPosition: {x: 0, y: 0, z: 0}
+  centerPosition: {x: 0, y: 0, z: 0}
+  isNotIncomingData: 0

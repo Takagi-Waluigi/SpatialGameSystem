@@ -47,7 +47,12 @@ public class StateManager : MonoBehaviour
 
       remainTimef -= Time.deltaTime;
 
-      if(remainTimef < 0) remainTimef = 0;
+      if(remainTimef < 0) 
+      {
+        remainTimef = 0;
+        isGameOver = true;
+      }
+      
     }
 
     public void InitValue()

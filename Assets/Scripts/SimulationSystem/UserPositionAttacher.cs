@@ -5,7 +5,8 @@ using UnityEngine;
 public class UserPositionAttacher : MonoBehaviour
 {
     [Header("オブジェクト設定")]
-    [SerializeField] TrackingPointIntegration trackingPointIntegration;
+    [SerializeField] TrackingUserIntegration trackedUserPositionIntegration;
+    //[SerializeField] trackedUserPositionIntegration trackedUserPositionIntegration;
     [SerializeField] StateManager stateManager;
     [Header("実機使用")]
     [SerializeField] bool useRealTrackingData = false;
@@ -20,10 +21,7 @@ public class UserPositionAttacher : MonoBehaviour
     {
         if(useRealTrackingData)
         {
-            if(trackingPointIntegration.integratedPositions.Count > 0)
-            {
-                this.transform.position = trackingPointIntegration.integratedPositions[0];
-            }
+            this.transform.position = trackedUserPositionIntegration.integratedPosition;
         }
         else
         {
@@ -58,23 +56,5 @@ public class UserPositionAttacher : MonoBehaviour
         {
             transform.position -= transform.up * moveSpeed * Time.deltaTime;
         }
-
-        
-        // if (Input.GetMouseButtonDown(0))
-        // {
-        //     newAngle = transform.localEulerAngles;
-        //     lastMousePosition = Input.mousePosition;
-        // }
-        // else if (Input.GetMouseButton(0))
-        // {
-        //     newAngle.y -= (lastMousePosition.x - Input.mousePosition.x) * rotationSpeed.y;
-        //     newAngle.x -= (Input.mousePosition.y - lastMousePosition.y) * rotationSpeed.x;
-
-        //     transform.localEulerAngles = newAngle;
-        //     lastMousePosition = Input.mousePosition;
-        // }
-
-        //transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
-
     }
 }
