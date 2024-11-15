@@ -11,10 +11,12 @@ public class OscStateSender : MonoBehaviour
     [SerializeField] StateManager stateManager;
     [SerializeField] float publishRate = 30f;
     OscClient client;
+
     int lastScore = 0;
     int lastHitPoint = 0;
     float lastTime = 0;
     bool lastIsTracking = false;
+    bool lastIsGameOver = false;
 
     // Start is called before the first frame update
     void Start()
@@ -31,7 +33,7 @@ public class OscStateSender : MonoBehaviour
             lastTime = Time.time;
         }
 
-        if(stateManager.score != lastScore || stateManager.hitPoint != lastHitPoint || stateManager.isGameOver || stateManager.isTrackingUser != lastIsTracking)
+        if(stateManager.score != lastScore || stateManager.hitPoint != lastHitPoint || stateManager.isGameOver != lastIsGameOver || stateManager.isTrackingUser != lastIsTracking)
         {
             int isGameOverInt = (stateManager.isGameOver)? 1 : 0;
             int isTrackingUserInt = (stateManager.isTrackingUser)? 1 : 0;
@@ -41,6 +43,7 @@ public class OscStateSender : MonoBehaviour
         lastScore = stateManager.score;
         lastHitPoint = stateManager.hitPoint;
         lastIsTracking = stateManager.isTrackingUser;
+        lastIsGameOver = stateManager.isGameOver;
         
     }
 

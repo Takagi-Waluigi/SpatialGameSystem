@@ -6,7 +6,6 @@ public class CardFlipManager : MonoBehaviour
 {
     [SerializeField] StateManager stateManager;
 
-    [SerializeField] float maxWaitTime = 5f;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,9 +18,8 @@ public class CardFlipManager : MonoBehaviour
         if(stateManager.isFlippingFirst && stateManager.isFlippingSecond)
         {
             stateManager.flipBackTime += Time.deltaTime;
-            Debug.Log("flip back time:" + stateManager.flipBackTime);
 
-            if(stateManager.flipBackTime > maxWaitTime)
+            if(stateManager.flipBackTime > stateManager.maxWaitTime)
             {
                 stateManager.isFlippingFirst = false;
                 stateManager.isFlippingSecond = false;

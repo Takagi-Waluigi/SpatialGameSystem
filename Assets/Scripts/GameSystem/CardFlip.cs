@@ -6,8 +6,7 @@ public class CardFlip : MonoBehaviour
 {
     [Header("オブジェクト設定")]
     [SerializeField] StateManager stateManager;
-    [Header("各種設定")]
-    [SerializeField] float stepOnThresholdTime = 3f;       
+    [Header("各種設定")]      
     [SerializeField] [Range(0, 5)] int cardId;
     float enableTime = 0f;
     bool userStepOn = false;
@@ -109,7 +108,7 @@ public class CardFlip : MonoBehaviour
         if(!isLocked && collision.gameObject.name == "User" && stateManager.isTrackingUser)
         {
             enableTime += Time.deltaTime;
-            if(enableTime > stepOnThresholdTime) userStepOn = true;  
+            if(enableTime > stateManager.stepOnThresholdTime) userStepOn = true;  
         }       
                
     }
