@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class CardFlip : MonoBehaviour
@@ -12,10 +13,18 @@ public class CardFlip : MonoBehaviour
     bool userStepOn = false;
     bool isFlipped, lastIsFlipped;
     bool isLocked = false;
+    bool lastIsGameOver = false;
     // Start is called before the first frame update
     void Start()
     {
 
+    }
+
+    void InitAllStatus()
+    {
+        userStepOn = false;
+        isFlipped = false;
+        isLocked = false;
     }
 
     // Update is called once per frame
@@ -23,21 +32,25 @@ public class CardFlip : MonoBehaviour
     {
         isLocked = false;
 
-        if(stateManager.matchedId.Count > 0)
+        if(!stateManager.isGameOver)
         {
-            foreach(int id in stateManager.matchedId)
+            if(stateManager.matchedId.Count > 0)
             {
-                if(id == cardId)
+                foreach(int id in stateManager.matchedId)
                 {
-                    isLocked = true;
-                    break;
+                    if(id == cardId)
+                    {
+                        isLocked = true;
+                        break;
+                    }
                 }
             }
         }
+
         
         if(!isLocked)
         {
-            if(stateManager.enableFlipBack) FlipBack();
+            if(stateManager.enableFlipBack || stateManager.isGameOver) FlipBack();
 
             Flip();
 
@@ -67,7 +80,8 @@ public class CardFlip : MonoBehaviour
 
             lastIsFlipped = isFlipped;
         }
-        
+
+        lastIsGameOver = stateManager.isGameOver;   
     }
 
     void Flip()
@@ -105,7 +119,7 @@ public class CardFlip : MonoBehaviour
 
     void OnCollisionStay(Collision collision)
     {
-        if(!isLocked && collision.gameObject.name == "User" && stateManager.isTrackingUser)
+        if(!isLocked && collision.gameObject.name == "User" && stateManager.isTrackingUser && !stateManager.isGameOver)
         {
             enableTime += Time.deltaTime;
             if(enableTime > stateManager.stepOnThresholdTime) userStepOn = true;  

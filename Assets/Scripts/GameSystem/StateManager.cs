@@ -61,5 +61,8 @@ public class StateManager : MonoBehaviour
       hitPoint = 0;
       isGameOver = false;
       remainTimef = maxGamePlayTime;
+      matchedId.Clear();
+      isFlippingFirst = false;
+      isFlippingSecond = false;
     }
 }
