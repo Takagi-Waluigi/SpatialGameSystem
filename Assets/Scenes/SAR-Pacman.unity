@@ -137,7 +137,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2193505
 Transform:
   m_ObjectHideFlags: 0
@@ -407,7 +407,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76152d016ed578d488d52b138e175e89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trackingPointIntegration: {fileID: 1630420994}
+  trackedUserPositionIntegration: {fileID: 0}
   stateManager: {fileID: 666978214}
   useRealTrackingData: 0
   moveSpeed: 0.5
@@ -2112,17 +2112,6 @@ Camera:
   m_CorrespondingSourceObject: {fileID: 5163477923779442963, guid: 3ff933bb77ac3ba46a48235b5440e988, type: 3}
   m_PrefabInstance: {fileID: 1514912489}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1630420994 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9214380470104991803, guid: f5607cfa02b2e265e8c6a9965b190ca7, type: 3}
-  m_PrefabInstance: {fileID: 1919406233}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90ffa5d1797ece80c9f5710011bec7d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1716065914 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3401549744815407620, guid: 8c35760e729c3bf438a92af7a378df13, type: 3}
@@ -2171,9 +2160,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 857248609}
     m_Modifications:
+    - target: {fileID: 23163455678822408, guid: f5607cfa02b2e265e8c6a9965b190ca7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1680418184746092154, guid: f5607cfa02b2e265e8c6a9965b190ca7, type: 3}
       propertyPath: maxRange
       value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1680418184746092154, guid: f5607cfa02b2e265e8c6a9965b190ca7, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1680418184746092154, guid: f5607cfa02b2e265e8c6a9965b190ca7, type: 3}
       propertyPath: baseTransform
@@ -2185,7 +2182,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2650337222054093291, guid: f5607cfa02b2e265e8c6a9965b190ca7, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2782822216136099318, guid: f5607cfa02b2e265e8c6a9965b190ca7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2239,6 +2236,18 @@ PrefabInstance:
       propertyPath: mapTransformer
       value: 
       objectReference: {fileID: 1459201089}
+    - target: {fileID: 4631182449979682625, guid: f5607cfa02b2e265e8c6a9965b190ca7, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4789630789917813398, guid: f5607cfa02b2e265e8c6a9965b190ca7, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4927807470067031267, guid: f5607cfa02b2e265e8c6a9965b190ca7, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6417774170620220740, guid: f5607cfa02b2e265e8c6a9965b190ca7, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -2266,6 +2275,10 @@ PrefabInstance:
     - target: {fileID: 6900256374640509607, guid: f5607cfa02b2e265e8c6a9965b190ca7, type: 3}
       propertyPath: maxRange
       value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6900256374640509607, guid: f5607cfa02b2e265e8c6a9965b190ca7, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6900256374640509607, guid: f5607cfa02b2e265e8c6a9965b190ca7, type: 3}
       propertyPath: topicName
@@ -2314,6 +2327,10 @@ PrefabInstance:
     - target: {fileID: 9140978837772064643, guid: f5607cfa02b2e265e8c6a9965b190ca7, type: 3}
       propertyPath: goalObjects.Array.data[1]
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 9214380470104991803, guid: f5607cfa02b2e265e8c6a9965b190ca7, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9214380470104991803, guid: f5607cfa02b2e265e8c6a9965b190ca7, type: 3}
       propertyPath: stateManager

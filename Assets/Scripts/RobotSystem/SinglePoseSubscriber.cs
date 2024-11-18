@@ -38,7 +38,6 @@ public class SinglePoseSubscriber : MonoBehaviour
      [Header("基本設定")]
     [SerializeField] GameObject leftFootObject;
     [SerializeField] GameObject rightFootObject;
-    [SerializeField] GameObject centerObject;
     [SerializeField] string topicName;
     [SerializeField] string rosNamespace = "";
     [SerializeField] [Range(0f, 5f)] float maxRange = 3.0f;
@@ -88,7 +87,7 @@ public class SinglePoseSubscriber : MonoBehaviour
         rightFootWorldPosition = rightFootObject.transform.position;
         centerPosition = (leftFootWorldPosition + rightFootWorldPosition) * 0.5f;
 
-        centerObject.transform.position = centerPosition;
+        //centerObject.transform.position = centerPosition;
 
         if(isNotIncomingData_perFrame)
         {
@@ -116,7 +115,7 @@ public class SinglePoseSubscriber : MonoBehaviour
     void OnSubsribeArray(PoseArrayMsg msg)
     {
         isNotIncomingData_perFrame = true;
-        //Debug.Log("Level:0");
+        Debug.Log("[" + rosNamespace + "]" + "Level:0");
         if (msg.header.frame_id == "1")
         {
             CalculateBufferPosition(msg, keyPointsID_left, keyPointsBuffer_left,leftFootObject);

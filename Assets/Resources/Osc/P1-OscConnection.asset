@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: P1-OscConnection
   m_EditorClassIdentifier: 
   type: 0
-  host: 192.168.0.99
+  host: 192.168.0.51
   port: 8000
