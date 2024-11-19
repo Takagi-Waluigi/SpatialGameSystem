@@ -43,7 +43,8 @@ public class SinglePoseSubscriber : MonoBehaviour
     [SerializeField] [Range(0f, 5f)] float maxRange = 3.0f;
     [SerializeField] [Range(0f, 5f)] float minRange = 0.250f;    
     [SerializeField] int keyPointsID_left = 13;    
-    [SerializeField] int keyPointsID_right = 14;    
+    [SerializeField] int keyPointsID_right = 14;
+    [SerializeField] int searchUserNumber = 5;    
     [SerializeField] [Range(0, 1)] float coefThreshold;
 
     //[SerializeField] bool localModePositonMode = false;
@@ -115,12 +116,18 @@ public class SinglePoseSubscriber : MonoBehaviour
     void OnSubsribeArray(PoseArrayMsg msg)
     {
         isNotIncomingData_perFrame = true;
-        Debug.Log("[" + rosNamespace + "]" + "Level:0");
-        if (msg.header.frame_id == "1")
+        //Debug.Log("[" + rosNamespace + "]" + "Level:0");
+
+        for(int i = 0; i < searchUserNumber; i ++)
         {
-            CalculateBufferPosition(msg, keyPointsID_left, keyPointsBuffer_left,leftFootObject);
-            CalculateBufferPosition(msg, keyPointsID_right, keyPointsBuffer_right,rightFootObject);
+            if (msg.header.frame_id == i.ToString())
+            {
+                CalculateBufferPosition(msg, keyPointsID_left, keyPointsBuffer_left,leftFootObject);
+                CalculateBufferPosition(msg, keyPointsID_right, keyPointsBuffer_right,rightFootObject);
+            }
+
         }
+       
     }
 
     void CalculateBufferPosition(PoseArrayMsg msg, int kpid, Vector3[] keyPointsBuffer,GameObject targetObject)
