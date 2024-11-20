@@ -29,6 +29,10 @@ public class StateManager : MonoBehaviour
     public float flipBackTime = 0f;
     public bool enableFlipBack = false;
     public List<int> matchedId = new List<int>();
+    [Header("画面設定関連")]
+    [Range(0f, 1f)] public float screenSize_p1 = 0.85f;
+    [Range(0f, 1f)] public float screenSize_p2 = 0.85f;
+    [Range(0, 40)] public int blurScale = 40;
 
     void Start()
     {
