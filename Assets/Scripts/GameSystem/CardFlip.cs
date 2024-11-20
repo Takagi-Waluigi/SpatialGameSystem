@@ -45,6 +45,8 @@ public class CardFlip : MonoBehaviour
                     }
                 }
             }
+
+            if(stateManager.isFlippingFirst && stateManager.isFlippingSecond) isLocked = true;
         }
 
         
