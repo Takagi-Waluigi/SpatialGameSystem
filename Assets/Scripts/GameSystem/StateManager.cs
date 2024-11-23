@@ -23,6 +23,9 @@ public class StateManager : MonoBehaviour
     public float stepOnThresholdTime = 3f;
     public float maxWaitTime = 3f;
     public int firstCardId = 0;
+    public int secondCardId = 0;
+    public GameObject firstCard;
+    public GameObject secondCard;
     public bool isFlippingFirst = false;
     public bool isFlippingSecond = false;
     public bool isMatching = false;

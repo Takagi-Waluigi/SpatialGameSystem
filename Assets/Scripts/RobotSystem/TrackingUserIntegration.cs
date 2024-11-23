@@ -20,18 +20,18 @@ public class TrackingUserIntegration : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        stateManager.isTrackingUser = (!p1ObjectSubscriber.isNotIncomingData || !p2ObjectSubscriber.isNotIncomingData);
+        stateManager.isTrackingUser = p1ObjectSubscriber.isTracking || p2ObjectSubscriber.isTracking;
         
         
-        if(!p1ObjectSubscriber.isNotIncomingData && !p2ObjectSubscriber.isNotIncomingData)
+        if(p1ObjectSubscriber.isTracking && p2ObjectSubscriber.isTracking)
         {    
             integratedPosition = (p1ObjectSubscriber.centerPosition + p2ObjectSubscriber.centerPosition) * 0.5f;
         }
-        else if(!p1ObjectSubscriber.isNotIncomingData)
+        else if(p1ObjectSubscriber.isTracking)
         {
             integratedPosition = p1ObjectSubscriber.centerPosition;
         }
-        else if(!p2ObjectSubscriber.isNotIncomingData)
+        else if(p2ObjectSubscriber.isTracking)
         {
             integratedPosition = p2ObjectSubscriber.centerPosition;
 

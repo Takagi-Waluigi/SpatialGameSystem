@@ -53,12 +53,13 @@ public class SinglePoseSubscriber : MonoBehaviour
     public Vector3 rightFootWorldPosition;
     public Vector3 centerPosition;
     const int bufferSize = 10;
-    const int disableFrameNumber = 150;
+    const int disableFrameNumber = 50;
     Vector3[] keyPointsBuffer_left = new Vector3[bufferSize];
     Vector3[] keyPointsBuffer_right = new Vector3[bufferSize];
     int isNotIncomingData_num = 0;
-    bool isNotIncomingData_perFrame = false;
-    public bool isNotIncomingData = false;
+    // bool isNotIncomingData_perFrame = false;
+    bool isTrackingPerFrame = false;
+    public bool isTracking = false;
 
     // Start is called before the first frame update
     void Start()
@@ -88,9 +89,7 @@ public class SinglePoseSubscriber : MonoBehaviour
         rightFootWorldPosition = rightFootObject.transform.position;
         centerPosition = (leftFootWorldPosition + rightFootWorldPosition) * 0.5f;
 
-        //centerObject.transform.position = centerPosition;
-
-        if(isNotIncomingData_perFrame)
+        if(isTrackingPerFrame)
         {
             isNotIncomingData_num = 0;
         }
@@ -99,38 +98,35 @@ public class SinglePoseSubscriber : MonoBehaviour
             isNotIncomingData_num ++;
         }
 
-        isNotIncomingData = (isNotIncomingData_num > disableFrameNumber);
+        isTracking = (isNotIncomingData_num < disableFrameNumber);
 
-        if(isNotIncomingData)
-        {
-           Vector3 disablePosition = new Vector3(0,0,-3f);
-           Vector3 curretLocalPostion = this.transform.localPosition;
 
-        //   this.transform.localPosition = Vector3.Lerp(curretLocalPostion, disablePosition, 0.5f * Time.deltaTime);
-        }
-        
-        isNotIncomingData_perFrame = false;
+        isTrackingPerFrame = false;
         
     }
 
     void OnSubsribeArray(PoseArrayMsg msg)
     {
-        isNotIncomingData_perFrame = true;
+        //isNotIncomingData_perFrame = true;
         //Debug.Log("[" + rosNamespace + "]" + "Level:0");
-
+        
+        bool isTrackingL = false;
+        bool isTrackingR = false;
         for(int i = 0; i < searchUserNumber; i ++)
         {
             if (msg.header.frame_id == i.ToString())
             {
-                CalculateBufferPosition(msg, keyPointsID_left, keyPointsBuffer_left,leftFootObject);
-                CalculateBufferPosition(msg, keyPointsID_right, keyPointsBuffer_right,rightFootObject);
+                isTrackingL = CalculateBufferPosition(msg, keyPointsID_left, keyPointsBuffer_left,leftFootObject);
+                isTrackingR = CalculateBufferPosition(msg, keyPointsID_right, keyPointsBuffer_right,rightFootObject);
+
+                if(isTrackingL && isTrackingR) isTrackingPerFrame = true;
             }
 
         }
        
     }
 
-    void CalculateBufferPosition(PoseArrayMsg msg, int kpid, Vector3[] keyPointsBuffer,GameObject targetObject)
+    bool CalculateBufferPosition(PoseArrayMsg msg, int kpid, Vector3[] keyPointsBuffer,GameObject targetObject)
     {
         var keypointPosition = new Vector3(
                           (float)msg.poses[kpid].position.x,
@@ -140,9 +136,12 @@ public class SinglePoseSubscriber : MonoBehaviour
 
         var coef = (float)msg.poses[kpid].orientation.x;
 
+        bool isTrackingBody = false;
+
         if(coef > coefThreshold && minRange < keypointPosition.z && keypointPosition.z < maxRange)
         {
             //Debug.Log("Level:2");
+            isTrackingBody = true;
             for(int i = bufferSize - 1; i > 0; i --)
             {
                 keyPointsBuffer[i] = keyPointsBuffer[i - 1];
@@ -163,5 +162,8 @@ public class SinglePoseSubscriber : MonoBehaviour
 
             targetObject.transform.localPosition = -avgKeypointPosition;
         }
+
+        return isTrackingBody;
     }
+    
 }

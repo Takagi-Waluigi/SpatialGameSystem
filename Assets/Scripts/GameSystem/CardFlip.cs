@@ -1,6 +1,6 @@
+
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 public class CardFlip : MonoBehaviour
@@ -9,6 +9,8 @@ public class CardFlip : MonoBehaviour
     [SerializeField] StateManager stateManager;
     [Header("各種設定")]      
     [SerializeField] [Range(0, 5)] int cardId;
+    public bool isDone = false;
+
     float enableTime = 0f;
     bool userStepOn = false;
     bool isFlipped, lastIsFlipped;
@@ -34,21 +36,14 @@ public class CardFlip : MonoBehaviour
 
         if(!stateManager.isGameOver)
         {
-            if(stateManager.matchedId.Count > 0)
-            {
-                foreach(int id in stateManager.matchedId)
-                {
-                    if(id == cardId)
-                    {
-                        isLocked = true;
-                        break;
-                    }
-                }
-            }
 
-            if(stateManager.isFlippingFirst && stateManager.isFlippingSecond) isLocked = true;
+            if((stateManager.isFlippingFirst && stateManager.isFlippingSecond) || isDone) isLocked = true;
         }
-
+        else
+        {
+            isDone = false;
+        }
+        
         
         if(!isLocked)
         {
@@ -62,10 +57,13 @@ public class CardFlip : MonoBehaviour
                 {
                     stateManager.isFlippingFirst = true;
                     stateManager.firstCardId = cardId;
+                    stateManager.firstCard = this.gameObject;
                 }            
                 else
                 {
                     stateManager.isFlippingSecond = true;
+                    stateManager.secondCardId = cardId; 
+                    stateManager.secondCard = this.gameObject;
 
                     if(stateManager.firstCardId == cardId)
                     {
