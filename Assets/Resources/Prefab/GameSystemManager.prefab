@@ -132,6 +132,7 @@ Transform:
   - {fileID: 8385956571455084168}
   - {fileID: 6724733656081756682}
   - {fileID: 1278650934917474917}
+  - {fileID: 4105154624821905924}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4302712639267404212
@@ -179,12 +180,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: 0
+  isTrackingUser: 0
+  maxGamePlayTime: 120
+  remainTimef: 0
+  decisionTime: 0
+  isGameOver: 0
   hitPoint: 0
   maxHitPoint: 5
-  remainTimef: 0
-  isGameOver: 0
+  maxTime: 5
   isAttacked: 0
-  isTrackingUser: 0
+  isVisibleCharacter: 0
+  stepOnThresholdTime: 3
+  maxWaitTime: 3
+  firstCardId: 0
+  secondCardId: 0
+  firstCard: {fileID: 0}
+  secondCard: {fileID: 0}
+  isFlippingFirst: 0
+  isFlippingSecond: 0
+  isMatching: 0
+  flipBackTime: 0
+  enableFlipBack: 0
+  matchedId: 
+  screenSize_p1: 0.85
+  screenSize_p2: 0.85
+  blurScale: 40
 --- !u!1 &5428786740600351155
 GameObject:
   m_ObjectHideFlags: 0
@@ -237,3 +257,49 @@ MonoBehaviour:
   enemyTransform: {fileID: 0}
   spawnDuration: 1
   enemyLifeTime: 10
+--- !u!1 &7408288604881861469
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4105154624821905924}
+  - component: {fileID: 208089508858384156}
+  m_Layer: 0
+  m_Name: CoinVisibleManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4105154624821905924
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7408288604881861469}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3401549744815407620}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &208089508858384156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7408288604881861469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e069cbfe5fae77099577d714a8b4574, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stateManager: {fileID: 7154678706105589804}
+  frameRate: 1

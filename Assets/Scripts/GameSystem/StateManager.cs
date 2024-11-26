@@ -18,6 +18,8 @@ public class StateManager : MonoBehaviour
     [SerializeField] float maxTime = 5f;
     public bool isAttacked = false;
     public bool isVisibleCharacter = false;
+    public int visibleCoinCountInP1 = 0;
+    public int visibleCoinCountInP2 = 0;
 
     [Header("絵合わせ用変数")]
     public float stepOnThresholdTime = 3f;

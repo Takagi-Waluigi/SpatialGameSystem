@@ -46,8 +46,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseTransform: {fileID: 5480822903726936713}
-  p1ObjectSubscriber: {fileID: 6900256374640509607}
-  p2ObjectSubscriber: {fileID: 1680418184746092154}
+  p1ObjectSubscriber: {fileID: 0}
+  p2ObjectSubscriber: {fileID: 0}
   distanceThreshold: 1
   stateManager: {fileID: 0}
   visualize: 1
@@ -116,7 +116,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7941293550806702111}
   - component: {fileID: 4618973754637382499}
-  - component: {fileID: 1680418184746092154}
   - component: {fileID: 9140978837772064643}
   - component: {fileID: 4789630789917813398}
   m_Layer: 0
@@ -160,30 +159,6 @@ MonoBehaviour:
   odomTopicName: odom
   rosNamespace: projectoroid2
   useOdometryMessage: 1
---- !u!114 &1680418184746092154
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3666588275518504413}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e90391f1ce7af444b819b54d5be7bae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseTransform: {fileID: 0}
-  topicName: object
-  rosNamespace: projectoroid2
-  maxRange: 1.25
-  minRange: 0.25
-  maxDifferentialThresold: 0.3
-  distanceCutOffPerFrame: 0.2
-  offsetDistance: 0.39
-  objectWorldPositions: []
-  visualize: 1
-  baseObject: {fileID: 6521700990748457908, guid: ae7c29a77604bc14296e9227cff1bb9f, type: 3}
-  numberOfThresoldObject: 15
 --- !u!114 &9140978837772064643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -227,12 +202,13 @@ MonoBehaviour:
   minRange: 0.28
   keyPointsID_left: 13
   keyPointsID_right: 14
+  searchUserNumber: 5
   coefThreshold: 0.35
   offsetDepth: 0
   leftFootWorldPosition: {x: 0, y: 0, z: 0}
   rightFootWorldPosition: {x: 0, y: 0, z: 0}
   centerPosition: {x: 0, y: 0, z: 0}
-  isNotIncomingData: 0
+  isTracking: 0
 --- !u!1 &6528790984306759310
 GameObject:
   m_ObjectHideFlags: 0
@@ -243,7 +219,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8844075056395299315}
   - component: {fileID: 7648481343908405870}
-  - component: {fileID: 6900256374640509607}
   - component: {fileID: 6417774170620220740}
   - component: {fileID: 4631182449979682625}
   m_Layer: 0
@@ -287,30 +262,6 @@ MonoBehaviour:
   odomTopicName: odom
   rosNamespace: projectoroid1
   useOdometryMessage: 1
---- !u!114 &6900256374640509607
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6528790984306759310}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e90391f1ce7af444b819b54d5be7bae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseTransform: {fileID: 0}
-  topicName: object
-  rosNamespace: projectoroid1
-  maxRange: 1.25
-  minRange: 0.25
-  maxDifferentialThresold: 0.3
-  distanceCutOffPerFrame: 0.2
-  offsetDistance: 0.39
-  objectWorldPositions: []
-  visualize: 1
-  baseObject: {fileID: 6521700990748457908, guid: ae7c29a77604bc14296e9227cff1bb9f, type: 3}
-  numberOfThresoldObject: 15
 --- !u!114 &6417774170620220740
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -355,9 +306,10 @@ MonoBehaviour:
   minRange: 0.28
   keyPointsID_left: 13
   keyPointsID_right: 14
+  searchUserNumber: 5
   coefThreshold: 0.35
   offsetDepth: 0
   leftFootWorldPosition: {x: 0, y: 0, z: 0}
   rightFootWorldPosition: {x: 0, y: 0, z: 0}
   centerPosition: {x: 0, y: 0, z: 0}
-  isNotIncomingData: 0
+  isTracking: 0

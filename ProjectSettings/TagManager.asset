@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Projectoroid1
   - Projectoroid2
+  - Coin
   layers:
   - Default
   - TransparentFX
