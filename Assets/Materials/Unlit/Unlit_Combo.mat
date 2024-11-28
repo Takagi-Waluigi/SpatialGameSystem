@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Unlit_Wall
+  m_Name: Unlit_Combo
   m_Shader: {fileID: 4800000, guid: ead9fc790f51a7d428fabc9fa64f51d7, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -30,5 +30,5 @@ Material:
     m_Ints: []
     m_Floats: []
     m_Colors:
-    - _Color: {r: 0.3207547, g: 0.2726688, b: 0.18609825, a: 1}
+    - _Color: {r: 0.26918232, g: 0.8037556, b: 0.2922434, a: 1}
   m_BuildTextureStacks: []

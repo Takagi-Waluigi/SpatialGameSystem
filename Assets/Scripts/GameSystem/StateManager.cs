@@ -20,6 +20,11 @@ public class StateManager : MonoBehaviour
     public bool isVisibleCharacter = false;
     public int visibleCoinCountInP1 = 0;
     public int visibleCoinCountInP2 = 0;
+    public float comboDefaultMaxTime = 3f;
+    public float comboMaxTime = 3f;
+    public float comboRemainTime = 0;
+    public bool enableFever = false;
+    public float feverTime = 10f;
 
     [Header("絵合わせ用変数")]
     public float stepOnThresholdTime = 3f;

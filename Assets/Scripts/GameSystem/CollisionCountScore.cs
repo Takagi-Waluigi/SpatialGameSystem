@@ -31,7 +31,8 @@ public class CollisionCountScore : MonoBehaviour
        if(collision.gameObject.name == "Character" && stateManager.isTrackingUser && !stateManager.isGameOver && stateManager.isVisibleCharacter)
        {
             //点数の加算
-            stateManagerObject.GetComponent<StateManager>().score ++;
+            int incrementValue = (stateManager.enableFever)? 5 : 1;
+            stateManagerObject.GetComponent<StateManager>().score += incrementValue;
             
             //コイン取得済みフラグをTrueに
             isHit = true;
