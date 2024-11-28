@@ -15,11 +15,11 @@ public class PacManTeleopKey : MonoBehaviour
     [SerializeField] float publishRate = 30f;
     [Header("ゲーム対応挙動設定")]
     [SerializeField] bool gameRelatedMode = false;
-    [SerializeField] [Range(0, 1)] int channel = 0;
-    [SerializeField][Range(0, 0.05f)] double baseVelocity = 0.03;
-    [SerializeField][Range(1.0f, 5.0f)] double maxGain = 1.5;
-    [SerializeField] int maxFillCoinCount = 80;
-    [SerializeField] float velocityStep = 0.005f;
+    // [SerializeField] [Range(0, 1)] int channel = 0;
+    // [SerializeField][Range(0, 0.05f)] double baseVelocity = 0.03;
+    // [SerializeField][Range(1.0f, 5.0f)] double maxGain = 1.5;
+    // [SerializeField] int maxFillCoinCount = 80;
+    // [SerializeField] float velocityStep = 0.005f;
     int count = 0;
     int threshold = 5;
     int baseCoef = 5;
@@ -49,37 +49,7 @@ public class PacManTeleopKey : MonoBehaviour
         {
             if(!stateManager.isGameOver)
             {
-                if(channel == 0)
-                {
-                    double gain =  ((maxFillCoinCount - (double)stateManager.visibleCoinCountInP1) / maxFillCoinCount + 1f / maxGain) * maxGain;
-                    double adjustedVelocity = gain * baseVelocity;
-
-                    Debug.Log("Count:" + stateManager.visibleCoinCountInP1);
-                    
-                    twistMsg.linear.x = adjustedVelocity;
-                }
-                else if(channel == 1)
-                {
-                    if(stateManager.score % threshold == 0 && lastScore != stateManager.score && stateManager.score > 0)
-                    {
-                        count ++;
-                        threshold = baseCoef * (int)Mathf.Pow(2, count);
-                        
-
-                        scoreRelatedVelocity += velocityStep;
-
-                        Debug.Log("adjusted velocity:" + twistMsg.linear.x);
-                    }
-
-                     twistMsg.linear.x = scoreRelatedVelocity;
-
-                     lastScore = stateManager.score;
-                   
-                }
-
-               // Debug.Log("adjusted velocity:" + twistMsg.linear.x);
-
-                
+                twistMsg.linear.x = (stateManager.enableFever)? 0.05 : 0.015;                
             }
             else
             {
@@ -94,14 +64,14 @@ public class PacManTeleopKey : MonoBehaviour
         else
         {
 
-            if(Input.GetKeyUp(KeyCode.W)) twistMsg.linear.x += 0.01;
-            if(Input.GetKeyUp(KeyCode.X)) twistMsg.linear.x -= 0.01;
+            if(Input.GetKeyUp(KeyCode.UpArrow)) twistMsg.linear.x += 0.01;
+            if(Input.GetKeyUp(KeyCode.DownArrow)) twistMsg.linear.x -= 0.01;
         }
         
-        if(Input.GetKeyUp(KeyCode.A)) twistMsg.angular.z += 0.05;
-        if(Input.GetKeyUp(KeyCode.D)) twistMsg.angular.z -= 0.05;
+        if(Input.GetKeyUp(KeyCode.LeftArrow)) twistMsg.angular.z += 0.05;
+        if(Input.GetKeyUp(KeyCode.RightArrow)) twistMsg.angular.z -= 0.05;
 
-        if(Input.GetKeyUp(KeyCode.S))
+        if(Input.GetKeyUp(KeyCode.Space))
         {
             threshold = baseCoef;
             count = 0;

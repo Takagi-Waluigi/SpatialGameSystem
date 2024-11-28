@@ -5082,6 +5082,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4204509444544907786, guid: 0d75165591fb2c703888bfbf41fae8bb, type: 3}
     - target: {fileID: 7154678706105589804, guid: 8c35760e729c3bf438a92af7a378df13, type: 3}
+      propertyPath: interval
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7154678706105589804, guid: 8c35760e729c3bf438a92af7a378df13, type: 3}
       propertyPath: isGameOver
       value: 1
       objectReference: {fileID: 0}
@@ -5696,6 +5700,7 @@ GameObject:
   - component: {fileID: 565609349}
   - component: {fileID: 565609348}
   - component: {fileID: 565609347}
+  - component: {fileID: 565609354}
   m_Layer: 0
   m_Name: Projectoroid1
   m_TagString: Untagged
@@ -5988,6 +5993,23 @@ MonoBehaviour:
   _connection: {fileID: 11400000, guid: 084c605180086054d8f6f5cf596473b1, type: 2}
   _oscAddress: /enemy5/position
   _dataSource: {fileID: 1936455677}
+  _propertyName: position
+  _keepSending: 0
+--- !u!114 &565609354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 565609336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e43cc78b62f2184d8bebe41bd574f9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _connection: {fileID: 11400000, guid: 084c605180086054d8f6f5cf596473b1, type: 2}
+  _oscAddress: /fever/position
+  _dataSource: {fileID: 1703622873}
   _propertyName: position
   _keepSending: 0
 --- !u!114 &567067509
@@ -8737,6 +8759,8 @@ MonoBehaviour:
   comboRemainTime: 0
   enableFever: 0
   feverTime: 10
+  feverAlpha: 0
+  interval: 15
   stepOnThresholdTime: 3
   maxWaitTime: 3
   firstCardId: 0
@@ -14957,6 +14981,7 @@ GameObject:
   - component: {fileID: 1505781796}
   - component: {fileID: 1505781795}
   - component: {fileID: 1505781794}
+  - component: {fileID: 1505781810}
   m_Layer: 0
   m_Name: Projectoroid2
   m_TagString: Untagged
@@ -15249,6 +15274,23 @@ MonoBehaviour:
   _connection: {fileID: 11400000, guid: acaaab007a1a39103961ce20db02394c, type: 2}
   _oscAddress: /character/position
   _dataSource: {fileID: 1330566301}
+  _propertyName: position
+  _keepSending: 0
+--- !u!114 &1505781810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1505781792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e43cc78b62f2184d8bebe41bd574f9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _connection: {fileID: 11400000, guid: acaaab007a1a39103961ce20db02394c, type: 2}
+  _oscAddress: /fever/position
+  _dataSource: {fileID: 1703622873}
   _propertyName: position
   _keepSending: 0
 --- !u!114 &1506221661
@@ -16921,8 +16963,9 @@ GameObject:
   - component: {fileID: 1703622873}
   - component: {fileID: 1703622876}
   - component: {fileID: 1703622875}
-  - component: {fileID: 1703622878}
   - component: {fileID: 1703622877}
+  - component: {fileID: 1703622879}
+  - component: {fileID: 1703622880}
   m_Layer: 0
   m_Name: Fever
   m_TagString: Untagged
@@ -16939,7 +16982,7 @@ Transform:
   m_GameObject: {fileID: 1703622872}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.591, y: 0, z: 0.255}
+  m_LocalPosition: {x: 2.18, y: 0, z: -0.54}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -16965,7 +17008,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6c8d7326ff2c99745a540a16d4b1f51a, type: 2}
+  - {fileID: 2100000, guid: d3c5cc6ad82eddd4ea760dda737a192e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -17008,34 +17051,62 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stateManager: {fileID: 666978214}
-  agent: {fileID: 1703622878}
-  characterTransform: {fileID: 1330566301}
-  goalUpdateFrequency: 5
-  minRadius: 0.2
-  maxRadius: 0.2
-  nearThreshold: 0.17
---- !u!195 &1703622878
-NavMeshAgent:
+  cameraTransform: {fileID: 886231275}
+  maxRadius: 0.64
+  objectSpeed: 0.1
+  transparentSpeed: 0.75
+  renderer: {fileID: 1703622875}
+  defaultColor: {r: 0.9528302, g: 0.004494493, b: 0.004494493, a: 0}
+--- !u!54 &1703622879
+Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1703622872}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!136 &1703622880
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1703622872}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  m_AgentTypeID: 0
+  serializedVersion: 2
   m_Radius: 0.5000001
-  m_Speed: 0.15
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 6000
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
   m_Height: 2
-  m_BaseOffset: 1
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_Direction: 1
+  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!114 &1707022558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24152,7 +24223,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 23163455678822408, guid: f5607cfa02b2e265e8c6a9965b190ca7, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1680418184746092154, guid: f5607cfa02b2e265e8c6a9965b190ca7, type: 3}
       propertyPath: maxRange
@@ -24236,7 +24307,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4631182449979682625, guid: f5607cfa02b2e265e8c6a9965b190ca7, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4631182449979682625, guid: f5607cfa02b2e265e8c6a9965b190ca7, type: 3}
       propertyPath: offsetDepth
@@ -24355,6 +24426,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7648481343908405870, guid: f5607cfa02b2e265e8c6a9965b190ca7, type: 3}
+      propertyPath: rosNamespace
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7648481343908405870, guid: f5607cfa02b2e265e8c6a9965b190ca7, type: 3}
       propertyPath: targetObject
       value: 
       objectReference: {fileID: 886231274}
@@ -24447,7 +24522,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 1919406233}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2032072502}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: da65e07287e1270f2996e1f245d04447, type: 3}
   m_Name: 
@@ -25955,14 +26030,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stateManager: {fileID: 666978214}
   topicName: cmd_vel
-  rosNamespace: projectoroid1
+  rosNamespace: 
   publishRate: 30
   gameRelatedMode: 1
-  channel: 1
-  baseVelocity: 0.014999999664723873
-  maxGain: 4
-  maxFillCoinCount: 80
-  velocityStep: 0.004
 --- !u!114 &2032631705
 MonoBehaviour:
   m_ObjectHideFlags: 0

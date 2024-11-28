@@ -25,6 +25,8 @@ public class StateManager : MonoBehaviour
     public float comboRemainTime = 0;
     public bool enableFever = false;
     public float feverTime = 10f;
+    public float feverAlpha = 0;
+    public float interval = 15f;
 
     [Header("絵合わせ用変数")]
     public float stepOnThresholdTime = 3f;

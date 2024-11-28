@@ -30,7 +30,7 @@ public class OscStateSender : MonoBehaviour
         if(Time.time - lastTime > (1f / publishRate))
         {
             int enableFeverInt = (stateManager.enableFever)? 1 : 0;
-            client.Send(OSCAddressDynamic, stateManager.remainTimef, stateManager.decisionTime, enableFeverInt);
+            client.Send(OSCAddressDynamic, stateManager.remainTimef, stateManager.decisionTime, enableFeverInt, stateManager.feverAlpha);
             lastTime = Time.time;
         }
 
