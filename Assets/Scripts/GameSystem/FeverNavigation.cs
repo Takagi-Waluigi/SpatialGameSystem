@@ -14,6 +14,7 @@ public class FeverNavigation : MonoBehaviour
     [SerializeField] MeshRenderer renderer;
     [SerializeField] Color defaultColor;
     bool enableFeverTrigger = false;
+    bool lastFever = false;
     float lastTime = 0;
     float interval = 0;
     // Start is called before the first frame update
@@ -26,6 +27,12 @@ public class FeverNavigation : MonoBehaviour
     void Update()
     {  
         interval = (enableFeverTrigger)? stateManager.interval : stateManager.interval * 0.5f;
+
+        if(!stateManager.enableFever && lastFever)
+        {
+            enableFeverTrigger = false;
+            lastTime = Time.time;
+        }
 
         if(Time.time -lastTime > interval)
         {
@@ -61,8 +68,8 @@ public class FeverNavigation : MonoBehaviour
             cameraTransform.position.z + radiusY * Mathf.Sin(theta)
         );
 
-
         this.transform.position = position;
+        lastFever = stateManager.enableFever;
     }
 
      void OnCollisionEnter(Collision collision)

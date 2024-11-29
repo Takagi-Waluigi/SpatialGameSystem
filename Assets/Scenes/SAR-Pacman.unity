@@ -13018,6 +13018,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 1330566297}
   targetTransform: {fileID: 382834773}
+  stateManager: {fileID: 666978214}
+  defaultSpeed: 0.35
+  higherSpeed: 0.6
 --- !u!195 &1330566297
 NavMeshAgent:
   m_ObjectHideFlags: 0

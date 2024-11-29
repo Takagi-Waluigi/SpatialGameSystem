@@ -8,7 +8,7 @@ using UnityEngine.AI;
 public class CharacterControl : MonoBehaviour
 {
     [Header("ゲーム管理オブジェクトの登録")]
-    [SerializeField] StateManager gameStateManager;
+    [SerializeField] StateManager stateManager;
     [Header("トラッキング情報")]
     [SerializeField] LaserObjectSubscriber laserObject;
 
@@ -37,7 +37,7 @@ public class CharacterControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        this.GetComponent<NavMeshAgent>().enabled = !gameStateManager.isAttacked;
+        this.GetComponent<NavMeshAgent>().enabled = !stateManager.isAttacked;
         if(this.GetComponent<NavMeshAgent>().enabled) PlayTime(); else GameOver();        
     }
 
