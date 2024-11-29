@@ -15,6 +15,8 @@ public class PacManTeleopKey : MonoBehaviour
     [SerializeField] float publishRate = 30f;
     [Header("ゲーム対応挙動設定")]
     [SerializeField] bool gameRelatedMode = false;
+    [SerializeField] double baseVelocity = 0.35;
+    [SerializeField] double boostRatio = 1.5;
     // [SerializeField] [Range(0, 1)] int channel = 0;
     // [SerializeField][Range(0, 0.05f)] double baseVelocity = 0.03;
     // [SerializeField][Range(1.0f, 5.0f)] double maxGain = 1.5;
@@ -49,7 +51,7 @@ public class PacManTeleopKey : MonoBehaviour
         {
             if(!stateManager.isGameOver)
             {
-                twistMsg.linear.x = (stateManager.enableFever)? 0.05 : 0.015;                
+                twistMsg.linear.x = (stateManager.enableFever)? baseVelocity * boostRatio: baseVelocity;                
             }
             else
             {
