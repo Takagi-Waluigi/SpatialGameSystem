@@ -21,7 +21,7 @@ public class FeverNavigation : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-         renderer.material.color = defaultColor;
+        renderer.material.color = defaultColor;
     }
 
     // Update is called once per frame
@@ -37,7 +37,6 @@ public class FeverNavigation : MonoBehaviour
 
         if(Time.time -lastTime > interval)
         {
-            Debug.Log("Change Status!!!");
             stateManager.enableFeverTrigger = !stateManager.enableFeverTrigger;
             lastTime = Time.time;
         }

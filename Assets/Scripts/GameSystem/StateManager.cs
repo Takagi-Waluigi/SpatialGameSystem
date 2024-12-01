@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class StateManager : MonoBehaviour
 {   
+    [Header("データ収集")]
+    public bool enableCreateCsvData = false;
+    public string userID = "0";
+    [Range(0, 2)] public  int conditionID = 0;
+    public float dataSaveRate = 10f;
+    
     [Header("共通変数")]
     public int score = 0;
     public bool isTrackingUser = false;
