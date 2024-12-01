@@ -24,6 +24,7 @@ public class StateManager : MonoBehaviour
     public float comboMaxTime = 3f;
     public float comboRemainTime = 0;
     public bool enableFever = false;
+    public bool enableFeverTrigger = false;
     public float feverTime = 10f;
     public float feverAlpha = 0;
     public float interval = 15f;

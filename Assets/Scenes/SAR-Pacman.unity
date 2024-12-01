@@ -156,7 +156,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2193505
 Transform:
   m_ObjectHideFlags: 0
@@ -3786,7 +3786,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trackedUserPositionIntegration: {fileID: 1919406240}
   stateManager: {fileID: 666978214}
-  useRealTrackingData: 1
+  useRealTrackingData: 0
   moveSpeed: 0.5
   rotationSpeed: {x: 0.1, y: 0.1}
 --- !u!136 &382834770
@@ -5315,7 +5315,7 @@ PrefabInstance:
       objectReference: {fileID: 4204509444544907786, guid: 0d75165591fb2c703888bfbf41fae8bb, type: 3}
     - target: {fileID: 7154678706105589804, guid: 8c35760e729c3bf438a92af7a378df13, type: 3}
       propertyPath: interval
-      value: 25
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7154678706105589804, guid: 8c35760e729c3bf438a92af7a378df13, type: 3}
       propertyPath: isGameOver
@@ -9119,6 +9119,7 @@ MonoBehaviour:
   comboMaxTime: 3
   comboRemainTime: 0
   enableFever: 0
+  enableFeverTrigger: 0
   feverTime: 10
   feverAlpha: 0
   interval: 15
@@ -17422,7 +17423,8 @@ MonoBehaviour:
   cameraTransform: {fileID: 886231275}
   maxRadius: 0.64
   objectSpeed: 0.1
-  transparentSpeed: 0.75
+  apearenceSpeed: 0.05
+  frameRate: 60
   renderer: {fileID: 1703622875}
   defaultColor: {r: 0.9528302, g: 0.004494493, b: 0.004494493, a: 0}
 --- !u!54 &1703622879
@@ -24611,7 +24613,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2650337222054093291, guid: f5607cfa02b2e265e8c6a9965b190ca7, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2782822216136099318, guid: f5607cfa02b2e265e8c6a9965b190ca7, type: 3}
       propertyPath: m_LocalPosition.x
