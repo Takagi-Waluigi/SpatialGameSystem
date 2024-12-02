@@ -24,7 +24,7 @@ public class CreateAndSaveCsv : MonoBehaviour
         ros.Subscribe<OdometryMsg>(topicName, OnSubscribeOdometryFromT265);
 
         sw = new StreamWriter(@"Assets/RecordedData/UserStudy1/" +  stateManager.userID + "_" + stateManager.conditionID.ToString() + ".csv", true, Encoding.GetEncoding("Shift_JIS"));
-        string[] s1 = {"position.x", "position.z" + "time" };
+        string[] s1 = {"position.x", "position.z" + "time" + "score"};
         string s2 = string.Join(",", s1);
         sw.WriteLine(s2);
     }
@@ -38,7 +38,7 @@ public class CreateAndSaveCsv : MonoBehaviour
         
         if(stateManager.enableCreateCsvData && Time.time - lastUpdateTime > 1f / stateManager.dataSaveRate && isSubscribingData)
         {
-            WriteData(unityPose.position.x.ToString(), unityPose.position.z.ToString(), Time.time.ToString());
+            WriteData(unityPose.position.x.ToString(), unityPose.position.z.ToString(), Time.time.ToString(), stateManager.score.ToString());
             lastUpdateTime = Time.time;
         }
 
@@ -46,9 +46,9 @@ public class CreateAndSaveCsv : MonoBehaviour
         isSubscribingData = false;
     }
 
-    public void WriteData(string txt1, string txt2, string txt3)
+    public void WriteData(string txt1, string txt2, string txt3, string txt4)
     {
-        string[] s1 = { txt1, txt2, txt3 };
+        string[] s1 = { txt1, txt2, txt3, txt4};
         string s2 = string.Join(",", s1);
         sw.WriteLine(s2);
     }
@@ -62,7 +62,7 @@ public class CreateAndSaveCsv : MonoBehaviour
      void OnSubscribeOdometryFromT265(OdometryMsg msg)
     {
         isSubscribingData = true;
-        
+
         Vector3Msg vector3Msg = new Vector3Msg();
         vector3Msg.x = msg.pose.pose.position.x;
         vector3Msg.y = msg.pose.pose.position.y;

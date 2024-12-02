@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 2776038267296582985}
   - component: {fileID: 5062043075221712528}
   - component: {fileID: 4324759760567278388}
-  - component: {fileID: 7058704655144347564}
   m_Layer: 0
   m_Name: Reward
   m_TagString: Untagged
@@ -134,15 +133,3 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!114 &7058704655144347564
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 308109022582147249}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5813dbc62a65b46428b8606af75629a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
