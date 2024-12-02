@@ -15,6 +15,7 @@ public class CreateAndSaveCsv : MonoBehaviour
     StreamWriter sw;
     float lastUpdateTime = 0f;
     bool lastEnableCreateCsv = false;
+    bool isSubscribingData = false;
 
     void Start()
     {
@@ -35,13 +36,14 @@ public class CreateAndSaveCsv : MonoBehaviour
         if(stateManager.enableCreateCsvData && !lastEnableCreateCsv)  Debug.Log("[CSV] Data collection has been started in " + Time.time);
         if(!stateManager.enableCreateCsvData && lastEnableCreateCsv) SaveData();
         
-        if(stateManager.enableCreateCsvData && Time.time - lastUpdateTime > 1f / stateManager.dataSaveRate)
+        if(stateManager.enableCreateCsvData && Time.time - lastUpdateTime > 1f / stateManager.dataSaveRate && isSubscribingData)
         {
             WriteData(unityPose.position.x.ToString(), unityPose.position.z.ToString(), Time.time.ToString());
             lastUpdateTime = Time.time;
         }
 
         lastEnableCreateCsv = stateManager.enableCreateCsvData;
+        isSubscribingData = false;
     }
 
     public void WriteData(string txt1, string txt2, string txt3)
@@ -59,6 +61,8 @@ public class CreateAndSaveCsv : MonoBehaviour
 
      void OnSubscribeOdometryFromT265(OdometryMsg msg)
     {
+        isSubscribingData = true;
+        
         Vector3Msg vector3Msg = new Vector3Msg();
         vector3Msg.x = msg.pose.pose.position.x;
         vector3Msg.y = msg.pose.pose.position.y;
