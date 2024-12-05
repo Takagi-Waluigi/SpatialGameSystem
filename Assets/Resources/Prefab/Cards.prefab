@@ -62,6 +62,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stateManager: {fileID: 0}
+  numAnimals: 3
+  numCardsPerAnimals: 4
 --- !u!114 &4721237025975713280
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -5,59 +5,55 @@ using UnityEngine;
 public class CardFlipManager : MonoBehaviour
 {
     [SerializeField] StateManager stateManager;
-    [SerializeField] int numAnimals = 3;
-    [SerializeField] int numCardsPerAnimals = 4;
-
-     int numMaxMatchedId;
 
     // Start is called before the first frame update
     void Start()
     {
-        numMaxMatchedId =(int)(numAnimals * numCardsPerAnimals * 0.5f);
-
-        Debug.Log("num matched id:" + numMaxMatchedId);
+        
     }
 
     // Update is called once per frame
     void Update()
-    {       
-        Debug.Log(stateManager.matchedId.Count);
-
-        if(stateManager.matchedId.Count >= numMaxMatchedId) stateManager.isGameOver = true;
-
-        if(stateManager.isFlippingFirst && stateManager.isFlippingSecond)
+    {    
+        if(stateManager.isMemoryPhase)
         {
-            stateManager.flipBackTime += Time.deltaTime;
+            stateManager.memoryTime += Time.deltaTime;
 
-            if(stateManager.flipBackTime > stateManager.maxWaitTime)
+            if(stateManager.memoryTime > stateManager.maxMemoryTime)
             {
-                stateManager.isFlippingFirst = false;
-                stateManager.isFlippingSecond = false;
-
-                if(!stateManager.isMatching)
-                {
-                    stateManager.enableFlipBack = true;                    
-                }
-                else
-                {
-                    stateManager.matchedId.Add(stateManager.firstCardId);    
-                    stateManager.firstCard.GetComponent<CardFlip>().isDone = true;
-                    stateManager.secondCard.GetComponent<CardFlip>().isDone = true;
-                }
-
-                stateManager.firstCardId = -1;
-                stateManager.secondCardId = -1;
-
-                stateManager.firstCard = null;
-                stateManager.secondCard = null;
+                stateManager.isMemoryPhase = false;
             }
-        }
+        }   
         else
         {
-            stateManager.isMatching = false;
-            stateManager.flipBackTime = 0f;
-            stateManager.enableFlipBack = false;
-        }
+            stateManager.memoryTime = 0;
+            if(stateManager.isAnswered)
+            {
+                stateManager.flipBackTime += Time.deltaTime;
 
+                if(stateManager.flipBackTime > stateManager.maxWaitTime)
+                {
+                    stateManager.enableFlipBack = true;
+                    stateManager.isAnswered = false;
+
+                    if(stateManager.unmatchedId.Count > 0)
+                    {
+                        int nextIndex = (stateManager.targetCardId + 1) % stateManager.unmatchedId.Count; 
+                        stateManager.targetCardId = stateManager.unmatchedId[nextIndex];
+                    }
+                    else
+                    {
+                        stateManager.isGameOver = true;
+                    }
+                                
+                }
+            }
+            else
+            {
+                stateManager.isMatching = false;
+                stateManager.flipBackTime = 0f;
+                stateManager.enableFlipBack = false;
+            }
+        }
     }
 }

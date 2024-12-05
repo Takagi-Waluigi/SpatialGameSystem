@@ -5320,7 +5320,7 @@ PrefabInstance:
       objectReference: {fileID: 4204509444544907786, guid: 0d75165591fb2c703888bfbf41fae8bb, type: 3}
     - target: {fileID: 7154678706105589804, guid: 8c35760e729c3bf438a92af7a378df13, type: 3}
       propertyPath: userID
-      value: 7
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 7154678706105589804, guid: 8c35760e729c3bf438a92af7a378df13, type: 3}
       propertyPath: interval
@@ -5332,7 +5332,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7154678706105589804, guid: 8c35760e729c3bf438a92af7a378df13, type: 3}
       propertyPath: conditionID
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7154678706105589804, guid: 8c35760e729c3bf438a92af7a378df13, type: 3}
       propertyPath: maxGamePlayTime
@@ -9097,7 +9097,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enableCreateCsvData: 0
-  userID: 0
+  userID: 9
   conditionID: 0
   dataSaveRate: 10
   score: 0
@@ -9123,16 +9123,16 @@ MonoBehaviour:
   interval: 15
   stepOnThresholdTime: 3
   maxWaitTime: 3
-  firstCardId: 0
-  secondCardId: 0
-  firstCard: {fileID: 0}
-  secondCard: {fileID: 0}
-  isFlippingFirst: 0
-  isFlippingSecond: 0
+  targetCardId: 0
+  isMemoryPhase: 0
+  memoryTime: 0
+  maxMemoryTime: 10
+  isAnswered: 0
   isMatching: 0
   flipBackTime: 0
   enableFlipBack: 0
-  matchedId: 
+  numPattern: 3
+  unmatchedId: 
   screenSize_p1: 0.85
   screenSize_p2: 0.85
   blurScale: 40
@@ -26481,7 +26481,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2032072502}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 95952669cedb95834b501f7e65361418, type: 3}
   m_Name: 

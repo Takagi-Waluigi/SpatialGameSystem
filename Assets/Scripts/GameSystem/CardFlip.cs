@@ -16,6 +16,7 @@ public class CardFlip : MonoBehaviour
     bool isFlipped, lastIsFlipped;
     bool isLocked = false;
     bool lastIsGameOver = false;
+    bool lastIsMemoryPhase = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,56 +33,62 @@ public class CardFlip : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         isLocked = false;
 
         if(!stateManager.isGameOver)
         {
 
-            if((stateManager.isFlippingFirst && stateManager.isFlippingSecond) || isDone) isLocked = true;
+            if(isDone) isLocked = true;
         }
         else
         {
             isDone = false;
         }
+
+        if(Input.GetKeyUp(KeyCode.F)) userStepOn = !userStepOn;
+
+        if(stateManager.isMemoryPhase)
+        {
+            userStepOn = true;
+        }
         
         
         if(!isLocked)
         {
-            if(stateManager.enableFlipBack || stateManager.isGameOver) FlipBack();
+            if(stateManager.enableFlipBack || stateManager.isGameOver || (!stateManager.isMemoryPhase && lastIsMemoryPhase)) FlipBack();
 
             Flip();
 
-            if(isFlipped && !lastIsFlipped)
+            if(isFlipped && !lastIsFlipped && !stateManager.isMemoryPhase)
             {
-                if(!stateManager.isFlippingFirst)
+                stateManager.isAnswered = true;
+                if(cardId == stateManager.targetCardId)
                 {
-                    stateManager.isFlippingFirst = true;
-                    stateManager.firstCardId = cardId;
-                    stateManager.firstCard = this.gameObject;
-                }            
+                    Debug.Log("Collect!!!!");
+                    stateManager.score ++;
+
+                    for(int i = 0; i < stateManager.unmatchedId.Count; i ++)
+                    {
+                        if(stateManager.unmatchedId[i] == cardId)
+                        {
+                            stateManager.unmatchedId.RemoveAt(i);
+                        }
+                    }
+                    
+                    isDone = true;
+                }
                 else
                 {
-                    stateManager.isFlippingSecond = true;
-                    stateManager.secondCardId = cardId; 
-                    stateManager.secondCard = this.gameObject;
-
-                    if(stateManager.firstCardId == cardId)
-                    {
-                        stateManager.isMatching = true;
-                        stateManager.score ++;
-                    }
-                    else
-                    {
-                        stateManager.isMatching = false;
-                        stateManager.flipBackTime = 0f;
-                    }
-                }          
+                    Debug.Log("Wrong...");
+                }        
             }
 
             lastIsFlipped = isFlipped;
         }
 
-        lastIsGameOver = stateManager.isGameOver;   
+        lastIsGameOver = stateManager.isGameOver;
+        lastIsMemoryPhase = stateManager.isMemoryPhase;   
     }
 
     void Flip()
