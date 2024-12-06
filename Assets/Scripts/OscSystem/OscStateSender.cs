@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using OscJack;
+using UnityEngine.SceneManagement;
 
 public class OscStateSender : MonoBehaviour
 {
@@ -29,8 +30,18 @@ public class OscStateSender : MonoBehaviour
     {
         if(Time.time - lastTime > (1f / publishRate))
         {
+            var sceneName = SceneManager.GetActiveScene().name;
             int enableFeverInt = (stateManager.enableFever)? 1 : 0;
-            client.Send(OSCAddressDynamic, stateManager.remainTimef, stateManager.decisionTime, enableFeverInt, stateManager.feverAlpha);
+            if(sceneName == "SAR-Pacman")
+            {
+                client.Send(OSCAddressDynamic, stateManager.remainTimef, stateManager.decisionTime, enableFeverInt, stateManager.feverAlpha);
+            }
+            else
+            {
+                int isMemoryPhaseInt = (stateManager.isMemoryPhase)? 1 : 0;
+                client.Send(OSCAddressDynamic, stateManager.remainTimef, stateManager.decisionTime, stateManager.targetCardId, isMemoryPhaseInt);
+            }
+           
             lastTime = Time.time;
         }
 

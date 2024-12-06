@@ -1,4 +1,3 @@
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,7 +7,7 @@ public class CardFlip : MonoBehaviour
     [Header("オブジェクト設定")]
     [SerializeField] StateManager stateManager;
     [Header("各種設定")]      
-    [SerializeField] [Range(0, 5)] int cardId;
+    [SerializeField] [Range(0, 8)] int cardId;
     public bool isDone = false;
 
     float enableTime = 0f;
@@ -46,8 +45,6 @@ public class CardFlip : MonoBehaviour
             isDone = false;
         }
 
-        if(Input.GetKeyUp(KeyCode.F)) userStepOn = !userStepOn;
-
         if(stateManager.isMemoryPhase)
         {
             userStepOn = true;
@@ -67,6 +64,7 @@ public class CardFlip : MonoBehaviour
                 {
                     Debug.Log("Collect!!!!");
                     stateManager.score ++;
+                    stateManager.isMatching = true;
 
                     for(int i = 0; i < stateManager.unmatchedId.Count; i ++)
                     {
@@ -80,6 +78,7 @@ public class CardFlip : MonoBehaviour
                 }
                 else
                 {
+                    stateManager.isMatching = false;
                     Debug.Log("Wrong...");
                 }        
             }

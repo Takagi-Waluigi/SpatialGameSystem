@@ -12,7 +12,7 @@ public class CreateAndSaveCsv : MonoBehaviour
     [SerializeField] StateManager stateManager;
     [SerializeField] string topicName;
     Pose unityPose;
-    StreamWriter sw;
+    StreamWriter sw_1, sw_2;
     float lastUpdateTime = 0f;
     bool lastEnableCreateCsv = false;
     bool isSubscribingData = false;
@@ -23,10 +23,24 @@ public class CreateAndSaveCsv : MonoBehaviour
         ros = ROSConnection.GetOrCreateInstance();
         ros.Subscribe<OdometryMsg>(topicName, OnSubscribeOdometryFromT265);
 
-        sw = new StreamWriter(@"Assets/RecordedData/UserStudy1/" +  stateManager.userID + "_" + stateManager.conditionID.ToString() + ".csv", true, Encoding.GetEncoding("Shift_JIS"));
-        string[] s1 = {"position.x", "position.z" + "time" + "score"};
-        string s2 = string.Join(",", s1);
-        sw.WriteLine(s2);
+        if(stateManager.userStudyID == 1)
+        {
+            sw_1 = new StreamWriter(@"Assets/RecordedData/UserStudy1/" +  stateManager.userID + "_" + stateManager.conditionID.ToString() + ".csv", true, Encoding.GetEncoding("Shift_JIS"));
+            string[] s1 = {"position.x", "position.z" + "time" + "score"};
+            string s2 = string.Join(",", s1);
+            sw_1.WriteLine(s2);
+        }
+        else if(stateManager.userStudyID == 2)
+        {
+            sw_1 = new StreamWriter(@"Assets/RecordedData/UserStudy2/Memory/" +  stateManager.userID + "_" + stateManager.conditionID.ToString() + ".csv", true, Encoding.GetEncoding("Shift_JIS"));
+            sw_2 = new StreamWriter(@"Assets/RecordedData/UserStudy2/Recall/" +  stateManager.userID + "_" + stateManager.conditionID.ToString() + ".csv", true, Encoding.GetEncoding("Shift_JIS"));
+            string[] s1 = {"position.x", "position.z" + "time" + "score"};
+            string s2 = string.Join(",", s1);
+            sw_1.WriteLine(s2);
+            sw_2.WriteLine(s2);
+        }
+
+        
     }
 
     void Update()
@@ -50,13 +64,43 @@ public class CreateAndSaveCsv : MonoBehaviour
     {
         string[] s1 = { txt1, txt2, txt3, txt4};
         string s2 = string.Join(",", s1);
-        sw.WriteLine(s2);
+
+        if(stateManager.userStudyID == 1)
+        {
+            sw_1.WriteLine(s2);
+        }
+        else if(stateManager.userStudyID == 2)
+        {
+            if(stateManager.isMemoryPhase)
+            {
+                sw_1.WriteLine(s2);
+            }
+            else
+            {
+                sw_2.WriteLine(s2);
+            }
+        }
     }
 
     public void SaveData()
     {
         Debug.Log("[CSV] Data has been saved!!! in " + Time.time);
-        sw.Close();
+
+        if(stateManager.userStudyID == 1)
+        {
+            sw_1.Close();
+        }
+        else if(stateManager.userStudyID == 2)
+        {
+            if(stateManager.isMemoryPhase)
+            {
+                sw_1.Close();
+            }
+            else
+            {
+                sw_2.Close();
+            }
+        }
     }
 
      void OnSubscribeOdometryFromT265(OdometryMsg msg)

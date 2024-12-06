@@ -5,26 +5,20 @@ using UnityEngine;
 public class CardFlipManager : MonoBehaviour
 {
     [SerializeField] StateManager stateManager;
-
+    int lastScore = 0;
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
     void Update()
     {    
-        if(stateManager.isMemoryPhase)
+        if(stateManager.isGameOver)
         {
-            stateManager.memoryTime += Time.deltaTime;
-
-            if(stateManager.memoryTime > stateManager.maxMemoryTime)
-            {
-                stateManager.isMemoryPhase = false;
-            }
-        }   
-        else
+            if(Input.GetKeyUp(KeyCode.M)) stateManager.isMemoryPhase = !stateManager.isMemoryPhase;
+        }
+        if(!stateManager.isMemoryPhase)        
         {
             stateManager.memoryTime = 0;
             if(stateManager.isAnswered)
@@ -38,8 +32,12 @@ public class CardFlipManager : MonoBehaviour
 
                     if(stateManager.unmatchedId.Count > 0)
                     {
-                        int nextIndex = (stateManager.targetCardId + 1) % stateManager.unmatchedId.Count; 
-                        stateManager.targetCardId = stateManager.unmatchedId[nextIndex];
+                        if(stateManager.isMatching)
+                        {
+                            int nextIndex = (stateManager.targetCardId + (int)Random.Range(0, stateManager.unmatchedId.Count)) % stateManager.unmatchedId.Count;
+                            stateManager.targetCardId = stateManager.unmatchedId[nextIndex];
+                        }
+                        
                     }
                     else
                     {
