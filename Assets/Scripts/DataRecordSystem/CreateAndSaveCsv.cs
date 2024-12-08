@@ -26,18 +26,16 @@ public class CreateAndSaveCsv : MonoBehaviour
         if(stateManager.userStudyID == 1)
         {
             sw_1 = new StreamWriter(@"Assets/RecordedData/UserStudy1/" +  stateManager.userID + "_" + stateManager.conditionID.ToString() + ".csv", true, Encoding.GetEncoding("Shift_JIS"));
-            string[] s1 = {"position.x", "position.z" + "time" + "score"};
+            string[] s1 = {"position.x", "position.z" , "time" , "score"};
             string s2 = string.Join(",", s1);
             sw_1.WriteLine(s2);
         }
         else if(stateManager.userStudyID == 2)
         {
-            sw_1 = new StreamWriter(@"Assets/RecordedData/UserStudy2/Memory/" +  stateManager.userID + "_" + stateManager.conditionID.ToString() + ".csv", true, Encoding.GetEncoding("Shift_JIS"));
-            sw_2 = new StreamWriter(@"Assets/RecordedData/UserStudy2/Recall/" +  stateManager.userID + "_" + stateManager.conditionID.ToString() + ".csv", true, Encoding.GetEncoding("Shift_JIS"));
-            string[] s1 = {"position.x", "position.z" + "time" + "score"};
+            sw_1 = new StreamWriter(@"Assets/RecordedData/UserStudy2/" +  stateManager.userID + "_" + stateManager.conditionID.ToString() + ".csv", true, Encoding.GetEncoding("Shift_JIS"));
+            string[] s1 = {"position.x", "position.z" , "time" , "score", "phase"};
             string s2 = string.Join(",", s1);
             sw_1.WriteLine(s2);
-            sw_2.WriteLine(s2);
         }
 
         
@@ -52,7 +50,19 @@ public class CreateAndSaveCsv : MonoBehaviour
         
         if(stateManager.enableCreateCsvData && Time.time - lastUpdateTime > 1f / stateManager.dataSaveRate && isSubscribingData)
         {
-            WriteData(unityPose.position.x.ToString(), unityPose.position.z.ToString(), Time.time.ToString(), stateManager.score.ToString());
+            if(stateManager.userStudyID == 1)
+            {
+                WriteData(unityPose.position.x.ToString(), unityPose.position.z.ToString(), Time.time.ToString(), stateManager.score.ToString());
+            }
+            else if(stateManager.userStudyID == 2)
+            {
+                if(!stateManager.isGameOver)
+                {
+                    int phaseId = (stateManager.isMemoryPhase)? 0 : 1;
+                    WriteData(unityPose.position.x.ToString(), unityPose.position.z.ToString(), Time.time.ToString(), stateManager.score.ToString(), phaseId.ToString());
+                }
+            }
+            
             lastUpdateTime = Time.time;
         }
 
@@ -60,47 +70,25 @@ public class CreateAndSaveCsv : MonoBehaviour
         isSubscribingData = false;
     }
 
+    public void WriteData(string txt1, string txt2, string txt3, string txt4, string txt5)
+    {
+        string[] s1 = { txt1, txt2, txt3, txt4, txt5};
+        string s2 = string.Join(",", s1);
+        sw_1.WriteLine(s2); 
+    }
+
     public void WriteData(string txt1, string txt2, string txt3, string txt4)
     {
         string[] s1 = { txt1, txt2, txt3, txt4};
         string s2 = string.Join(",", s1);
-
-        if(stateManager.userStudyID == 1)
-        {
-            sw_1.WriteLine(s2);
-        }
-        else if(stateManager.userStudyID == 2)
-        {
-            if(stateManager.isMemoryPhase)
-            {
-                sw_1.WriteLine(s2);
-            }
-            else
-            {
-                sw_2.WriteLine(s2);
-            }
-        }
+        sw_1.WriteLine(s2);
     }
 
     public void SaveData()
     {
         Debug.Log("[CSV] Data has been saved!!! in " + Time.time);
 
-        if(stateManager.userStudyID == 1)
-        {
-            sw_1.Close();
-        }
-        else if(stateManager.userStudyID == 2)
-        {
-            if(stateManager.isMemoryPhase)
-            {
-                sw_1.Close();
-            }
-            else
-            {
-                sw_2.Close();
-            }
-        }
+        sw_1.Close();
     }
 
      void OnSubscribeOdometryFromT265(OdometryMsg msg)

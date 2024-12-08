@@ -16,7 +16,12 @@ public class CardFlipManager : MonoBehaviour
     {    
         if(stateManager.isGameOver)
         {
-            if(Input.GetKeyUp(KeyCode.M)) stateManager.isMemoryPhase = !stateManager.isMemoryPhase;
+            if(Input.GetKeyUp(KeyCode.M)) 
+            {
+                stateManager.isMemoryPhase = !stateManager.isMemoryPhase;
+                string phaseText = (stateManager.isMemoryPhase)? "[MEMORY]" : "[RECALL]";
+                Debug.Log(phaseText + ": phase has been changed!!!!");
+            }
         }
         if(!stateManager.isMemoryPhase)        
         {
@@ -32,7 +37,7 @@ public class CardFlipManager : MonoBehaviour
 
                     if(stateManager.unmatchedId.Count > 0)
                     {
-                        if(stateManager.isMatching)
+                        if(stateManager.matchStatus == 2)
                         {
                             int nextIndex = (stateManager.targetCardId + (int)Random.Range(0, stateManager.unmatchedId.Count)) % stateManager.unmatchedId.Count;
                             stateManager.targetCardId = stateManager.unmatchedId[nextIndex];
@@ -48,7 +53,7 @@ public class CardFlipManager : MonoBehaviour
             }
             else
             {
-                stateManager.isMatching = false;
+                stateManager.matchStatus = 0;
                 stateManager.flipBackTime = 0f;
                 stateManager.enableFlipBack = false;
             }

@@ -64,7 +64,7 @@ public class CardFlip : MonoBehaviour
                 {
                     Debug.Log("Collect!!!!");
                     stateManager.score ++;
-                    stateManager.isMatching = true;
+                    stateManager.matchStatus = 2;
 
                     for(int i = 0; i < stateManager.unmatchedId.Count; i ++)
                     {
@@ -78,7 +78,7 @@ public class CardFlip : MonoBehaviour
                 }
                 else
                 {
-                    stateManager.isMatching = false;
+                    stateManager.matchStatus = 1;
                     Debug.Log("Wrong...");
                 }        
             }
@@ -125,7 +125,7 @@ public class CardFlip : MonoBehaviour
 
     void OnCollisionStay(Collision collision)
     {
-        if(!isLocked && collision.gameObject.name == "User" && stateManager.isTrackingUser && !stateManager.isGameOver)
+        if(!isLocked && collision.gameObject.name == "User" && stateManager.isTrackingUser && !stateManager.isGameOver && stateManager.isVisibleCharacter)
         {
             enableTime += Time.deltaTime;
             if(enableTime > stateManager.stepOnThresholdTime) userStepOn = true;  

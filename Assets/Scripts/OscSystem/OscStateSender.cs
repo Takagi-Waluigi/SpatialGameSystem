@@ -8,6 +8,7 @@ public class OscStateSender : MonoBehaviour
 {
     [SerializeField] OscConnection oscConnection;
     [SerializeField] string OSCAddressStatic = "/gameState/static";
+    [SerializeField] string OSCAddressStatic_2 = "/gameState/static/2";
     [SerializeField] string OSCAddressDynamic = "/gameState/dynamic";
     [SerializeField] StateManager stateManager;
     [SerializeField] float publishRate = 30f;
@@ -18,6 +19,7 @@ public class OscStateSender : MonoBehaviour
     float lastTime = 0;
     bool lastIsTracking = false;
     bool lastIsGameOver = false;
+    int lastMatchStatus = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -51,11 +53,18 @@ public class OscStateSender : MonoBehaviour
             int isTrackingUserInt = (stateManager.isTrackingUser)? 1 : 0;
             client.Send(OSCAddressStatic, (int)stateManager.score, (int)stateManager.hitPoint, isGameOverInt, isTrackingUserInt);
         }
+
+        if(stateManager.matchStatus != lastMatchStatus)
+        {
+            client.Send(OSCAddressStatic_2, stateManager.matchStatus);
+        }
+        
         
         lastScore = stateManager.score;
         lastHitPoint = stateManager.hitPoint;
         lastIsTracking = stateManager.isTrackingUser;
         lastIsGameOver = stateManager.isGameOver;
+        lastMatchStatus = stateManager.matchStatus;
         
     }
 

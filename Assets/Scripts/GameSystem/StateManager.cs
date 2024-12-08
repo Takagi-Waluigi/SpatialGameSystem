@@ -48,7 +48,7 @@ public class StateManager : MonoBehaviour
   public float memoryTime = 0f;
   public float maxMemoryTime = 60f;
   public bool isAnswered = false;
-  public bool isMatching = false;
+  public int matchStatus = 0;
   public float flipBackTime = 0f;
   public bool enableFlipBack = false;
   public int numPattern = 9;
