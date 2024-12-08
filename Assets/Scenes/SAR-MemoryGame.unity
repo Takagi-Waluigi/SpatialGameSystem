@@ -780,7 +780,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enableCreateCsvData: 0
-  userStudyID: 1
+  userStudyID: 2
   userID: 0
   conditionID: 0
   cardPatternId: 0
@@ -797,7 +797,6 @@ MonoBehaviour:
   maxHitPoint: 5
   isAttacked: 0
   isVisibleCharacter: 0
-  isVisibleUser: 0
   visibleCoinCountInP1: 0
   visibleCoinCountInP2: 0
   enableFever: 0
@@ -805,7 +804,7 @@ MonoBehaviour:
   feverTime: 10
   feverAlpha: 0
   interval: 15
-  isMemoryPhase: 0
+  isMemoryPhase: 1
   stepOnThresholdTime: 3
   maxWaitTime: 3
   targetCardId: 0
@@ -815,7 +814,7 @@ MonoBehaviour:
   matchStatus: 0
   flipBackTime: 0
   enableFlipBack: 0
-  numPattern: 3
+  numPattern: 5
   unmatchedId: 
   screenSize_p1: 0.85
   screenSize_p2: 0.85
@@ -1164,7 +1163,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3417076718591608515, guid: d54a857c63b6cd54eb3096edc1eea452, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4753524999542616110, guid: d54a857c63b6cd54eb3096edc1eea452, type: 3}
       propertyPath: stateManager
