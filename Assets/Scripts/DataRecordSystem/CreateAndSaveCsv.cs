@@ -33,7 +33,7 @@ public class CreateAndSaveCsv : MonoBehaviour
         else if(stateManager.userStudyID == 2)
         {
             sw_1 = new StreamWriter(@"Assets/RecordedData/UserStudy2/" +  stateManager.userID + "_" + stateManager.conditionID.ToString() + ".csv", true, Encoding.GetEncoding("Shift_JIS"));
-            string[] s1 = {"position.x", "position.z" , "time" , "score", "phase"};
+            string[] s1 = {"position.x", "position.z" , "time" , "score", "wrong", "phase"};
             string s2 = string.Join(",", s1);
             sw_1.WriteLine(s2);
         }
@@ -59,7 +59,7 @@ public class CreateAndSaveCsv : MonoBehaviour
                 if(!stateManager.isGameOver)
                 {
                     int phaseId = (stateManager.isMemoryPhase)? 0 : 1;
-                    WriteData(unityPose.position.x.ToString(), unityPose.position.z.ToString(), Time.time.ToString(), stateManager.score.ToString(), phaseId.ToString());
+                    WriteData(unityPose.position.x.ToString(), unityPose.position.z.ToString(), Time.time.ToString(), stateManager.score.ToString(), stateManager.wrongCount.ToString(), phaseId.ToString());
                 }
             }
             
@@ -70,9 +70,9 @@ public class CreateAndSaveCsv : MonoBehaviour
         isSubscribingData = false;
     }
 
-    public void WriteData(string txt1, string txt2, string txt3, string txt4, string txt5)
+    public void WriteData(string txt1, string txt2, string txt3, string txt4, string txt5, string txt6)
     {
-        string[] s1 = { txt1, txt2, txt3, txt4, txt5};
+        string[] s1 = { txt1, txt2, txt3, txt4, txt5, txt6};
         string s2 = string.Join(",", s1);
         sw_1.WriteLine(s2); 
     }

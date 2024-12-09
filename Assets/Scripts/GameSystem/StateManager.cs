@@ -28,8 +28,7 @@ public class StateManager : MonoBehaviour
 
   [Header("パックマン用変数")]
   public int hitPoint = 0;
-  public int maxHitPoint = 5;        
-  
+  public int maxHitPoint = 5;         
   public bool isAttacked = false;
   public bool isVisibleCharacter = false;
   public int visibleCoinCountInP1 = 0;
@@ -53,6 +52,8 @@ public class StateManager : MonoBehaviour
   public bool enableFlipBack = false;
   public int numPattern = 9;
   public List<int> unmatchedId = new List<int>();
+  public int wrongCount = 0;
+  public int trialCount = 0;
 
   [Header("画面設定関連")]
   [Range(0f, 1f)] public float screenSize_p1 = 0.85f;

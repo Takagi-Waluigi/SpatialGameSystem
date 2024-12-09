@@ -60,6 +60,7 @@ public class CardFlip : MonoBehaviour
             if(isFlipped && !lastIsFlipped && !stateManager.isMemoryPhase)
             {
                 stateManager.isAnswered = true;
+                stateManager.trialCount ++;
                 if(cardId == stateManager.targetCardId)
                 {
                     Debug.Log("Collect!!!!");
@@ -79,6 +80,7 @@ public class CardFlip : MonoBehaviour
                 else
                 {
                     stateManager.matchStatus = 1;
+                    stateManager.wrongCount ++;
                     Debug.Log("Wrong...");
                 }        
             }
