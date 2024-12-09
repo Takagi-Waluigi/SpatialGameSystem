@@ -3791,7 +3791,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trackedUserPositionIntegration: {fileID: 1919406240}
   stateManager: {fileID: 666978214}
-  useRealTrackingData: 0
+  useRealTrackingData: 1
   moveSpeed: 0.5
   rotationSpeed: {x: 0.1, y: 0.1}
 --- !u!136 &382834770
@@ -5320,7 +5320,7 @@ PrefabInstance:
       objectReference: {fileID: 4204509444544907786, guid: 0d75165591fb2c703888bfbf41fae8bb, type: 3}
     - target: {fileID: 7154678706105589804, guid: 8c35760e729c3bf438a92af7a378df13, type: 3}
       propertyPath: userID
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7154678706105589804, guid: 8c35760e729c3bf438a92af7a378df13, type: 3}
       propertyPath: interval
@@ -9134,6 +9134,8 @@ MonoBehaviour:
   enableFlipBack: 0
   numPattern: 3
   unmatchedId: 
+  wrongCount: 0
+  trialCount: 0
   screenSize_p1: 0.85
   screenSize_p2: 0.85
   blurScale: 40
@@ -24695,7 +24697,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2650337222054093291, guid: f5607cfa02b2e265e8c6a9965b190ca7, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2782822216136099318, guid: f5607cfa02b2e265e8c6a9965b190ca7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -27961,7 +27963,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3417076718591608515, guid: d54a857c63b6cd54eb3096edc1eea452, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4753524999542616110, guid: d54a857c63b6cd54eb3096edc1eea452, type: 3}
       propertyPath: topicName
