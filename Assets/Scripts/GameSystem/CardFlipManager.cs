@@ -5,7 +5,7 @@ using UnityEngine;
 public class CardFlipManager : MonoBehaviour
 {
     [SerializeField] StateManager stateManager;
-    int lastScore = 0;
+    float lastChangeCardTime = 0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,7 +13,7 @@ public class CardFlipManager : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {    
+    {  
         if(stateManager.isGameOver)
         {
             if(Input.GetKeyUp(KeyCode.M)) 
@@ -35,24 +35,19 @@ public class CardFlipManager : MonoBehaviour
                     stateManager.enableFlipBack = true;
                     stateManager.isAnswered = false;
 
-                    if(stateManager.unmatchedId.Count > 0)
-                    {
-                        if(stateManager.matchStatus == 2)
-                        {
-                            int nextIndex = (stateManager.targetCardId + (int)Random.Range(0, stateManager.unmatchedId.Count)) % stateManager.unmatchedId.Count;
-                            stateManager.targetCardId = stateManager.unmatchedId[nextIndex];
-                        }
-                        
-                    }
-                    else
-                    {
-                        stateManager.isGameOver = true;
-                    }
-                                
+                    stateManager.targetCardId = (stateManager.targetCardId + (int)Random.Range(1, stateManager.numPattern)) % stateManager.numPattern;
+                    lastChangeCardTime = Time.time;  
                 }
             }
             else
             {
+                if(Time.time - lastChangeCardTime > stateManager.timeOut)
+                {
+                    Debug.Log("Time out!!!");
+                    stateManager.targetCardId = (stateManager.targetCardId + (int)Random.Range(1, stateManager.numPattern)) % stateManager.numPattern;
+                    lastChangeCardTime = Time.time;
+                } 
+
                 stateManager.matchStatus = 0;
                 stateManager.flipBackTime = 0f;
                 stateManager.enableFlipBack = false;

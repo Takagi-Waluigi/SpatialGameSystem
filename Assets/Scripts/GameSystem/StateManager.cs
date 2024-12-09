@@ -11,15 +11,15 @@ public class StateManager : MonoBehaviour
   public bool enableCreateCsvData = false;
   [Range(1, 2)] public int userStudyID = 1;
   public string userID = "0";
-  [Range(0, 3)] public int conditionID = 0;
-  [Range(0, 3)] public int cardPatternId = 0;
+  [Range(0, 2)] public int conditionID = 0;
 
   public float dataSaveRate = 10f;
 
   [Header("共通変数")]
   public int score = 0;
   public bool isTrackingUser = false;
-  public float maxGamePlayTime = 120f;
+  public float maxGamePlayTime = 300f;
+  public float maxGamePlayTime_short = 150f;
   public float remainTimef;
   public float decisionTime = 0;
   public float maxDecisionTime = 5f;
@@ -45,13 +45,14 @@ public class StateManager : MonoBehaviour
   public float maxWaitTime = 3f;
   public int targetCardId = 0;  
   public float memoryTime = 0f;
-  public float maxMemoryTime = 60f;
+  public float maxMemoryTime = 150f;
+  public float maxMemoryTime_short = 75f;
+  public float timeOut = 15f;
   public bool isAnswered = false;
   public int matchStatus = 0;
   public float flipBackTime = 0f;
   public bool enableFlipBack = false;
-  public int numPattern = 9;
-  public List<int> unmatchedId = new List<int>();
+  public int numPattern = 8;
   public int wrongCount = 0;
   public int trialCount = 0;
 
@@ -64,6 +65,10 @@ public class StateManager : MonoBehaviour
   {
     var sceneName = SceneManager.GetActiveScene().name;
     if(sceneName == "SAR-Pacman") isPlayingPacman = true;
+
+    numPattern = (conditionID == 0)? (int)(numPattern * 0.5) : numPattern;
+    maxGamePlayTime = (userStudyID == 2 && conditionID == 0)? maxGamePlayTime_short : maxGamePlayTime;
+    memoryTime = (userStudyID == 2 && conditionID == 0)? maxMemoryTime_short : memoryTime;
   }
 
   void Update()
@@ -97,14 +102,5 @@ public class StateManager : MonoBehaviour
     {
       remainTimef = maxMemoryTime;
     }
-
-    unmatchedId.Clear();
-
-    for(int i = 0; i < numPattern; i ++)
-    {
-      unmatchedId.Add(i);
-    }
-
-    targetCardId = (int)Random.Range(0, unmatchedId.Count);
   }
 }

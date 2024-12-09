@@ -9,12 +9,10 @@ public class CardRandomLayout : MonoBehaviour
     [SerializeField] StateManager stateManager;
     [SerializeField] List<GameObject> layoutedCardObjects = new List<GameObject>();
     int index = 0;
-    bool lastIsGameOver = false;
-
     // Start is called before the first frame update
     void Start()
     {
-        index = stateManager.cardPatternId % layoutedCardObjects.Count;
+        index = stateManager.conditionID % layoutedCardObjects.Count;
 
         if(layoutedCardObjects.Count > 0)
         {            

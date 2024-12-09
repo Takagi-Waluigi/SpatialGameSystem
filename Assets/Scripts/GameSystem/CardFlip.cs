@@ -8,7 +8,6 @@ public class CardFlip : MonoBehaviour
     [SerializeField] StateManager stateManager;
     [Header("各種設定")]      
     [SerializeField] [Range(0, 8)] int cardId;
-    public bool isDone = false;
 
     float enableTime = 0f;
     bool userStepOn = false;
@@ -35,15 +34,15 @@ public class CardFlip : MonoBehaviour
 
         isLocked = false;
 
-        if(!stateManager.isGameOver)
-        {
+        // if(!stateManager.isGameOver)
+        // {
 
-            if(isDone) isLocked = true;
-        }
-        else
-        {
-            isDone = false;
-        }
+        //     if(isDone) isLocked = true;
+        // }
+        // else
+        // {
+        //     isDone = false;
+        // }
 
         if(stateManager.isMemoryPhase)
         {
@@ -66,16 +65,6 @@ public class CardFlip : MonoBehaviour
                     Debug.Log("Collect!!!!");
                     stateManager.score ++;
                     stateManager.matchStatus = 2;
-
-                    for(int i = 0; i < stateManager.unmatchedId.Count; i ++)
-                    {
-                        if(stateManager.unmatchedId[i] == cardId)
-                        {
-                            stateManager.unmatchedId.RemoveAt(i);
-                        }
-                    }
-                    
-                    isDone = true;
                 }
                 else
                 {
@@ -127,7 +116,8 @@ public class CardFlip : MonoBehaviour
 
     void OnCollisionStay(Collision collision)
     {
-        if(!isLocked && collision.gameObject.name == "User" && stateManager.isTrackingUser && !stateManager.isGameOver && stateManager.isVisibleCharacter)
+        //if(!isLocked && collision.gameObject.name == "User" && stateManager.isTrackingUser && !stateManager.isGameOver && stateManager.isVisibleCharacter)
+        if(!isLocked && collision.gameObject.name == "User" && stateManager.isTrackingUser && !stateManager.isGameOver)
         {
             enableTime += Time.deltaTime;
             if(enableTime > stateManager.stepOnThresholdTime) userStepOn = true;  
