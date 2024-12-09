@@ -14,6 +14,8 @@ public class CardRandomLayout : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        index = stateManager.cardPatternId % layoutedCardObjects.Count;
+
         if(layoutedCardObjects.Count > 0)
         {            
             for(int i = 0; i < this.transform.childCount; i ++)
