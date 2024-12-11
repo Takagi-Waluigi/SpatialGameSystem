@@ -156,7 +156,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2193505
 Transform:
   m_ObjectHideFlags: 0
@@ -24677,7 +24677,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 23163455678822408, guid: f5607cfa02b2e265e8c6a9965b190ca7, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1338176183742491755, guid: f5607cfa02b2e265e8c6a9965b190ca7, type: 3}
       propertyPath: channel
@@ -24765,7 +24765,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3666588275518504413, guid: f5607cfa02b2e265e8c6a9965b190ca7, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4618973754637382499, guid: f5607cfa02b2e265e8c6a9965b190ca7, type: 3}
       propertyPath: targetObject
@@ -24885,7 +24885,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6528790984306759310, guid: f5607cfa02b2e265e8c6a9965b190ca7, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6745307430129080669, guid: f5607cfa02b2e265e8c6a9965b190ca7, type: 3}
       propertyPath: channel
@@ -24933,7 +24933,7 @@ PrefabInstance:
       objectReference: {fileID: 886231273}
     - target: {fileID: 7648481343908405870, guid: f5607cfa02b2e265e8c6a9965b190ca7, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7648481343908405870, guid: f5607cfa02b2e265e8c6a9965b190ca7, type: 3}
       propertyPath: rosNamespace
@@ -27666,7 +27666,7 @@ PrefabInstance:
       objectReference: {fileID: 1514912492}
     - target: {fileID: 2302390462235857633, guid: 8e06135552ca8248384f6588da446cc0, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3820906556238331926, guid: 8e06135552ca8248384f6588da446cc0, type: 3}
       propertyPath: camera
