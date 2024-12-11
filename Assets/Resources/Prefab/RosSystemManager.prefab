@@ -118,6 +118,7 @@ GameObject:
   - component: {fileID: 4618973754637382499}
   - component: {fileID: 9140978837772064643}
   - component: {fileID: 4789630789917813398}
+  - component: {fileID: 6745307430129080669}
   m_Layer: 0
   m_Name: Projectoroid2
   m_TagString: Untagged
@@ -209,6 +210,31 @@ MonoBehaviour:
   rightFootWorldPosition: {x: 0, y: 0, z: 0}
   centerPosition: {x: 0, y: 0, z: 0}
   isTracking: 0
+--- !u!114 &6745307430129080669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3666588275518504413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95952669cedb95834b501f7e65361418, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stateManager: {fileID: 0}
+  topicName: cmd_vel
+  rosNamespace: projectoroid1
+  publishRate: 30
+  cameraTranform: {fileID: 0}
+  breakingTargetTransform: {fileID: 0}
+  gameRelatedMode: 1
+  channel: 0
+  baseVelocity: 0.035
+  boostRatio: 2.5
+  breakingDistanceThreshold: 2
+  breakingMinimumVeclocity: 0.05
+  singlePoseSubscriber: {fileID: 4631182449979682625}
 --- !u!1 &6528790984306759310
 GameObject:
   m_ObjectHideFlags: 0
@@ -221,6 +247,7 @@ GameObject:
   - component: {fileID: 7648481343908405870}
   - component: {fileID: 6417774170620220740}
   - component: {fileID: 4631182449979682625}
+  - component: {fileID: 1338176183742491755}
   m_Layer: 0
   m_Name: Projectoroid1
   m_TagString: Untagged
@@ -313,3 +340,28 @@ MonoBehaviour:
   rightFootWorldPosition: {x: 0, y: 0, z: 0}
   centerPosition: {x: 0, y: 0, z: 0}
   isTracking: 0
+--- !u!114 &1338176183742491755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6528790984306759310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95952669cedb95834b501f7e65361418, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stateManager: {fileID: 0}
+  topicName: cmd_vel
+  rosNamespace: projectoroid1
+  publishRate: 30
+  cameraTranform: {fileID: 0}
+  breakingTargetTransform: {fileID: 0}
+  gameRelatedMode: 1
+  channel: 0
+  baseVelocity: 0.035
+  boostRatio: 2.5
+  breakingDistanceThreshold: 2
+  breakingMinimumVeclocity: 0.004999999888241291
+  singlePoseSubscriber: {fileID: 0}

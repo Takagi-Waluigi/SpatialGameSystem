@@ -35,7 +35,7 @@ using Unity.VisualScripting;
 public class SinglePoseSubscriber : MonoBehaviour
 {
     ROSConnection ros;
-     [Header("基本設定")]
+    [Header("基本設定")]
     [SerializeField] GameObject leftFootObject;
     [SerializeField] GameObject rightFootObject;
     [SerializeField] string topicName;

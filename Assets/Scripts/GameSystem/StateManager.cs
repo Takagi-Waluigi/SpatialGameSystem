@@ -24,6 +24,7 @@ public class StateManager : MonoBehaviour
   public float decisionTime = 0;
   public float maxDecisionTime = 5f;
   public bool isGameOver = false;
+  public float distanceBetweenSceens = 0f;
   public bool isPlayingPacman = false;
 
   [Header("パックマン用変数")]
@@ -37,9 +38,10 @@ public class StateManager : MonoBehaviour
   public bool enableFeverTrigger = false;
   public float feverTime = 10f;
   public float feverAlpha = 0;
+  public float feverDistanceThreshold = 1f;
   public float interval = 15f;
 
-  [Header("絵合わせ用変数")]
+  [Header("絵合わせ用変数")]  
   public bool isMemoryPhase = false;
   public float stepOnThresholdTime = 3f;
   public float maxWaitTime = 3f;
@@ -66,9 +68,9 @@ public class StateManager : MonoBehaviour
     var sceneName = SceneManager.GetActiveScene().name;
     if(sceneName == "SAR-Pacman") isPlayingPacman = true;
 
-    numPattern = (conditionID == 0)? (int)(numPattern * 0.5) : numPattern;
-    maxGamePlayTime = (userStudyID == 2 && conditionID == 0)? maxGamePlayTime_short : maxGamePlayTime;
-    memoryTime = (userStudyID == 2 && conditionID == 0)? maxMemoryTime_short : memoryTime;
+    // numPattern = (conditionID == 0)? (int)(numPattern * 0.5) : numPattern;
+    // maxGamePlayTime = (userStudyID == 2 && conditionID == 0)? maxGamePlayTime_short : maxGamePlayTime;
+    // memoryTime = (userStudyID == 2 && conditionID == 0)? maxMemoryTime_short : memoryTime;
   }
 
   void Update()

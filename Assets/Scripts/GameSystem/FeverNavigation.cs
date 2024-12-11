@@ -27,19 +27,23 @@ public class FeverNavigation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {  
-        interval = (stateManager.enableFeverTrigger)? stateManager.interval : stateManager.interval * 1.5f;
-
-        if(!stateManager.enableFever && lastFever)
+        if(stateManager.userStudyID == 1 || (stateManager.userStudyID == 2 && stateManager.conditionID == 1))
         {
-            stateManager.enableFeverTrigger = false;
-            lastTime = Time.time;
-        }
+            interval = (stateManager.enableFeverTrigger)? stateManager.interval : stateManager.interval * 1.5f;
 
-        if(Time.time -lastTime > interval)
-        {
-            stateManager.enableFeverTrigger = !stateManager.enableFeverTrigger;
-            lastTime = Time.time;
+            if(!stateManager.enableFever && lastFever)
+            {
+                stateManager.enableFeverTrigger = false;
+                lastTime = Time.time;
+            }
+
+            if(Time.time -lastTime > interval)
+            {
+                stateManager.enableFeverTrigger = !stateManager.enableFeverTrigger;
+                lastTime = Time.time;
+            }
         }
+       
 
 
         if(Time.time - lastUpdateTime > 1f / frameRate)

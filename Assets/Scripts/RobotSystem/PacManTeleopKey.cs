@@ -13,21 +13,17 @@ public class PacManTeleopKey : MonoBehaviour
     [SerializeField] string topicName = "cmd_vel";
     [SerializeField] string rosNamespace = "";
     [SerializeField] float publishRate = 30f;
+    [SerializeField] Transform cameraTranform;
+    [SerializeField] Transform breakingTargetTransform;
     [Header("ゲーム対応挙動設定")]
     [SerializeField] bool gameRelatedMode = false;
-    [SerializeField] double baseVelocity = 0.35;
+    [SerializeField] [Range(0, 2)] int channel = 0;
+    [SerializeField] double baseVelocity = 0.035;
     [SerializeField] double boostRatio = 1.5;
-    // [SerializeField] [Range(0, 1)] int channel = 0;
-    // [SerializeField][Range(0, 0.05f)] double baseVelocity = 0.03;
-    // [SerializeField][Range(1.0f, 5.0f)] double maxGain = 1.5;
-    // [SerializeField] int maxFillCoinCount = 80;
-    // [SerializeField] float velocityStep = 0.005f;
-    int count = 0;
-    int threshold = 5;
-    int baseCoef = 5;
+    [SerializeField] double breakingDistanceThreshold = 2;
+    [SerializeField] double breakingMinimumVeclocity = 0.005f;
+    [SerializeField] SinglePoseSubscriber singlePoseSubscriber;
     float lastTime = 0;
-    double scoreRelatedVelocity = 0.0;
-    int lastScore = 0;
     double maxLinearVelocity = 0.1f;
     double maxAngularVelocity = 1.0f;
 
@@ -49,19 +45,35 @@ public class PacManTeleopKey : MonoBehaviour
     {
         if(gameRelatedMode)
         {
+
             if(!stateManager.isGameOver)
             {
-                twistMsg.linear.x = (stateManager.enableFever)? baseVelocity * boostRatio: baseVelocity;                
+                switch(channel)
+                {
+                    case 0: //フィーバー中に加速するモード（ユーザスタディ1 条件2）
+                        twistMsg.linear.x = (stateManager.enableFever)? baseVelocity * boostRatio: baseVelocity;
+                    break;
+
+                    case 1: //特定のオブジェクトとの距離に合わせて速度が比例して変化する（ユーザスタディ2 条件3）
+                        Vector2 vec2CameraPosition = new Vector2(cameraTranform.position.x, cameraTranform.position.z);
+                        Vector2 vec2BreakingPosition = new Vector2(breakingTargetTransform.position.x, breakingTargetTransform.position.z);
+                        double distanceToBreakingObject = (double)Vector2.Distance(vec2CameraPosition, vec2BreakingPosition);
+
+                        Debug.Log("Distance to break object:" + distanceToBreakingObject);
+                        twistMsg.linear.x = map(distanceToBreakingObject, 0.3, breakingDistanceThreshold, breakingMinimumVeclocity, baseVelocity, true);
+                    break;
+
+                    case 2: //ユーザが乗っかったら加速するモード
+                        twistMsg.linear.x = (stateManager.enableFever && singlePoseSubscriber.isTracking)? baseVelocity * boostRatio: baseVelocity;
+                    break;
+                }
+                                
             }
             else
             {
-                threshold = baseCoef;
-                count = 0;
-                scoreRelatedVelocity = 0.0;
                 twistMsg.linear.x = 0.0;
                 twistMsg.angular.z = 0.0;
-            }
-            
+            }            
         }
         else
         {
@@ -75,12 +87,9 @@ public class PacManTeleopKey : MonoBehaviour
 
         if(Input.GetKeyUp(KeyCode.Space))
         {
-            threshold = baseCoef;
-            count = 0;
             gameRelatedMode = false;
             twistMsg.linear.x = 0.0;
             twistMsg.angular.z = 0.0;
-            scoreRelatedVelocity = 0.0;
         } 
 
         if(Input.GetKeyUp(KeyCode.G)) gameRelatedMode = true;
@@ -95,5 +104,21 @@ public class PacManTeleopKey : MonoBehaviour
         {
             ros.Publish(topicName, twistMsg);
         }
+    }
+
+    public double map(double value, double inputMin, double inputMax, double outputMin, double outputMax, bool clamp)
+    {
+        double outVal = ((value - inputMin) / (inputMax - inputMin) * (outputMax - outputMin) + outputMin);
+	
+		if( clamp ){
+			if(outputMax < outputMin){
+				if( outVal < outputMax )outVal = outputMax;
+				else if( outVal > outputMin )outVal = outputMin;
+			}else{
+				if( outVal > outputMax )outVal = outputMax;
+				else if( outVal < outputMin )outVal = outputMin;
+			}
+		}
+		return outVal;
     }
 }
