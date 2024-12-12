@@ -5319,6 +5319,10 @@ PrefabInstance:
       propertyPath: baseButtonObject
       value: 
       objectReference: {fileID: 4204509444544907786, guid: 0d75165591fb2c703888bfbf41fae8bb, type: 3}
+    - target: {fileID: 7034585392386390643, guid: 8c35760e729c3bf438a92af7a378df13, type: 3}
+      propertyPath: enableDemoForPTPS
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7110060951925998396, guid: 8c35760e729c3bf438a92af7a378df13, type: 3}
       propertyPath: cameraTransformP1
       value: 

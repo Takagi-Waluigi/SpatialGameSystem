@@ -10,6 +10,7 @@ public class ResultAndRespawn : MonoBehaviour
     [SerializeField] GameObject baseButtonObject;
     [SerializeField] Transform screen_1;
     [SerializeField] Transform screen_2;
+    [SerializeField] bool enableDemoForPTPS = false;
     GameObject button_1, button_2;
     bool lastIsGameOver = false;
     // Start is called before the first frame update
@@ -24,7 +25,9 @@ public class ResultAndRespawn : MonoBehaviour
         if(stateManager.isGameOver && lastIsGameOver != stateManager.isGameOver)
         {
             button_1 = GameObject.Instantiate(baseButtonObject, screen_1.position, Quaternion.identity);
-            button_2 = GameObject.Instantiate(baseButtonObject, screen_2.position, Quaternion.identity);            
+            button_2 = GameObject.Instantiate(baseButtonObject, screen_2.position, Quaternion.identity);   
+
+            if(enableDemoForPTPS) stateManager.enablePTPS = true;         
         }
 
         if(stateManager.isGameOver)
@@ -37,6 +40,8 @@ public class ResultAndRespawn : MonoBehaviour
         {
             GameObject.Destroy(button_1);
             GameObject.Destroy(button_2);
+
+            if(enableDemoForPTPS) stateManager.enablePTPS = false;
         }
 
         lastIsGameOver = stateManager.isGameOver;
