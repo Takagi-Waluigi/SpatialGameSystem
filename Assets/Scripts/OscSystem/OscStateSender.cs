@@ -19,6 +19,7 @@ public class OscStateSender : MonoBehaviour
     float lastTime = 0;
     bool lastIsTracking = false;
     bool lastIsGameOver = false;
+    bool lastEnablePTPS = false;
     int lastMatchStatus = 0;
 
     // Start is called before the first frame update
@@ -54,9 +55,10 @@ public class OscStateSender : MonoBehaviour
             client.Send(OSCAddressStatic, (int)stateManager.score, (int)stateManager.hitPoint, isGameOverInt, isTrackingUserInt);
         }
 
-        if(stateManager.matchStatus != lastMatchStatus)
+        if((stateManager.matchStatus != lastMatchStatus) || (stateManager.enablePTPS != lastEnablePTPS))
         {
-            client.Send(OSCAddressStatic_2, stateManager.matchStatus);
+            int enablePTPSInt = (stateManager.enablePTPS)? 1 : 0;
+            client.Send(OSCAddressStatic_2, stateManager.matchStatus, enablePTPSInt);
         }
         
         
@@ -65,7 +67,7 @@ public class OscStateSender : MonoBehaviour
         lastIsTracking = stateManager.isTrackingUser;
         lastIsGameOver = stateManager.isGameOver;
         lastMatchStatus = stateManager.matchStatus;
-        
+        lastEnablePTPS = stateManager.enablePTPS;
     }
 
     void OnDisable()

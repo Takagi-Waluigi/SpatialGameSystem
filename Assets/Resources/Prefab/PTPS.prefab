@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5887421469880616669
+--- !u!1 &1033561922840358262
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,50 +8,49 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7675455916892056605}
-  - component: {fileID: 348748654701766564}
-  - component: {fileID: 8123576113047130849}
-  - component: {fileID: 1181738626479287658}
-  - component: {fileID: 2118238651429496131}
-  - component: {fileID: 4339237967953618849}
+  - component: {fileID: 9201670752572082602}
+  - component: {fileID: 3663552487964539362}
+  - component: {fileID: 4428130297982016342}
+  - component: {fileID: 8676601516533177629}
+  - component: {fileID: 8091427005961889481}
   m_Layer: 0
-  m_Name: PTPS_MaskObject
+  m_Name: PTPS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7675455916892056605
+--- !u!4 &9201670752572082602
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5887421469880616669}
+  m_GameObject: {fileID: 1033561922840358262}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 1.23, z: 0}
-  m_LocalScale: {x: 2.5349996, y: 1, z: 2.5349998}
-  m_ConstrainProportionsScale: 0
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.02, z: 0}
+  m_LocalScale: {x: 2.54, y: 2.54, z: 2.54}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &348748654701766564
+--- !u!33 &3663552487964539362
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5887421469880616669}
+  m_GameObject: {fileID: 1033561922840358262}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &8123576113047130849
+--- !u!23 &4428130297982016342
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5887421469880616669}
-  m_Enabled: 0
+  m_GameObject: {fileID: 1033561922840358262}
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -86,13 +85,13 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &1181738626479287658
+--- !u!64 &8676601516533177629
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5887421469880616669}
+  m_GameObject: {fileID: 1033561922840358262}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -108,36 +107,21 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &2118238651429496131
+--- !u!114 &8091427005961889481
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5887421469880616669}
+  m_GameObject: {fileID: 1033561922840358262}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b58bf51061f0c147b1ccb8423fab4fb, type: 3}
+  m_Script: {fileID: 11500000, guid: 940694e94694e5e4b9ad2790e3cdb797, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   screen_1: {fileID: 0}
   screen_2: {fileID: 0}
-  laserObject_1: {fileID: 0}
-  laserObject_2: {fileID: 0}
-  maxDesinatedSize: 4
+  userTransform: {fileID: 0}
   mapObject: {fileID: 0}
+  maskObjectPositionOffset: 5
   maskMaterial: {fileID: 2100000, guid: 41dba1e169a2ad4488a6cea1116ccda7, type: 2}
-  maskObjectPositionOffset: 4
---- !u!114 &4339237967953618849
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5887421469880616669}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f526c5a0bc8963d46b2b0b9a7feed894, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  runTimeVisibility: 1

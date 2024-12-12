@@ -26,6 +26,7 @@ public class StateManager : MonoBehaviour
   public bool isGameOver = false;
   public float distanceBetweenSceens = 0f;
   public bool isPlayingPacman = false;
+  public bool enablePTPS = false;
 
   [Header("パックマン用変数")]
   public int hitPoint = 0;
