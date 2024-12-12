@@ -167,7 +167,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &54146746
 Transform:
   m_ObjectHideFlags: 0
@@ -1501,6 +1501,7 @@ MonoBehaviour:
   decisionTime: 0
   maxDecisionTime: 5
   isGameOver: 0
+  distanceBetweenSceens: 0
   isPlayingPacman: 0
   hitPoint: 0
   maxHitPoint: 5
@@ -1512,6 +1513,7 @@ MonoBehaviour:
   enableFeverTrigger: 0
   feverTime: 10
   feverAlpha: 0
+  feverDistanceThreshold: 1
   interval: 15
   isMemoryPhase: 1
   stepOnThresholdTime: 3
@@ -2930,7 +2932,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 516035091045961672, guid: ed6a40c1c115543a8b799dd6fc269702, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 721484990349991754, guid: ed6a40c1c115543a8b799dd6fc269702, type: 3}
       propertyPath: _connection

@@ -20,9 +20,9 @@ public class MultiRobotFeverManagement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(stateManager.userStudyID == 2 && stateManager.conditionID == 2)
+        if(stateManager.userStudyID == 2)
         {
-            if(stateManager.conditionID == 1)
+            if(stateManager.conditionID == 2)
             {
                 stateManager.distanceBetweenSceens = Vector3.Distance(cameraTransformP1.position, cameraTransformP2.position);
 
