@@ -156,7 +156,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2193505
 Transform:
   m_ObjectHideFlags: 0
@@ -5351,7 +5351,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7154678706105589804, guid: 8c35760e729c3bf438a92af7a378df13, type: 3}
       propertyPath: interval
-      value: 20
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 7154678706105589804, guid: 8c35760e729c3bf438a92af7a378df13, type: 3}
       propertyPath: isGameOver
@@ -5359,7 +5359,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7154678706105589804, guid: 8c35760e729c3bf438a92af7a378df13, type: 3}
       propertyPath: conditionID
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7154678706105589804, guid: 8c35760e729c3bf438a92af7a378df13, type: 3}
       propertyPath: userStudyID
@@ -5379,7 +5379,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7154678706105589804, guid: 8c35760e729c3bf438a92af7a378df13, type: 3}
       propertyPath: feverDistanceThreshold
-      value: 1.5
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7154678706105589804, guid: 8c35760e729c3bf438a92af7a378df13, type: 3}
+      propertyPath: feverDisableDistanceThreshold
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8385956571455084168, guid: 8c35760e729c3bf438a92af7a378df13, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9072,8 +9076,10 @@ MonoBehaviour:
   feverTime: 10
   feverAlpha: 0
   feverDistanceThreshold: 1
+  feverDisableDistanceThreshold: 1
   interval: 15
   spawnTimeInU2C12: 10
+  enableSpawnTriggerAtOnce: 0
   isMemoryPhase: 0
   stepOnThresholdTime: 3
   maxWaitTime: 3
@@ -25473,9 +25479,17 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1338176183742491755, guid: f5607cfa02b2e265e8c6a9965b190ca7, type: 3}
+      propertyPath: baseVelocity
+      value: 0.045
+      objectReference: {fileID: 0}
+    - target: {fileID: 1338176183742491755, guid: f5607cfa02b2e265e8c6a9965b190ca7, type: 3}
       propertyPath: stateManager
       value: 
       objectReference: {fileID: 666978214}
+    - target: {fileID: 1338176183742491755, guid: f5607cfa02b2e265e8c6a9965b190ca7, type: 3}
+      propertyPath: stoppingTime
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1338176183742491755, guid: f5607cfa02b2e265e8c6a9965b190ca7, type: 3}
       propertyPath: cameraTranform
       value: 
@@ -25490,11 +25504,11 @@ PrefabInstance:
       objectReference: {fileID: 1919406239}
     - target: {fileID: 1338176183742491755, guid: f5607cfa02b2e265e8c6a9965b190ca7, type: 3}
       propertyPath: breakingMaximunDistance
-      value: 2.5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1338176183742491755, guid: f5607cfa02b2e265e8c6a9965b190ca7, type: 3}
       propertyPath: breakingMinimunDistance
-      value: 1.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1338176183742491755, guid: f5607cfa02b2e265e8c6a9965b190ca7, type: 3}
       propertyPath: breakingTargetTransform
@@ -25526,7 +25540,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2650337222054093291, guid: f5607cfa02b2e265e8c6a9965b190ca7, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2782822216136099318, guid: f5607cfa02b2e265e8c6a9965b190ca7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -25694,7 +25708,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6745307430129080669, guid: f5607cfa02b2e265e8c6a9965b190ca7, type: 3}
       propertyPath: channel
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6745307430129080669, guid: f5607cfa02b2e265e8c6a9965b190ca7, type: 3}
       propertyPath: m_Enabled
@@ -25708,6 +25722,10 @@ PrefabInstance:
       propertyPath: stateManager
       value: 
       objectReference: {fileID: 666978214}
+    - target: {fileID: 6745307430129080669, guid: f5607cfa02b2e265e8c6a9965b190ca7, type: 3}
+      propertyPath: stoppingTime
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 6745307430129080669, guid: f5607cfa02b2e265e8c6a9965b190ca7, type: 3}
       propertyPath: cameraTranform
       value: 

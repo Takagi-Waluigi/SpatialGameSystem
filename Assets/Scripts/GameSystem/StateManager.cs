@@ -45,6 +45,7 @@ public class StateManager : MonoBehaviour
   public float feverTime = 10f;
   public float feverAlpha = 0;
   public float feverDistanceThreshold = 1f;
+  public float feverDisableDistanceThreshold = 1f;
   public float interval = 15f;
   public float spawnTimeInU2C12 = 10f;
   public bool enableSpawnTriggerAtOnce = false;

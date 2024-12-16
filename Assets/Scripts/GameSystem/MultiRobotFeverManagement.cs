@@ -47,7 +47,7 @@ public class MultiRobotFeverManagement : MonoBehaviour
                         }
                     }           
                 
-                    lastIsNear = stateManager.distanceBetweenSceens < stateManager.feverDistanceThreshold; 
+                    lastIsNear = stateManager.distanceBetweenSceens < stateManager.feverDisableDistanceThreshold; 
                 }             
             }
             else
