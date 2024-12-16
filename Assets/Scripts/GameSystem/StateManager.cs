@@ -12,6 +12,7 @@ public class StateManager : MonoBehaviour
   [Range(1, 2)] public int userStudyID = 1;
   public string userID = "0";
   [Range(0, 2)] public int conditionID = 0;
+  [Range(1, 9)] public int conditionIDSub = 0;
 
   public float dataSaveRate = 10f;
 
@@ -27,6 +28,10 @@ public class StateManager : MonoBehaviour
   public float distanceBetweenSceens = 0f;
   public bool isPlayingPacman = false;
   public bool enablePTPS = false;
+  public bool isTrackingUserOnP1 = false;
+  public bool isTrackingUserOnP2 = false;
+  public float trackingTimeOnP1 = 0f;
+  public float trackingTimeOnP2 = 0f;
 
   [Header("パックマン用変数")]
   public int hitPoint = 0;

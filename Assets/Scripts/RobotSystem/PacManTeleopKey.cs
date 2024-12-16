@@ -39,11 +39,6 @@ public class PacManTeleopKey : MonoBehaviour
         ros.RegisterPublisher<TwistMsg>(topicName);
 
         twistMsg = new TwistMsg();
-
-        string statusMessage = "";
-        // if(channel == 0) statusMessage = "--- boost when fever time";
-        // if(channel == 1)
-        // Debug.Log("[DRIVE MODE- " + rosNamespace + " --- boost when user step onto P2]");
     }
 
     // Update is called once per frame
@@ -51,6 +46,17 @@ public class PacManTeleopKey : MonoBehaviour
     {
         if(gameRelatedMode)
         {
+            if(stateManager.userStudyID == 2)
+            {
+                if(stateManager.conditionID < 2)
+                {
+                    channel = 2;
+                }
+                else
+                {
+                    channel = 1;
+                }
+            }
 
             if(!stateManager.isGameOver)
             {
@@ -65,22 +71,12 @@ public class PacManTeleopKey : MonoBehaviour
                         Vector2 vec2BreakingPosition = new Vector2(breakingTargetTransform.position.x, breakingTargetTransform.position.z);
                         double distanceToBreakingObject = (double)Vector2.Distance(vec2CameraPosition, vec2BreakingPosition);
 
-                        Debug.Log("Distance to break object:" + distanceToBreakingObject);
+                        Debug.Log("Distance to breaking object:" + distanceToBreakingObject);
                         twistMsg.linear.x = map(distanceToBreakingObject, breakingMinimunDistance, breakingDistanceThreshold, breakingMinimumVeclocity, baseVelocity, true);
                     break;
 
-                    case 2: //ユーザが乗っかったら加速するモード
-                        if(Input.GetKeyUp(KeyCode.M)) 
-                        {
-                            enableMultiFeverDrive = !enableMultiFeverDrive;
-                            if(enableMultiFeverDrive) Debug.Log("[DRIVE MODE- " + rosNamespace + " --- boost when user step onto P2]");
-                        }
-                        
-                        if(enableMultiFeverDrive)
-                        {
-                            twistMsg.linear.x = (stateManager.enableFever && singlePoseSubscriber.isTracking)? baseVelocity * boostRatio: baseVelocity;
-                        }
-                        
+                    case 2:
+                        twistMsg.linear.x = baseVelocity;
                     break;
                 }
                                 

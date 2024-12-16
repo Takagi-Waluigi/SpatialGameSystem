@@ -21,6 +21,8 @@ public class TrackingUserIntegration : MonoBehaviour
     void Update()
     {
         stateManager.isTrackingUser = p1ObjectSubscriber.isTracking || p2ObjectSubscriber.isTracking;
+        stateManager.isTrackingUserOnP1 = p1ObjectSubscriber.isTracking;
+        stateManager.isTrackingUserOnP2 = p2ObjectSubscriber.isTracking;
         
         
         if(p1ObjectSubscriber.isTracking && p2ObjectSubscriber.isTracking)

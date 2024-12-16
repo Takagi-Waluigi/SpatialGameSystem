@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5480822903726936713}
-  - component: {fileID: 9214380470104991803}
   - component: {fileID: 4927807470067031267}
   m_Layer: 0
   m_Name: TrackedPositions
@@ -33,27 +32,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2782822216136099318}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9214380470104991803
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 23163455678822408}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90ffa5d1797ece80c9f5710011bec7d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseTransform: {fileID: 5480822903726936713}
-  p1ObjectSubscriber: {fileID: 0}
-  p2ObjectSubscriber: {fileID: 0}
-  distanceThreshold: 1
-  stateManager: {fileID: 0}
-  visualize: 1
-  baseObject: {fileID: 6521700990748457908, guid: 24ade0c44d42e72cabfc60f4a76336a7, type: 3}
-  numberOfThresoldObject: 15
-  integratedPositions: []
 --- !u!114 &4927807470067031267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -233,6 +211,7 @@ MonoBehaviour:
   baseVelocity: 0.035
   boostRatio: 2.5
   breakingDistanceThreshold: 2
+  breakingMinimunDistance: 0.5
   breakingMinimumVeclocity: 0.05
   singlePoseSubscriber: {fileID: 4631182449979682625}
 --- !u!1 &6528790984306759310
@@ -363,5 +342,6 @@ MonoBehaviour:
   baseVelocity: 0.035
   boostRatio: 2.5
   breakingDistanceThreshold: 2
+  breakingMinimunDistance: 0.5
   breakingMinimumVeclocity: 0.004999999888241291
   singlePoseSubscriber: {fileID: 0}

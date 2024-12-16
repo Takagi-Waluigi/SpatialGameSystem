@@ -34,8 +34,8 @@ public class CreateAndSaveCsv : MonoBehaviour
         }
         else if(stateManager.userStudyID == 2)
         {
-            sw_1 = new StreamWriter(@"Assets/RecordedData/UserStudy2/" +  stateManager.userID + "_" + stateManager.conditionID.ToString() + ".csv", true, Encoding.GetEncoding("Shift_JIS"));
-            string[] s1 = {"position.x", "position.z" , "time" , "score", "wrong", "phase", "distance"};
+            sw_1 = new StreamWriter(@"Assets/RecordedData/UserStudy2/" +  stateManager.userID + "_" + stateManager.conditionID.ToString() + "_" + stateManager.conditionIDSub + ".csv", true, Encoding.GetEncoding("Shift_JIS"));
+            string[] s1 = {"position.x", "position.z" , "time" , "score", "trackingTimeP1", "trackingTimeP2", "distance"};
             string s2 = string.Join(",", s1);
             sw_1.WriteLine(s2);
         }
@@ -60,9 +60,8 @@ public class CreateAndSaveCsv : MonoBehaviour
             {
                 if(!stateManager.isGameOver)
                 {
-                    int phaseId = (stateManager.isMemoryPhase)? 0 : 1;
                     float distanceBetweenSceens = Vector3.Distance(screen_1.position, screen_2.position);
-                    WriteData(unityPose.position.x.ToString(), unityPose.position.z.ToString(), Time.time.ToString(), stateManager.score.ToString(), stateManager.wrongCount.ToString(), phaseId.ToString(), distanceBetweenSceens.ToString());
+                    WriteData(unityPose.position.x.ToString(), unityPose.position.z.ToString(), Time.time.ToString(), stateManager.score.ToString(), stateManager.trackingTimeOnP1.ToString(), stateManager.trackingTimeOnP2.ToString(), distanceBetweenSceens.ToString());
                 }
             }
             

@@ -156,7 +156,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2193505
 Transform:
   m_ObjectHideFlags: 0
@@ -3883,6 +3883,7 @@ GameObject:
   - component: {fileID: 382834771}
   - component: {fileID: 382834770}
   - component: {fileID: 382834769}
+  - component: {fileID: 382834774}
   m_Layer: 0
   m_Name: User
   m_TagString: Untagged
@@ -3995,6 +3996,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 183496026}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &382834774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 382834768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef030ba6f720bb4a29d4f64830284820, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stateManager: {fileID: 666978214}
 --- !u!114 &387754344
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9133,6 +9147,7 @@ MonoBehaviour:
   userStudyID: 1
   userID: 9
   conditionID: 0
+  conditionIDSub: 0
   dataSaveRate: 10
   score: 0
   isTrackingUser: 0
@@ -9145,6 +9160,10 @@ MonoBehaviour:
   distanceBetweenSceens: 0
   isPlayingPacman: 0
   enablePTPS: 0
+  isTrackingUserOnP1: 0
+  isTrackingUserOnP2: 0
+  trackingTimeOnP1: 0
+  trackingTimeOnP2: 0
   hitPoint: 0
   maxHitPoint: 5
   isAttacked: 0
@@ -28953,6 +28972,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4753524999542616110, guid: d54a857c63b6cd54eb3096edc1eea452, type: 3}
+      propertyPath: screen_1
+      value: 
+      objectReference: {fileID: 886231275}
+    - target: {fileID: 4753524999542616110, guid: d54a857c63b6cd54eb3096edc1eea452, type: 3}
+      propertyPath: screen_2
+      value: 
+      objectReference: {fileID: 1514912492}
     - target: {fileID: 4753524999542616110, guid: d54a857c63b6cd54eb3096edc1eea452, type: 3}
       propertyPath: topicName
       value: t265_odom
