@@ -23,7 +23,6 @@ public class FollowObject : MonoBehaviour
     [Header("ナビゲーションの設定")]
     [SerializeField] float publishRate = 1;
     [SerializeField] float stopTargetDistance = 0.5f;
-    PoseStampedMsg waypoint;
     float distance_remain = 0f;
     float lastTime = 0f;
     [SerializeField] bool enableNavigation = false;

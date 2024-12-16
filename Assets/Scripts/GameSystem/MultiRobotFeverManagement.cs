@@ -31,6 +31,7 @@ public class MultiRobotFeverManagement : MonoBehaviour
                     if(stateManager.distanceBetweenSceens < stateManager.feverDistanceThreshold)
                     {
                         stateManager.enableFeverTrigger = true;
+                        Debug.Log("[FEVER U2 C3] apeared!!!!");
                     }
                     else
                     {
@@ -40,7 +41,7 @@ public class MultiRobotFeverManagement : MonoBehaviour
                             if(lastIsNear) beginTime = Time.time;
                             if(Time.time - beginTime > stateManager.feverTime)
                             {
-                                Debug.Log("[DEACTIVATE FEVER]" + (Time.time - beginTime));
+                                Debug.Log("[FEVER U2 C3] dactivate...]" + (Time.time - beginTime));
                                 stateManager.enableFever = false;
                             } 
                         }

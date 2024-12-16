@@ -22,6 +22,8 @@ public class ResultAndRespawn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetKeyUp(KeyCode.G)) stateManager.isGameOver = true;
+        
         if(stateManager.isGameOver && lastIsGameOver != stateManager.isGameOver)
         {
             button_1 = GameObject.Instantiate(baseButtonObject, screen_1.position, Quaternion.identity);

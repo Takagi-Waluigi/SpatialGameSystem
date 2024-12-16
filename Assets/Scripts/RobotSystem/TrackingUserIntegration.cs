@@ -27,7 +27,8 @@ public class TrackingUserIntegration : MonoBehaviour
         
         if(p1ObjectSubscriber.isTracking && p2ObjectSubscriber.isTracking)
         {    
-            integratedPosition = (p1ObjectSubscriber.centerPosition + p2ObjectSubscriber.centerPosition) * 0.5f;
+            integratedPosition = p2ObjectSubscriber.centerPosition;
+            // (p1ObjectSubscriber.centerPosition + p2ObjectSubscriber.centerPosition) * 0.5f;
         }
         else if(p1ObjectSubscriber.isTracking)
         {

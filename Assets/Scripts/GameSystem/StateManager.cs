@@ -46,6 +46,8 @@ public class StateManager : MonoBehaviour
   public float feverAlpha = 0;
   public float feverDistanceThreshold = 1f;
   public float interval = 15f;
+  public float spawnTimeInU2C12 = 10f;
+  public bool enableSpawnTriggerAtOnce = false;
 
   [Header("絵合わせ用変数")]  
   public bool isMemoryPhase = false;
@@ -95,8 +97,7 @@ public class StateManager : MonoBehaviour
     {
       remainTimef = 0;
       isGameOver = true;
-    }
-    
+    }    
   }
 
   public void InitValue()
@@ -105,6 +106,7 @@ public class StateManager : MonoBehaviour
     hitPoint = 0;
     isGameOver = false;
     remainTimef = maxGamePlayTime;
+    enableFeverTrigger = false;
 
     if(isMemoryPhase)
     {

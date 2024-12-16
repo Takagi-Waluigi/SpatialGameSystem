@@ -27,7 +27,7 @@ public class FeverNavigation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {  
-        if(stateManager.userStudyID == 1 || (stateManager.userStudyID == 2 && stateManager.conditionID != 2))
+        if(stateManager.userStudyID == 1)
         {
             interval = (stateManager.enableFeverTrigger)? stateManager.interval : stateManager.interval * 1.5f;
 
@@ -42,6 +42,33 @@ public class FeverNavigation : MonoBehaviour
                 stateManager.enableFeverTrigger = !stateManager.enableFeverTrigger;
                 lastTime = Time.time;
             }
+        }
+
+        if(stateManager.userStudyID == 2 && stateManager.conditionID != 2 && !stateManager.isGameOver)
+        {
+            if(!stateManager.enableFeverTrigger && !stateManager.enableSpawnTriggerAtOnce)
+            {
+                if(stateManager.remainTimef < stateManager.maxGamePlayTime - stateManager.spawnTimeInU2C12)
+                {
+                    stateManager.enableFeverTrigger = true;
+                    stateManager.enableSpawnTriggerAtOnce = true;
+
+                    lastTime = Time.time;
+                    Debug.Log("[FEVER U2 C1,C2] apeared!!!!");
+                }
+
+                if(Time.time -lastTime > interval)
+                {
+                    stateManager.enableFeverTrigger = false;
+                    Debug.Log("[FEVER U2 C1,C2] disappear...");
+                }
+            }
+
+            if(!stateManager.enableFever && lastFever)
+            {
+                stateManager.enableFeverTrigger = false;
+            }
+            
         }
        
 

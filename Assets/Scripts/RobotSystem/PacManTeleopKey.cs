@@ -17,12 +17,14 @@ public class PacManTeleopKey : MonoBehaviour
     [SerializeField] Transform breakingTargetTransform;
     [Header("ゲーム対応挙動設定")]
     [SerializeField] bool gameRelatedMode = false;
-    [SerializeField] [Range(0, 2)] int channel = 0;
+    [SerializeField] [Range(0, 3)] int channel = 0;
+    [SerializeField] bool enableSteering = false;
     [SerializeField] double baseVelocity = 0.035;
     [SerializeField] double boostRatio = 1.5;
-    [SerializeField] double breakingDistanceThreshold = 2;
+    [SerializeField] double breakingMaximunDistance = 2;
     [SerializeField] double breakingMinimunDistance = 0.5f;
     [SerializeField] double breakingMinimumVeclocity = 0.005f;
+    [SerializeField] float stoppingTime = 30f;
     [SerializeField] SinglePoseSubscriber singlePoseSubscriber;
     float lastTime = 0;
     double maxLinearVelocity = 0.1f;
@@ -46,18 +48,6 @@ public class PacManTeleopKey : MonoBehaviour
     {
         if(gameRelatedMode)
         {
-            if(stateManager.userStudyID == 2)
-            {
-                if(stateManager.conditionID < 2)
-                {
-                    channel = 2;
-                }
-                else
-                {
-                    channel = 1;
-                }
-            }
-
             if(!stateManager.isGameOver)
             {
                 switch(channel)
@@ -66,20 +56,38 @@ public class PacManTeleopKey : MonoBehaviour
                         twistMsg.linear.x = (stateManager.enableFever)? baseVelocity * boostRatio: baseVelocity;
                     break;
 
-                    case 1: //特定のオブジェクトとの距離に合わせて速度が比例して変化する（ユーザスタディ2 条件3）
+                    case 1:
+                        twistMsg.linear.x = baseVelocity;
+                    break;
+
+                    case 2: //特定のオブジェクトとの距離に合わせて速度が比例して変化する（ユーザスタディ2 条件3）
                         Vector2 vec2CameraPosition = new Vector2(cameraTranform.position.x, cameraTranform.position.z);
                         Vector2 vec2BreakingPosition = new Vector2(breakingTargetTransform.position.x, breakingTargetTransform.position.z);
                         double distanceToBreakingObject = (double)Vector2.Distance(vec2CameraPosition, vec2BreakingPosition);
 
                         Debug.Log("Distance to breaking object:" + distanceToBreakingObject);
-                        twistMsg.linear.x = map(distanceToBreakingObject, breakingMinimunDistance, breakingDistanceThreshold, breakingMinimumVeclocity, baseVelocity, true);
+                        twistMsg.linear.x = map(distanceToBreakingObject, breakingMinimunDistance, breakingMaximunDistance, breakingMinimumVeclocity, baseVelocity, true);
                     break;
 
-                    case 2:
-                        twistMsg.linear.x = baseVelocity;
-                    break;
+                    case 3:
+                        if(stateManager.remainTimef > stateManager.maxGamePlayTime - stoppingTime)
+                        {
+                            twistMsg.linear.x = 0.0;
+                        }
+                        else
+                        {
+                            twistMsg.linear.x = baseVelocity;
+                        }
+                    break;                    
+
+                    
                 }
-                                
+
+                if(enableSteering)
+                {
+                    if(Input.GetKeyUp(KeyCode.LeftArrow)) twistMsg.angular.z += 0.05;
+                    if(Input.GetKeyUp(KeyCode.RightArrow)) twistMsg.angular.z -= 0.05;
+                }                                
             }
             else
             {
@@ -92,10 +100,11 @@ public class PacManTeleopKey : MonoBehaviour
 
             if(Input.GetKeyUp(KeyCode.UpArrow)) twistMsg.linear.x += 0.01;
             if(Input.GetKeyUp(KeyCode.DownArrow)) twistMsg.linear.x -= 0.01;
+            if(Input.GetKeyUp(KeyCode.LeftArrow)) twistMsg.angular.z += 0.05;
+            if(Input.GetKeyUp(KeyCode.RightArrow)) twistMsg.angular.z -= 0.05;
         }
         
-        if(Input.GetKeyUp(KeyCode.LeftArrow)) twistMsg.angular.z += 0.05;
-        if(Input.GetKeyUp(KeyCode.RightArrow)) twistMsg.angular.z -= 0.05;
+        
 
         if(Input.GetKeyUp(KeyCode.Space))
         {
