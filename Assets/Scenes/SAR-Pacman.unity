@@ -5347,7 +5347,7 @@ PrefabInstance:
       objectReference: {fileID: 1514912492}
     - target: {fileID: 7154678706105589804, guid: 8c35760e729c3bf438a92af7a378df13, type: 3}
       propertyPath: userID
-      value: 10
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7154678706105589804, guid: 8c35760e729c3bf438a92af7a378df13, type: 3}
       propertyPath: interval
@@ -5359,7 +5359,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7154678706105589804, guid: 8c35760e729c3bf438a92af7a378df13, type: 3}
       propertyPath: conditionID
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7154678706105589804, guid: 8c35760e729c3bf438a92af7a378df13, type: 3}
       propertyPath: userStudyID
@@ -5367,7 +5367,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7154678706105589804, guid: 8c35760e729c3bf438a92af7a378df13, type: 3}
       propertyPath: conditionIDSub
-      value: 1
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 7154678706105589804, guid: 8c35760e729c3bf438a92af7a378df13, type: 3}
       propertyPath: maxGamePlayTime
@@ -5379,7 +5379,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7154678706105589804, guid: 8c35760e729c3bf438a92af7a378df13, type: 3}
       propertyPath: feverDistanceThreshold
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7154678706105589804, guid: 8c35760e729c3bf438a92af7a378df13, type: 3}
       propertyPath: feverDisableDistanceThreshold
@@ -25473,7 +25473,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1338176183742491755, guid: f5607cfa02b2e265e8c6a9965b190ca7, type: 3}
       propertyPath: channel
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1338176183742491755, guid: f5607cfa02b2e265e8c6a9965b190ca7, type: 3}
       propertyPath: m_Enabled
@@ -25496,6 +25496,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 774406811}
     - target: {fileID: 1338176183742491755, guid: f5607cfa02b2e265e8c6a9965b190ca7, type: 3}
+      propertyPath: enableSteering
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1338176183742491755, guid: f5607cfa02b2e265e8c6a9965b190ca7, type: 3}
       propertyPath: gameRelatedMode
       value: 1
       objectReference: {fileID: 0}
@@ -25505,11 +25509,11 @@ PrefabInstance:
       objectReference: {fileID: 1919406239}
     - target: {fileID: 1338176183742491755, guid: f5607cfa02b2e265e8c6a9965b190ca7, type: 3}
       propertyPath: breakingMaximunDistance
-      value: 3
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 1338176183742491755, guid: f5607cfa02b2e265e8c6a9965b190ca7, type: 3}
       propertyPath: breakingMinimunDistance
-      value: 2
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 1338176183742491755, guid: f5607cfa02b2e265e8c6a9965b190ca7, type: 3}
       propertyPath: breakingTargetTransform
@@ -25709,11 +25713,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6745307430129080669, guid: f5607cfa02b2e265e8c6a9965b190ca7, type: 3}
       propertyPath: channel
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6745307430129080669, guid: f5607cfa02b2e265e8c6a9965b190ca7, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6745307430129080669, guid: f5607cfa02b2e265e8c6a9965b190ca7, type: 3}
+      propertyPath: baseVelocity
+      value: 0.045
       objectReference: {fileID: 0}
     - target: {fileID: 6745307430129080669, guid: f5607cfa02b2e265e8c6a9965b190ca7, type: 3}
       propertyPath: rosNamespace
@@ -29015,7 +29023,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3417076718591608515, guid: d54a857c63b6cd54eb3096edc1eea452, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4753524999542616110, guid: d54a857c63b6cd54eb3096edc1eea452, type: 3}
       propertyPath: screen_1
