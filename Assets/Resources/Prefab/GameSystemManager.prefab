@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1278650934917474917}
   - component: {fileID: 7034585392386390643}
+  - component: {fileID: 659197725170763377}
   m_Layer: 0
   m_Name: GameOverAndRespawnManager
   m_TagString: Untagged
@@ -50,6 +51,20 @@ MonoBehaviour:
   baseButtonObject: {fileID: 0}
   screen_1: {fileID: 0}
   screen_2: {fileID: 0}
+  enableDemoForPTPS: 0
+--- !u!114 &659197725170763377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1006689156616863370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd500b5ee7bb13343b93e8abdd8f6113, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stateManager: {fileID: 7154678706105589804}
 --- !u!1 &1134247650978873942
 GameObject:
   m_ObjectHideFlags: 0
@@ -196,6 +211,11 @@ MonoBehaviour:
   isGameOver: 0
   distanceBetweenSceens: 0
   isPlayingPacman: 0
+  enablePTPS: 0
+  isTrackingUserOnP1: 0
+  isTrackingUserOnP2: 0
+  trackingTimeOnP1: 0
+  trackingTimeOnP2: 0
   hitPoint: 0
   maxHitPoint: 5
   isAttacked: 0
@@ -207,7 +227,10 @@ MonoBehaviour:
   feverTime: 10
   feverAlpha: 0
   feverDistanceThreshold: 1
+  feverDisableDistanceThreshold: 1
   interval: 15
+  spawnTimeInU2C12: 10
+  enableSpawnTriggerAtOnce: 0
   isMemoryPhase: 0
   stepOnThresholdTime: 3
   maxWaitTime: 3

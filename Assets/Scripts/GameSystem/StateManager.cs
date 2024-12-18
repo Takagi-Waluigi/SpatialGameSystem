@@ -12,8 +12,6 @@ public class StateManager : MonoBehaviour
   [Range(1, 2)] public int userStudyID = 1;
   public string userID = "0";
   [Range(0, 2)] public int conditionID = 0;
-  [Range(1, 9)] public int conditionIDSub = 0;
-
   public float dataSaveRate = 10f;
 
   [Header("共通変数")]

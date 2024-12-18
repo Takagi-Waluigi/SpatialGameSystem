@@ -34,8 +34,8 @@ public class CreateAndSaveCsv : MonoBehaviour
         }
         else if(stateManager.userStudyID == 2)
         {
-            sw_1 = new StreamWriter(@"Assets/RecordedData/UserStudy2/" +  stateManager.userID + "_" + stateManager.conditionID.ToString() + "_" + stateManager.conditionIDSub + ".csv", true, Encoding.GetEncoding("Shift_JIS"));
-            string[] s1 = {"position.x", "position.z" , "time" , "score", "trackingTimeP1", "trackingTimeP2", "distance"};
+            sw_1 = new StreamWriter(@"Assets/RecordedData/UserStudy2/" +  stateManager.userID + "_" + stateManager.conditionID.ToString() + ".csv", true, Encoding.GetEncoding("Shift_JIS"));
+            string[] s1 = {"position.x", "position.z" , "time" , "score", "trackingTimeP1", "trackingTimeP2", "distance", "coinP1", "coinP2", "fever", "jump"};
             string s2 = string.Join(",", s1);
             sw_1.WriteLine(s2);
         }
@@ -61,7 +61,7 @@ public class CreateAndSaveCsv : MonoBehaviour
                 if(!stateManager.isGameOver)
                 {
                     float distanceBetweenSceens = Vector3.Distance(screen_1.position, screen_2.position);
-                    WriteData(unityPose.position.x.ToString(), unityPose.position.z.ToString(), Time.time.ToString(), stateManager.score.ToString(), stateManager.trackingTimeOnP1.ToString(), stateManager.trackingTimeOnP2.ToString(), distanceBetweenSceens.ToString());
+                    WriteData(unityPose.position.x.ToString(), unityPose.position.z.ToString(), Time.time.ToString(), stateManager.score.ToString(), stateManager.trackingTimeOnP1.ToString(), stateManager.trackingTimeOnP2.ToString(), distanceBetweenSceens.ToString(), stateManager.visibleCoinCountInP1.ToString(), stateManager.visibleCoinCountInP2.ToString(), stateManager.enableFever.ToString(), "1");
                 }
             }
             
@@ -72,9 +72,9 @@ public class CreateAndSaveCsv : MonoBehaviour
         isSubscribingData = false;
     }
 
-    public void WriteData(string txt1, string txt2, string txt3, string txt4, string txt5, string txt6, string txt7)
+    public void WriteData(string txt1, string txt2, string txt3, string txt4, string txt5, string txt6, string txt7, string txt8, string txt9, string txt10, string txt11)
     {
-        string[] s1 = { txt1, txt2, txt3, txt4, txt5, txt6, txt7};
+        string[] s1 = { txt1, txt2, txt3, txt4, txt5, txt6, txt7, txt8, txt9, txt10, txt11};
         string s2 = string.Join(",", s1);
         sw_1.WriteLine(s2); 
     }
