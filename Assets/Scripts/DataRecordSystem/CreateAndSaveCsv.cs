@@ -18,6 +18,7 @@ public class CreateAndSaveCsv : MonoBehaviour
     float lastUpdateTime = 0f;
     bool lastEnableCreateCsv = false;
     bool isSubscribingData = false;
+    bool isJumping = false;
 
     void Start()
     {
@@ -35,7 +36,7 @@ public class CreateAndSaveCsv : MonoBehaviour
         else if(stateManager.userStudyID == 2)
         {
             sw_1 = new StreamWriter(@"Assets/RecordedData/UserStudy2/" +  stateManager.userID + "_" + stateManager.conditionID.ToString() + ".csv", true, Encoding.GetEncoding("Shift_JIS"));
-            string[] s1 = {"position.x", "position.z" , "time" , "score", "trackingTimeP1", "trackingTimeP2", "distance", "coinP1", "coinP2", "fever", "jump"};
+            string[] s1 = {"position.x", "position.z" , "time" , "score", "trackingTimeP1", "trackingTimeP2", "distance", "coin", "fever", "jump"};
             string s2 = string.Join(",", s1);
             sw_1.WriteLine(s2);
         }
@@ -46,7 +47,11 @@ public class CreateAndSaveCsv : MonoBehaviour
     void Update()
     {
         if(Input.GetKeyUp(KeyCode.Return)) stateManager.enableCreateCsvData = !stateManager.enableCreateCsvData;
-
+        if(Input.GetKey(KeyCode.J)) 
+        {
+            isJumping = true;
+            Debug.Log("[DATA COLLECTION] jumping!!!");
+        }
         if(stateManager.enableCreateCsvData && !lastEnableCreateCsv)  Debug.Log("[CSV] Data collection has been started in " + Time.time);
         if(!stateManager.enableCreateCsvData && lastEnableCreateCsv) SaveData();
         
@@ -61,7 +66,10 @@ public class CreateAndSaveCsv : MonoBehaviour
                 if(!stateManager.isGameOver)
                 {
                     float distanceBetweenSceens = Vector3.Distance(screen_1.position, screen_2.position);
-                    WriteData(unityPose.position.x.ToString(), unityPose.position.z.ToString(), Time.time.ToString(), stateManager.score.ToString(), stateManager.trackingTimeOnP1.ToString(), stateManager.trackingTimeOnP2.ToString(), distanceBetweenSceens.ToString(), stateManager.visibleCoinCountInP1.ToString(), stateManager.visibleCoinCountInP2.ToString(), stateManager.enableFever.ToString(), "1");
+                    int coinNum = 0;
+                    if(stateManager.userPlayingScreen == 1) coinNum = stateManager.visibleCoinCountInP1;
+                    if(stateManager.userPlayingScreen == 2) coinNum = stateManager.visibleCoinCountInP2;
+                    WriteData(unityPose.position.x.ToString(), unityPose.position.z.ToString(), Time.time.ToString(), stateManager.score.ToString(), stateManager.trackingTimeOnP1.ToString(), stateManager.trackingTimeOnP2.ToString(), distanceBetweenSceens.ToString(), coinNum.ToString(), stateManager.enableFever.ToString(), isJumping.ToString());
                 }
             }
             
@@ -70,11 +78,12 @@ public class CreateAndSaveCsv : MonoBehaviour
 
         lastEnableCreateCsv = stateManager.enableCreateCsvData;
         isSubscribingData = false;
+        isJumping = false;
     }
 
-    public void WriteData(string txt1, string txt2, string txt3, string txt4, string txt5, string txt6, string txt7, string txt8, string txt9, string txt10, string txt11)
+    public void WriteData(string txt1, string txt2, string txt3, string txt4, string txt5, string txt6, string txt7, string txt8, string txt9, string txt10)
     {
-        string[] s1 = { txt1, txt2, txt3, txt4, txt5, txt6, txt7, txt8, txt9, txt10, txt11};
+        string[] s1 = { txt1, txt2, txt3, txt4, txt5, txt6, txt7, txt8, txt9, txt10};
         string s2 = string.Join(",", s1);
         sw_1.WriteLine(s2); 
     }

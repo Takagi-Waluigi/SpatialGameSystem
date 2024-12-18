@@ -29,7 +29,7 @@ public class CollisionEnemy : MonoBehaviour
        if(collision.gameObject.name == "Character" 
        && stateManager.isTrackingUser 
        && !stateManager.isGameOver 
-       && stateManager.isVisibleCharacter
+       //&& stateManager.isVisibleCharacter
        && Time.time - lastHitTime > interval)
        {
             //ヒットポイントの加算

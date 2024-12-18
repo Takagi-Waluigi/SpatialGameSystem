@@ -28,7 +28,11 @@ public class CollisionCountScore : MonoBehaviour
     {
        var stateManager = stateManagerObject.GetComponent<StateManager>();
 
-       if(collision.gameObject.name == "Character" && stateManager.isTrackingUser && !stateManager.isGameOver && stateManager.isVisibleCharacter)
+       if(collision.gameObject.name == "Character" 
+       && stateManager.isTrackingUser 
+       && !stateManager.isGameOver 
+       //&& stateManager.isVisibleCharacter
+       )
        {
             //点数の加算
             int incrementValue = (stateManager.enableFever)? 5 : 1;

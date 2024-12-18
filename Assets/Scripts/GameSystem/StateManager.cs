@@ -30,6 +30,7 @@ public class StateManager : MonoBehaviour
   public bool isTrackingUserOnP2 = false;
   public float trackingTimeOnP1 = 0f;
   public float trackingTimeOnP2 = 0f;
+  public int userPlayingScreen = 0;
 
   [Header("パックマン用変数")]
   public int hitPoint = 0;
@@ -45,8 +46,6 @@ public class StateManager : MonoBehaviour
   public float feverDistanceThreshold = 1f;
   public float feverDisableDistanceThreshold = 1f;
   public float interval = 15f;
-  public float spawnTimeInU2C12 = 10f;
-  public bool enableSpawnTriggerAtOnce = false;
 
   [Header("絵合わせ用変数")]  
   public bool isMemoryPhase = false;
