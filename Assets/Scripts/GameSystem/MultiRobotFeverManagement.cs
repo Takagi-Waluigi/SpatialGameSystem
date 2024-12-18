@@ -33,20 +33,30 @@ public class MultiRobotFeverManagement : MonoBehaviour
                         stateManager.enableFeverTrigger = true;
                         Debug.Log("[FEVER U2 C3] apeared!!!!");
                     }
-                    else
+                    // else
+                    // {
+                    //     stateManager.enableFeverTrigger = false;
+                    //     if(stateManager.enableFever)
+                    //     {
+                    //         // if(lastIsNear) beginTime = Time.time;
+                    //         // if(Time.time - beginTime > stateManager.feverTime)
+                    //         // {
+                    //         //     Debug.Log("[FEVER U2 C3] dactivate...]" + (Time.time - beginTime));
+                    //         //     stateManager.enableFever = false;
+                    //         // } 
+
+                    //         if(!lastIsFever) beginTime = Time.time;
+                    //         if(Time.time - beginTime > stateManager.feverTime) stateManager.enableFever = false;
+                    //     }
+                    // }   
+
+                    if(stateManager.enableFever)
                     {
-                        stateManager.enableFeverTrigger = false;
-                        if(stateManager.enableFever)
-                        {
-                            if(lastIsNear) beginTime = Time.time;
-                            if(Time.time - beginTime > stateManager.feverTime)
-                            {
-                                Debug.Log("[FEVER U2 C3] dactivate...]" + (Time.time - beginTime));
-                                stateManager.enableFever = false;
-                            } 
-                        }
-                    }           
-                
+                        if(!lastIsFever) beginTime = Time.time;
+                        if(Time.time - beginTime > stateManager.feverTime) stateManager.enableFever = false;
+                    }
+                    
+                    lastIsFever = stateManager.enableFever;                    
                     lastIsNear = stateManager.distanceBetweenSceens < stateManager.feverDisableDistanceThreshold; 
                 }             
             }
