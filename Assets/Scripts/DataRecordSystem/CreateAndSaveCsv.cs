@@ -14,7 +14,7 @@ public class CreateAndSaveCsv : MonoBehaviour
     [SerializeField] Transform screen_1;
     [SerializeField] Transform screen_2;
     Pose unityPose;
-    StreamWriter sw_1, sw_2;
+    StreamWriter sw_1;
     float lastUpdateTime = 0f;
     bool lastEnableCreateCsv = false;
     bool isSubscribingData = false;
@@ -36,7 +36,7 @@ public class CreateAndSaveCsv : MonoBehaviour
         else if(stateManager.userStudyID == 2)
         {
             sw_1 = new StreamWriter(@"Assets/RecordedData/UserStudy2/" +  stateManager.userID + "_" + stateManager.conditionID.ToString() + ".csv", true, Encoding.GetEncoding("Shift_JIS"));
-            string[] s1 = {"position.x", "position.z" , "time" , "score", "trackingTimeP1", "trackingTimeP2", "distance", "coin", "fever", "jump"};
+            string[] s1 = {"position.x", "position.z" , "time" , "score", "trackingTimeP1", "trackingTimeP2", "distance", "activeScreen", "coin(user)", "coin(no-user)", "fever", "jump"};
             string s2 = string.Join(",", s1);
             sw_1.WriteLine(s2);
         }
@@ -52,7 +52,7 @@ public class CreateAndSaveCsv : MonoBehaviour
             isJumping = true;
             Debug.Log("[DATA COLLECTION] jumping!!!");
         }
-        if(stateManager.enableCreateCsvData && !lastEnableCreateCsv)  Debug.Log("[CSV] Data collection has been started in " + Time.time);
+        if(stateManager.enableCreateCsvData && !lastEnableCreateCsv)  Debug.Log("[DATA COLLECTION] has been started in " + Time.time);
         if(!stateManager.enableCreateCsvData && lastEnableCreateCsv) SaveData();
         
         if(stateManager.enableCreateCsvData && Time.time - lastUpdateTime > 1f / stateManager.dataSaveRate && isSubscribingData)
@@ -67,9 +67,25 @@ public class CreateAndSaveCsv : MonoBehaviour
                 {
                     float distanceBetweenSceens = Vector3.Distance(screen_1.position, screen_2.position);
                     int coinNum = 0;
-                    if(stateManager.userPlayingScreen == 1) coinNum = stateManager.visibleCoinCountInP1;
-                    if(stateManager.userPlayingScreen == 2) coinNum = stateManager.visibleCoinCountInP2;
-                    WriteData(unityPose.position.x.ToString(), unityPose.position.z.ToString(), Time.time.ToString(), stateManager.score.ToString(), stateManager.trackingTimeOnP1.ToString(), stateManager.trackingTimeOnP2.ToString(), distanceBetweenSceens.ToString(), coinNum.ToString(), stateManager.enableFever.ToString(), isJumping.ToString());
+                    int coinNum_noUser = 0;
+                    string activeScreen = "0";
+                    string activeFever = (stateManager.enableFever)? "1" : "0";
+                    string activeJump = (isJumping)? "1" : "0";
+
+                    if(stateManager.userPlayingScreen == 1) 
+                    {
+                        coinNum = stateManager.visibleCoinCountInP1;
+                        coinNum_noUser = stateManager.visibleCoinCountInP2;
+                        activeScreen = "1";
+                    }
+                    else if(stateManager.userPlayingScreen == 2) 
+                    {
+                        coinNum = stateManager.visibleCoinCountInP2;
+                        coinNum_noUser = stateManager.visibleCoinCountInP1;
+                        activeScreen = "2";
+                    }
+
+                    WriteData(unityPose.position.x.ToString(), unityPose.position.z.ToString(), Time.time.ToString(), stateManager.score.ToString(), stateManager.trackingTimeOnP1.ToString(), stateManager.trackingTimeOnP2.ToString(), distanceBetweenSceens.ToString(), activeScreen, coinNum.ToString(), coinNum_noUser.ToString(), activeFever, activeJump);
                 }
             }
             
@@ -81,9 +97,9 @@ public class CreateAndSaveCsv : MonoBehaviour
         isJumping = false;
     }
 
-    public void WriteData(string txt1, string txt2, string txt3, string txt4, string txt5, string txt6, string txt7, string txt8, string txt9, string txt10)
+    public void WriteData(string txt1, string txt2, string txt3, string txt4, string txt5, string txt6, string txt7, string txt8, string txt9, string txt10,string txt11, string txt12)
     {
-        string[] s1 = { txt1, txt2, txt3, txt4, txt5, txt6, txt7, txt8, txt9, txt10};
+        string[] s1 = { txt1, txt2, txt3, txt4, txt5, txt6, txt7, txt8, txt9, txt10, txt11, txt12};
         string s2 = string.Join(",", s1);
         sw_1.WriteLine(s2); 
     }
@@ -97,7 +113,7 @@ public class CreateAndSaveCsv : MonoBehaviour
 
     public void SaveData()
     {
-        Debug.Log("[CSV] Data has been saved!!! in " + Time.time);
+        Debug.Log("[DATA COLLECTION] has been saved!!! in " + Time.time);
 
         sw_1.Close();
     }

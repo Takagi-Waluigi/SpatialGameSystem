@@ -7,7 +7,9 @@ public class FeverNavigation : MonoBehaviour
 {
     [Header("オブジェクト設定")]
     [SerializeField] StateManager stateManager;
-    [SerializeField] Transform cameraTransform;
+    [SerializeField] Transform P1CameraTransform;
+    [SerializeField] Transform P2CameraTransform;
+    Vector3 cameraPosition = new Vector3();
     [SerializeField] [Range(0f, 2f)] float maxRadius = 0.64f;
     [SerializeField] float objectSpeed = 0.1f;
     [SerializeField] float apearenceSpeed = 0.05f;
@@ -41,6 +43,15 @@ public class FeverNavigation : MonoBehaviour
             lastTime = Time.time;
         }    
 
+        if(stateManager.userPlayingScreen == 1)
+        {
+            cameraPosition = P1CameraTransform.position;
+        }
+        else if(stateManager.userPlayingScreen == 2)
+        {
+            cameraPosition = P2CameraTransform.position;
+        }
+
         if(Time.time - lastUpdateTime > 1f / frameRate)
         {
             //ビジュアルの変更
@@ -63,9 +74,9 @@ public class FeverNavigation : MonoBehaviour
             float radiusY = maxRadius * 0.5f + maxRadius * 0.5f * Mathf.Cos(theta * (1f + Mathf.Cos(theta)));
 
             Vector3 position = new Vector3(
-                cameraTransform.position.x + radiusX * Mathf.Cos(theta),
+                cameraPosition.x + radiusX * Mathf.Cos(theta),
                 this.transform.position.y, 
-                cameraTransform.position.z + radiusY * Mathf.Sin(theta)
+                cameraPosition.z + radiusY * Mathf.Sin(theta)
             );
 
             this.transform.position = position;

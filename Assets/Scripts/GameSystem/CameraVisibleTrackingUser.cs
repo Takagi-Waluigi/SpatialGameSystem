@@ -18,19 +18,13 @@ public class CameraVisibleTrackingUser : MonoBehaviour
         if(lastTrackingTimeOnP1 != stateManager.trackingTimeOnP1)
         {
             stateManager.userPlayingScreen = 1;
-            Debug.Log("[PLAYING] on P1");
+            //Debug.Log("[PLAYING] on P1");
         }
         else if(lastTrackingTimeOnP2 != stateManager.trackingTimeOnP2)
         {
             stateManager.userPlayingScreen = 2;
-            Debug.Log("[PLAYING] on P2");
-        }
-        else
-        {
-            stateManager.userPlayingScreen = 0;
-        }
-
-        
+            //Debug.Log("[PLAYING] on P2");
+        }       
 
         lastTrackingTimeOnP1 = stateManager.trackingTimeOnP1;
         lastTrackingTimeOnP2 = stateManager.trackingTimeOnP2;
