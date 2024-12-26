@@ -5761,7 +5761,7 @@ PrefabInstance:
       objectReference: {fileID: 1514912492}
     - target: {fileID: 7154678706105589804, guid: 8c35760e729c3bf438a92af7a378df13, type: 3}
       propertyPath: userID
-      value: 2
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 7154678706105589804, guid: 8c35760e729c3bf438a92af7a378df13, type: 3}
       propertyPath: interval
@@ -25923,7 +25923,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1338176183742491755, guid: f5607cfa02b2e265e8c6a9965b190ca7, type: 3}
       propertyPath: channel
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1338176183742491755, guid: f5607cfa02b2e265e8c6a9965b190ca7, type: 3}
       propertyPath: m_Enabled
@@ -25931,7 +25931,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1338176183742491755, guid: f5607cfa02b2e265e8c6a9965b190ca7, type: 3}
       propertyPath: baseVelocity
-      value: 0.045
+      value: 0.035
       objectReference: {fileID: 0}
     - target: {fileID: 1338176183742491755, guid: f5607cfa02b2e265e8c6a9965b190ca7, type: 3}
       propertyPath: stateManager
@@ -26039,7 +26039,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3666588275518504413, guid: f5607cfa02b2e265e8c6a9965b190ca7, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4618973754637382499, guid: f5607cfa02b2e265e8c6a9965b190ca7, type: 3}
       propertyPath: targetObject

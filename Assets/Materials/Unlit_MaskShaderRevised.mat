@@ -38,7 +38,7 @@ Material:
     - _MetaValue: 0.55
     - _NumRobot: 1
     m_Colors:
-    - _RobotPos_0: {r: 1.6180656, g: 0, b: 2.2566452, a: 0}
+    - _RobotPos_0: {r: 0.88630617, g: 0, b: 0.7980875, a: 0}
     - _RobotPos_2: {r: 0, g: 0, b: 0, a: 0}
     - _RobotPos_3: {r: 0, g: 0, b: 0, a: 0}
     - _UserPosition_0: {r: -2.7963233, g: 0, b: 2.648199, a: 0}
