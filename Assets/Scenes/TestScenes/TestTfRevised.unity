@@ -317,7 +317,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1212951934}
-  - component: {fileID: 1212951933}
   - component: {fileID: 1212951935}
   m_Layer: 0
   m_Name: ROS
@@ -326,21 +325,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1212951933
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1212951932}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1fbc3a0070f60dffba806de26e4f58ae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  odomTopicName: odom
-  rosNamespace: projectoroid2
-  targetObject: {fileID: 205349554}
 --- !u!4 &1212951934
 Transform:
   m_ObjectHideFlags: 0
@@ -365,14 +349,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1212951932}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9fcbe163c9ce5044bc1d5ea214c3c5a, type: 3}
+  m_Script: {fileID: 11500000, guid: 03660272116d327049d119fd57e16785, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   mapTransformer: {fileID: 895479510}
   targetObject: {fileID: 205349554}
-  parentFrameName: odom
-  childFrameName: base_footprint
-  rosNamespace: projectoroid2
+  mapToOdomTopic: map_to_odom
+  mapToBaseFootprint: map_to_base_footprint
+  odomTopicName: odom
+  rosNamespace: robot1
+  useOdometryMessage: 1
 --- !u!1 &2041151730
 GameObject:
   m_ObjectHideFlags: 0
